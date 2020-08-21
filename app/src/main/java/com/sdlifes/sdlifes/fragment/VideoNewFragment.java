@@ -118,7 +118,7 @@ public class VideoNewFragment extends SimpleTopbarFragment implements
                 }
 
 //                startPlay(index);
-//                Log.e("TAG_点击播放","onPageRelease="+index);
+                Log.e("TAG_点击播放","onPageRelease="+index);
                 GSYVideoManager.onPause();
             }
 
