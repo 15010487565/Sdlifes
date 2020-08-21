@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">宝妈之家</string>
+
+    <string name="x_sencend_resend">%d秒</string>
+    <string name="me_attention">关注</string>
+    <string name="me_browse">浏览</string>
+    <string name="me_relation">联系</string>
+    <string name="me_updata_userinfo">编辑资料</string>
+
+    <string name="account_head">头像</string>
+    <string name="account_name">昵称</string>
+    <string name="account_introduction">介绍</string>
+    <string name="account_gender">性别</string>
+    <string name="account_birthday">生日</string>
+    <string name="account_region">地区</string>
+</resources>

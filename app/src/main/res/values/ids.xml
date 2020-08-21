@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="me_setting" type="id" />
+    <item name="me_attention" type="id" />
+    <item name="me_browse" type="id" />
+    <item name="me_relation" type="id" />
+
+    <item name="account_head" type="id" />
+    <item name="account_name" type="id" />
+    <item name="account_introduction" type="id" />
+    <item name="account_gender" type="id" />
+    <item name="account_birthday" type="id" />
+    <item name="account_region" type="id" />
+    <item name="ok" type="id"/>
+
+    <item type="id" name="tab_tag"/>
+</resources>

@@ -1,0 +1,2 @@
+include ':app', ':mylibrary', ':datepickdialoglibrary', ':dkplayer-java'
+rootProject.name='Sdlifes'
