@@ -91,6 +91,6 @@ public class AccountHeadFunc extends BaseFunc {
     }
 
     public void refreshHead(String headimg) {
-        ImageUtils.setImage(imageView, headimg, 3000, R.mipmap.album_photo_default);
+        ImageUtils.setImage(imageView, headimg, 3000, R.mipmap.head_portrait);
     }
 }

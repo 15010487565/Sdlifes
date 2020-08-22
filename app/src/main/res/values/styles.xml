@@ -38,15 +38,15 @@
 <!--        <item name="android:windowBackground">@mipmap/loading_img</item>-->
     </style>
 
-    <style name="AppThemeFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/top_bar_background</item>
-        <item name="colorPrimaryDark">@color/top_bar_background</item>
-        <item name="colorAccent">@color/top_bar_background</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@mipmap/ic_launcher_round</item>
-    </style>
+<!--    <style name="AppThemeFullScreen" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/top_bar_background</item>-->
+<!--        <item name="colorPrimaryDark">@color/top_bar_background</item>-->
+<!--        <item name="colorAccent">@color/top_bar_background</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+<!--        <item name="android:windowBackground">@mipmap/ic_launcher_round</item>-->
+<!--    </style>-->
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">@dimen/textsize_13</item>
     </style>

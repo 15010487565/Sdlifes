@@ -4,7 +4,8 @@ package com.sdlifes.sdlifes.network;
  * Created by vic on 2016/7/13.
  */
 public interface UrlAddr {
-    String path = "http://122.114.222.233:8080/platform/";
+    String url = "http://122.114.222.233:8080/";
+    String path = url+"platform/";
     String LOGIN = path+"api/user/login";//登录
 
     String REGISTER_SMS = path+"api/sms/register/";//获取注册验证码
@@ -41,4 +42,7 @@ public interface UrlAddr {
     String BROWSE_REMOVE_REMOVEALL = path+"api/browse/removeAll";//移除所有浏览记录
 
     String RELATION = path+"api/platform/relation";//联系
+
+    String CLAUSE = url+"agreement/clause.html";//服务条款
+    String PRIVACY = url+"agreement/privacy.html";//隐私政策
 }

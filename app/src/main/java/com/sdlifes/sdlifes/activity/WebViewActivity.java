@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.JsResult;
@@ -101,10 +102,16 @@ public class WebViewActivity extends AppCompatActivity {
         });
         Log.e("TAG_WEB","URL="+url);
         webview.loadUrl(url);
-        String AdId = intent.getStringExtra("AdId");
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("id", AdId);
-        OkHttpHelper.getAsyncHttp(this,1000,
-                params, UrlAddr.AD_ADD,null);
+        boolean isAgreement = intent.getBooleanExtra("isAgreement", false);
+        if (!isAgreement){
+            String AdId = intent.getStringExtra("AdId");
+            if (!TextUtils.isEmpty(AdId)){
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", AdId);
+                OkHttpHelper.getAsyncHttp(this,1000,
+                        params, UrlAddr.AD_ADD,null);
+            }
+
+        }
     }
 }

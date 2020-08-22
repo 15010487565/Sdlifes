@@ -126,7 +126,7 @@ public class MeFragment extends SimpleTopbarFragment {
         systemFuncList = view.findViewById(R.id.me_system_func_list);
         userPhoto = view.findViewById(R.id.user_photo);
         String headImage = ShareHelper.getHeadImage();
-        ImageUtils.setImage(userPhoto,headImage,3000,R.mipmap.album_photo_default);
+        ImageUtils.setImage(userPhoto,headImage,3000,R.mipmap.head_portrait);
         userName = view.findViewById(R.id.user_name);
 
         banner = view.findViewById(R.id.banner);

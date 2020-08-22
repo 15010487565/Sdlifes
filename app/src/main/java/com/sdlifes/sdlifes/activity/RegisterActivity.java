@@ -105,8 +105,11 @@ public class RegisterActivity extends AppCompatActivity
         // 单独设置点击事件
         ClickableSpan clickableSpanOne = new ClickableSpan() {
             @Override
-            public void onClick(View view) {
-                ToastUtil.showToast("服务条款");
+            public void onClick(View view) {//服务条款
+                Intent intent = new Intent(RegisterActivity.this, WebViewActivity.class);
+                intent.putExtra("Url",UrlAddr.CLAUSE);
+                intent.putExtra("isAgreement",true);
+                startActivity(intent);
             }
             @Override
             public void updateDrawState(TextPaint paint) {
@@ -120,7 +123,10 @@ public class RegisterActivity extends AppCompatActivity
         ClickableSpan clickableSpanTwo = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-               ToastUtil.showToast("服务政策");
+                Intent intent = new Intent(RegisterActivity.this, WebViewActivity.class);
+                intent.putExtra("Url",UrlAddr.PRIVACY);
+                intent.putExtra("isAgreement",true);
+                startActivity(intent);
             }
 
             @Override
