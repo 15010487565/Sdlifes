@@ -141,10 +141,15 @@ public class HomeFragment extends SimpleTopbarFragment {
                 StringBuffer buffer = new StringBuffer();
                 if (searchArr != null && searchArr.size() > 0) {
                     for (int i = 0; i < searchArr.size(); i++) {
+                        if (i > 0){
+                            buffer.append("\t|\t");
+                        }
                         String s = searchArr.get(i);
                         buffer.append(s);
+
                     }
                 }
+                Log.e("TAG_搜索","");
                 if (!TextUtils.isEmpty(buffer)) {
                     tvHomeSerch.setHint(buffer.toString());
                 } else {
@@ -221,6 +226,7 @@ public class HomeFragment extends SimpleTopbarFragment {
         String msg = event.getMsg();
         if (Constant.REFRESH_HOME.equals(msg)){
             id = event.getId();
+            initData();
         }
     }
 

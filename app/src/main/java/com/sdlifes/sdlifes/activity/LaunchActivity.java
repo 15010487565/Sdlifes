@@ -29,7 +29,8 @@ import www.xcd.com.mylibrary.http.HttpInterface;
 public class LaunchActivity extends AppCompatActivity implements HttpInterface {
 
     ImageView imageView;
-
+    int id;
+    String url;
     private MyHandler handler;
 
     private static class MyHandler extends Handler {
@@ -64,6 +65,24 @@ public class LaunchActivity extends AppCompatActivity implements HttpInterface {
         ImageUtils.setWidthPixel(widthPixel);
         ImageUtils.setHeightPixel(heightPixel);
         imageView = (ImageView) findViewById(R.id.bg_welcome);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LaunchActivity.this, WebViewActivity.class);
+                intent.putExtra("Url",url);
+                intent.putExtra("AdId",String.valueOf(id));
+                startActivity(intent);
+                handler.removeCallbacksAndMessages(null);
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                Uri uri = Uri.parse(pic);
+//                intent.setData(uri);
+
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("id", String.valueOf(id));
+//                OkHttpHelper.getAsyncHttp(LaunchActivity.this,1000,
+//                        params, UrlAddr.AD_ADD,null);
+            }
+        });
         findViewById(R.id.tv_skip).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +107,10 @@ public class LaunchActivity extends AppCompatActivity implements HttpInterface {
             JSONObject data = jsonObject.getJSONObject("data");
             String pic = data.optString("pic");
             ImageUtils.setImage(imageView,pic);
+             url = data.optString("url");
+            id = data.optInt("id");
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

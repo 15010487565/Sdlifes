@@ -115,6 +115,8 @@ public class MeFragment extends SimpleTopbarFragment {
     @Override
     protected void initView(LayoutInflater inflater, View view) {
 
+        TextView tvUserID = view.findViewById(R.id.user_id);
+        tvUserID.setText("ID："+ShareHelper.getUserId());
         btnUser = view.findViewById(R.id.btn_user);
         btnUser.setOnClickListener(this);
         tvExit = view.findViewById(R.id.tv_exit);

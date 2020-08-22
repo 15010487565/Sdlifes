@@ -2,12 +2,12 @@ package com.sdlifes.sdlifes.fragment;
 
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.Map;
 
 import www.xcd.com.mylibrary.help.OkHttpHelper;
+
+import static android.support.v7.widget.RecyclerView.SCROLL_STATE_IDLE;
 
 
 /**
@@ -90,8 +92,6 @@ public class VideoNewFragment extends SimpleTopbarFragment implements
     @Override
     protected void initView(LayoutInflater inflater, View view) {
 
-
-
         view.findViewById(R.id.topbat_parent).setVisibility(View.GONE);
 
         ly_pull_refresh = view.findViewById(R.id.ly_pull_refresh);
@@ -110,30 +110,12 @@ public class VideoNewFragment extends SimpleTopbarFragment implements
             @Override
             public void onPageRelease(boolean isNext, int position) {
 
-                int index = 0;
-                if (isNext){
-                    index = 0;
-                }else {
-                    index = 1;
-                }
-
-//                startPlay(index);
-                Log.e("TAG_点击播放","onPageRelease="+index);
                 GSYVideoManager.onPause();
             }
 
             @Override
             public void onPageSelected(int position, boolean isNext) {
 
-                int index = 0;
-                if (isNext){
-                    index = 0;
-                }else {
-                    index = 1;
-                }
-//                startPlay(index);
-                Log.e("TAG_点击播放","onPageSelected="+index);
-//                GSYVideoManager.onResume();
             }
         });
         videoRc.setLayoutManager(mLinearLayoutManager);
@@ -145,23 +127,29 @@ public class VideoNewFragment extends SimpleTopbarFragment implements
         adapter.setOnItemClickListener(this);
         videoRc.setAdapter(adapter);
 
-        videoRc.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+        videoRc.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onChildViewAttachedToWindow(@NonNull View view) {
-
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == SCROLL_STATE_IDLE ) {
+                    // DES: 找出当前可视Item位置
+                    RecyclerView.LayoutManager layoutManager = videoRc.getLayoutManager();
+                    if (layoutManager instanceof LinearLayoutManager) {
+                        LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+                        int mFirstVisiblePosition = linearManager.findFirstVisibleItemPosition();
+                        int mLastVisiblePosition = linearManager.findLastVisibleItemPosition();
+                        Log.e("TAG_resume","mFirstVisiblePosition="+mFirstVisiblePosition+
+                                ";mLastVisiblePosition="+mLastVisiblePosition);
+                        View view = mLinearLayoutManager.findViewByPosition(mFirstVisiblePosition);
+                        SampleCoverVideo gsyVideoPlayer = view.findViewById(R.id.video_item_player);
+                        gsyVideoPlayer.startPlayLogic();
+                    }
+                }
             }
 
             @Override
-            public void onChildViewDetachedFromWindow(@NonNull View view) {
-
-               if (  view instanceof FrameLayout){
-                   FrameLayout playerContainer = (FrameLayout) view;
-                   Log.e("tag_","playerContainer="+(playerContainer ==null));
-                   View v = playerContainer.getChildAt(0);
-//                   if (v != null && v == mVideoView && !mVideoView.isFullScreen()) {
-//                       releaseVideoView();
-//                   }
-                }
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
 
             }
         });

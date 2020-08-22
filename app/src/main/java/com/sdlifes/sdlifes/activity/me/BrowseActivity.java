@@ -61,6 +61,7 @@ public class BrowseActivity extends SimpleTopbarActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
+        ly_pull_refresh.setRefreshing(true);
         initdata();
     }
 

@@ -14,6 +14,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.sdlifes.sdlifes.R;
+import com.sdlifes.sdlifes.network.UrlAddr;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import www.xcd.com.mylibrary.help.OkHttpHelper;
 
 public class WebViewActivity extends AppCompatActivity {
 
@@ -93,6 +99,12 @@ public class WebViewActivity extends AppCompatActivity {
                 super.onReceivedError(view, errorCode, description, failingUrl);
             }
         });
+        Log.e("TAG_WEB","URL="+url);
         webview.loadUrl(url);
+        String AdId = intent.getStringExtra("AdId");
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id", AdId);
+        OkHttpHelper.getAsyncHttp(this,1000,
+                params, UrlAddr.AD_ADD,null);
     }
 }

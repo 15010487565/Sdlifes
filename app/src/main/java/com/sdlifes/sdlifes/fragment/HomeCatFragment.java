@@ -76,7 +76,7 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
         adapter.setOnItemClickListener(this);
         recyclerView.addItemDecoration(getRecyclerViewDivider(R.drawable.inset_recyclerview_divider_1));
 
-
+        ly_pull_refresh.setRefreshing(true);
         initData();
 
         return view;
@@ -133,6 +133,7 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
         }else {
             Intent intent = new Intent(getActivity(), WebViewActivity.class);
             intent.putExtra("Url",newsArrBean.getUrl());
+            intent.putExtra("AdId",String.valueOf(newsArrBean.getId()));
             getActivity().startActivity(intent);
         }
 

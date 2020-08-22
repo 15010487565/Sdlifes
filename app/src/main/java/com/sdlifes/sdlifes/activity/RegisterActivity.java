@@ -1,15 +1,20 @@
 package com.sdlifes.sdlifes.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,7 +43,9 @@ public class RegisterActivity extends AppCompatActivity
     public TextView mTvSendVercode;
     private Handler mHandler;
     public boolean mCanSendVercode = true;
-    private CheckedTextView ctv;
+    private ImageView iv_agree;
+    private TextView ctv;
+    private boolean isAgree =false;
 
     public class LoopHandler extends Handler {
 
@@ -90,10 +97,43 @@ public class RegisterActivity extends AppCompatActivity
 
         ivFinish = findViewById(R.id.iv_Finish);
         ivFinish.setOnClickListener(this);
+        iv_agree = findViewById(R.id.iv_agree);
+        iv_agree.setOnClickListener(this);
+        ctv = findViewById(R.id.ctv_agree);
+        String str = "我已阅读并同意服务条款和隐私政策";
+        SpannableStringBuilder spannableBuilder = new SpannableStringBuilder(str);
+        // 单独设置点击事件
+        ClickableSpan clickableSpanOne = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                ToastUtil.showToast("服务条款");
+            }
+            @Override
+            public void updateDrawState(TextPaint paint) {
+                paint.setColor(Color.parseColor("#E13122"));
+                // 设置下划线 true显示、false不显示
+                paint.setUnderlineText(false);
+            }
+        };
+        spannableBuilder.setSpan(clickableSpanOne, 7, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // 在设置点击事件、同时设置字体颜色
+        ClickableSpan clickableSpanTwo = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+               ToastUtil.showToast("服务政策");
+            }
 
-        ctv = (CheckedTextView) findViewById(R.id.ctv_agree);
-        ctv.setOnClickListener(this);
-        ctv.setChecked(false);
+            @Override
+            public void updateDrawState(TextPaint paint) {
+                paint.setColor(Color.parseColor("#E13122"));
+                // 设置下划线 true显示、false不显示
+                paint.setUnderlineText(false);
+            }
+        };
+        spannableBuilder.setSpan(clickableSpanTwo, 12, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // 不设置点击不生效
+        ctv.setMovementMethod(LinkMovementMethod.getInstance());
+        ctv.setText(spannableBuilder);
     }
 
     @Override
@@ -120,7 +160,7 @@ public class RegisterActivity extends AppCompatActivity
                     ToastUtil.showToast("两次输入密码不一致！");
                     return;
                 }
-                if (!ctv.isChecked()) {
+                if (!isAgree) {
                     ToastUtil.showToast("请确认已阅读服务条款和隐私政策！");
                     return;
                 }
@@ -146,8 +186,14 @@ public class RegisterActivity extends AppCompatActivity
                     OkHttpHelper.getRestfulHttp(this, 1000, UrlAddr.REGISTER_SMS + phone1, this);
                 }
                 break;
-            case R.id.ctv_agree:
-                ctv.toggle();
+            case R.id.iv_agree:
+                if (!isAgree){
+                    iv_agree.setBackgroundResource(R.drawable.select);
+                    isAgree = true;
+                }else {
+                    iv_agree.setBackgroundResource(R.drawable.unselect);
+                    isAgree = false;
+                }
                 break;
         }
     }

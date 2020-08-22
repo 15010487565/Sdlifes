@@ -75,6 +75,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeModel.DataBean.NewsArrBean
                 }else {
                     Intent intent = new Intent(mContext, WebViewActivity.class);
                     intent.putExtra("Url",newsArrBean.getUrl());
+                    intent.putExtra("AdId",String.valueOf(newsArrBean.getId()));
                     mContext.startActivity(intent);
                 }
 

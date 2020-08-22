@@ -70,6 +70,7 @@ public class AttentionActivity extends SimpleTopbarActivity implements
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
+        ly_pull_refresh.setRefreshing(true);
         initdata();
 
     }

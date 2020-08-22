@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
@@ -49,7 +50,8 @@ import www.xcd.com.mylibrary.utils.ToastUtil;
 public class SearchActivity extends AppCompatActivity implements HttpInterface,
         View.OnClickListener, BaseQuickAdapter.OnItemClickListener ,
         TextView.OnEditorActionListener, TextWatcher ,
-        OnRcItemClickListener{
+        OnRcItemClickListener,
+        SwipeRefreshLayout.OnRefreshListener{
 
     private LinearLayout llHint;
     private RecyclerView recyclerView, rcHistory, rcSearchLike;
@@ -59,10 +61,19 @@ public class SearchActivity extends AppCompatActivity implements HttpInterface,
     private LinearLayout llHistory, llSearchLike;
     private ImageView ivCleanHistory;
     private NestedScrollView nsv;
+    private SwipeRefreshLayout ly_pull_refresh;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        ly_pull_refresh = findViewById(R.id.ly_pull_refresh);
+        ly_pull_refresh.setOnRefreshListener(this);
+        //设置样式刷新显示的位置
+        ly_pull_refresh.setProgressViewOffset(true, -20, 100);
+        ly_pull_refresh.setColorSchemeResources(R.color.red, R.color.blue, R.color.black);
+        ly_pull_refresh.setRefreshing(false);
 
         llHint = findViewById(R.id.ll_Hint);
         llHint.setVisibility(View.GONE);
@@ -221,8 +232,8 @@ public class SearchActivity extends AppCompatActivity implements HttpInterface,
 
     @Override
     public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {
-//        Log.e("TAG_搜索","requestCode="+requestCode);
-       switch (requestCode){
+        ly_pull_refresh.setRefreshing(false);
+        switch (requestCode){
            case 1000:
                SearchLikeModel likeModel = JSON.parseObject(returnData, SearchLikeModel.class);
                List<String> data1 = likeModel.getData();
@@ -240,7 +251,7 @@ public class SearchActivity extends AppCompatActivity implements HttpInterface,
 
     @Override
     public void onErrorResult(int errorCode, String errorExcep) {
-
+        ly_pull_refresh.setRefreshing(false);
     }
 
     @Override
@@ -307,6 +318,7 @@ public class SearchActivity extends AppCompatActivity implements HttpInterface,
             insertData(searchStr);
             queryData("");
         }
+        ly_pull_refresh.setRefreshing(true);
         etSearch.setText(searchStr);
         String userId = ShareHelper.getUserId();
         OkHttpHelper.getRestfulHttp(
@@ -340,5 +352,15 @@ public class SearchActivity extends AppCompatActivity implements HttpInterface,
         TextView textView = (TextView) layout.findViewById(R.id.historysearch_title);
         if (textView !=null&&textView.getText()!=null)
         executeData(textView.getText().toString());
+    }
+
+    @Override
+    public void onRefresh() {
+        String searchStr = etSearch.getText().toString().trim();
+        if (!TextUtils.isEmpty(searchStr)){
+            executeData(searchStr);
+        }else {
+            ly_pull_refresh.setRefreshing(false);
+        }
     }
 }

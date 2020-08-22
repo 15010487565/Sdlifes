@@ -58,8 +58,8 @@ public class LoginActivity extends AppCompatActivity
         ImageView ivFinish = findViewById(R.id.iv_Finish);
         ivFinish.setOnClickListener(this);
 
-        etPhone.setText("15010487565");
-        etPassword.setText("123456");
+//        etPhone.setText("15010487565");
+//        etPassword.setText("123456");
     }
 
     @Override
