@@ -1,6 +1,5 @@
 package www.xcd.com.mylibrary.base.activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.support.annotation.DrawableRes;
 import android.support.v7.widget.DividerItemDecoration;
@@ -25,7 +24,6 @@ import www.xcd.com.mylibrary.R;
 import www.xcd.com.mylibrary.func.BaseTopFunc;
 import www.xcd.com.mylibrary.func.CommonBackTopBtnFunc;
 import www.xcd.com.mylibrary.http.HttpInterface;
-import www.xcd.com.mylibrary.utils.DialogUtil;
 import www.xcd.com.mylibrary.utils.ToastUtil;
 import www.xcd.com.mylibrary.view.BadgeView;
 
@@ -44,7 +42,7 @@ import www.xcd.com.mylibrary.view.BadgeView;
 public abstract class SimpleTopbarActivity extends BaseActivity implements OnClickListener, HttpInterface {
 
     public static final String IMAGE_UNSPECIFIED = "image/*";
-    protected Dialog loginDialog;
+//    protected Dialog loginDialog;
     /**
      * 右侧功能对象的MAP，可以通过id获得指定的功能对象
      */
@@ -405,32 +403,32 @@ public abstract class SimpleTopbarActivity extends BaseActivity implements OnCli
         runOnUiThread(action);
     }
 
-    public void createDialog() {
-        // 登录中dialog
-        loginDialog = DialogUtil.getProgressDialog(this);
-    }
+//    public void createDialog() {
+//        // 登录中dialog
+//        loginDialog = DialogUtil.getProgressDialog(this);
+//    }
 
     /**
      * 关闭登录中dialog
      */
-    public void dialogDissmiss() {
-        if (loginDialog != null && loginDialog.isShowing()) {
-            loginDialog.dismiss();
-        }
-    }
+//    public void dialogDissmiss() {
+//        if (loginDialog != null && loginDialog.isShowing()) {
+//            loginDialog.dismiss();
+//        }
+//    }
 
     /**
      * 显示登录中dialog
      */
-    public void dialogshow() {
-        if (loginDialog != null && !loginDialog.isShowing()) {
-            loginDialog.show();
-//            Log.e("TAG_显示显dialog", (loginDialog != null) + "===" + !loginDialog.isShowing());
-        } else if (loginDialog == null) {
-            createDialog();
-            dialogshow();
-        }
-    }
+//    public void dialogshow() {
+//        if (loginDialog != null && !loginDialog.isShowing()) {
+//            loginDialog.show();
+////            Log.e("TAG_显示显dialog", (loginDialog != null) + "===" + !loginDialog.isShowing());
+//        } else if (loginDialog == null) {
+//            createDialog();
+//            dialogshow();
+//        }
+//    }
 
     /* 动态设置ListView的高度
             * @param listView

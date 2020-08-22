@@ -11,20 +11,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="behind"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan|stateHidden" />
-        <activity
-            android:name=".activity.AlbumPhotoActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:launchMode="singleTop"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan|stateHidden" />
-        <activity
-            android:name=".activity.CameraEditActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:launchMode="singleTop"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan|stateHidden" />
+
         <provider
             android:name=".PhotoFileProvider"
             android:authorities="${applicationId}.fileprovider"

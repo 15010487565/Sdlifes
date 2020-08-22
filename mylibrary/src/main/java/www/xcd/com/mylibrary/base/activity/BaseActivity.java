@@ -2,7 +2,6 @@ package www.xcd.com.mylibrary.base.activity;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -19,7 +18,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import www.xcd.com.mylibrary.utils.AppManager;
-import www.xcd.com.mylibrary.utils.CustomDialog;
 import www.xcd.com.mylibrary.utils.SystemBarTintManager;
 
 
@@ -30,7 +28,7 @@ import www.xcd.com.mylibrary.utils.SystemBarTintManager;
 
 public abstract class BaseActivity extends FragmentActivity implements View.OnFocusChangeListener{
 
-    private CustomDialog dialog;
+
     private boolean isActive = true;
 
     /**
@@ -157,33 +155,33 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnFo
     /**
      * 初始化踢下线弹出框
      */
-    public void initDialog() {
-        // 冲突踢下线
-        CustomDialog.Builder builder = new CustomDialog.Builder(BaseActivity.this);
-        builder.setTitle("帐号下线");
-        builder.setMessage("您的帐号已在其他移动端登录，已断开连接。");
-        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent in = new Intent("android.intent.action.LOGIN");
-                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(in);
-                AppManager.getInstance().finishAllActivity();
-            }
-        });
-        dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-    }
+//    public void initDialog() {
+//        // 冲突踢下线
+//        CustomDialog.Builder builder = new CustomDialog.Builder(BaseActivity.this);
+//        builder.setTitle("帐号下线");
+//        builder.setMessage("您的帐号已在其他移动端登录，已断开连接。");
+//        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+//
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent in = new Intent("android.intent.action.LOGIN");
+//                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(in);
+//                AppManager.getInstance().finishAllActivity();
+//            }
+//        });
+//        dialog = builder.create();
+//        dialog.setCanceledOnTouchOutside(false);
+//    }
     /**
      * 展示踢人dialog
      */
-    protected void showKickDialog(){
-        Log.e("TAG_踢下线","activityIsActivity="+dialogIsActivity()+";isActive="+isActive);
-        if (dialog != null && !dialog.isShowing()&&dialogIsActivity()) {
-            dialog.show();
-        }
-    }
+//    protected void showKickDialog(){
+//        Log.e("TAG_踢下线","activityIsActivity="+dialogIsActivity()+";isActive="+isActive);
+//        if (dialog != null && !dialog.isShowing()&&dialogIsActivity()) {
+//            dialog.show();
+//        }
+//    }
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
         EditText textView = (EditText) view;

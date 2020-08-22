@@ -3,8 +3,6 @@ package www.xcd.com.mylibrary.base.application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
-import com.yonyou.sns.im.core.YYIMChat;
-
 
 /**
  * application基类
@@ -25,14 +23,6 @@ public class XCDApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         XCDApplication.context = getApplicationContext();
-        try {
-
-//            //初始化第三方jar
-            YYIMChat.getInstance().init(getApplicationContext());
-//            YYIMChat.getInstance().configLogger(Log.VERBOSE, true, true, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

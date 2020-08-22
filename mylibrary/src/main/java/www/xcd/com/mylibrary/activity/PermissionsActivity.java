@@ -1,7 +1,6 @@
 package www.xcd.com.mylibrary.activity;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,7 +13,6 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import www.xcd.com.mylibrary.R;
-import www.xcd.com.mylibrary.utils.CustomDialog;
 
 
 /**
@@ -124,7 +122,7 @@ public class PermissionsActivity extends FragmentActivity {
             allPermissionsGranted();
         } else {
             isRequireCheck = false;
-            showMissingPermissionDialog();
+//            showMissingPermissionDialog();
             finish();
         }
     }
@@ -140,25 +138,25 @@ public class PermissionsActivity extends FragmentActivity {
     }
 
     // 显示缺失权限提示
-    private void showMissingPermissionDialog() {
-        CustomDialog.Builder builder = new CustomDialog.Builder(this);
-        builder.setTitle(R.string.permission_title);
-        builder.setMessage(R.string.permission_message);
-        builder.setPositiveButton(R.string.permission_exit, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                setResult(PERMISSIONS_DENIED);
-                finish();
-            }
-        });
-        builder.setNegativeButton(R.string.permisssion_setting, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                startAppSettings();
-            }
-        });
-        builder.create().show();
-    }
+//    private void showMissingPermissionDialog() {
+//        CustomDialog.Builder builder = new CustomDialog.Builder(this);
+//        builder.setTitle(R.string.permission_title);
+//        builder.setMessage(R.string.permission_message);
+//        builder.setPositiveButton(R.string.permission_exit, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                setResult(PERMISSIONS_DENIED);
+//                finish();
+//            }
+//        });
+//        builder.setNegativeButton(R.string.permisssion_setting, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                startAppSettings();
+//            }
+//        });
+//        builder.create().show();
+//    }
 
     // 启动应用的设置
     private void startAppSettings() {

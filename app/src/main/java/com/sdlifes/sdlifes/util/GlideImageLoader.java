@@ -25,6 +25,7 @@ public class GlideImageLoader implements HolderCreator {
             public void onClick(View v) {
                 Intent intent = new Intent(context, WebViewActivity.class);
                 intent.putExtra("Url",dataBean.getUrl());
+                intent.putExtra("AdId",String.valueOf(dataBean.getId()));
                 context.startActivity(intent);
             }
         });

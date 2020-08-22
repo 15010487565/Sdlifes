@@ -25,6 +25,7 @@ public interface UrlAddr {
     String USERINFO = path+"api/user/info/";//个人信息
     String USERINFO_AD = path+"api/ad/list";//个人信息广告
     String USERINFO_LAUNCH_AD = path+"api/ad/initad";//欢迎页广告
+    String AD_ADD = path+"api/ad/add";//广告
 
     String UPLOADIMG = path+"api/upload/img";//上传图片
     String USERINFO_EDIT = path+"api/user/edit";//修改头像

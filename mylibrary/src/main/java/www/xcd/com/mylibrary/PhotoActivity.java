@@ -6,34 +6,21 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.huantansheng.easyphotos.EasyPhotos;
-import com.yonyou.sns.im.util.common.FileUtils;
-import com.yonyou.sns.im.util.common.ToastUtil;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
-import www.xcd.com.mylibrary.activity.AlbumPhotoActivity;
 import www.xcd.com.mylibrary.activity.PermissionsActivity;
 import www.xcd.com.mylibrary.activity.PermissionsChecker;
 import www.xcd.com.mylibrary.base.activity.SimpleTopbarActivity;
 import www.xcd.com.mylibrary.utils.GlideEngine;
-import www.xcd.com.mylibrary.utils.YYStorageUtil;
-
-import static android.graphics.BitmapFactory.decodeFile;
-import static www.xcd.com.mylibrary.utils.handler.ResizerBitmapHandler.calculateInSampleSize;
 
 /**
  * Created by Android on 2017/6/26.
@@ -92,16 +79,16 @@ public class PhotoActivity extends SimpleTopbarActivity {
                     .start(101);
         } else if (i == R.id.account_head_choice_camera) {
             closeChoiceDialog();
-        PermissionsChecker mChecker = new PermissionsChecker(this);
-        if (mChecker.lacksPermissions(AUTHORIMAGE)) {
-            // 请求权限
-            PermissionsActivity.startActivityForResult(this, CAMERA_REQUESTCODE, AUTHORIMAGE);
-        } else {
-            // 全部权限都已获取
-            EasyPhotos.createCamera(this)
-                    .setFileProviderAuthority("com.sdlifes.sdlifes.fileprovider")
-                    .start(101);
-        }
+            PermissionsChecker mChecker = new PermissionsChecker(this);
+            if (mChecker.lacksPermissions(AUTHORIMAGE)) {
+                // 请求权限
+                PermissionsActivity.startActivityForResult(this, CAMERA_REQUESTCODE, AUTHORIMAGE);
+            } else {
+                // 全部权限都已获取
+                EasyPhotos.createCamera(this)
+                        .setFileProviderAuthority("com.sdlifes.sdlifes.fileprovider")
+                        .start(101);
+            }
         }
     }
 
@@ -157,19 +144,6 @@ public class PhotoActivity extends SimpleTopbarActivity {
     }
 
     /**
-     * 显示图片的view
-     */
-    private int showViewid;
-
-    public int getShowViewid() {
-        return showViewid;
-    }
-
-    public void setShowViewid(int showViewid) {
-        this.showViewid = showViewid;
-    }
-
-    /**
      * 修改头像对话框
      *
      * @return
@@ -183,12 +157,6 @@ public class PhotoActivity extends SimpleTopbarActivity {
         return dlgChoice;
     }
 
-    /**
-     * 是否显示更改头像后的dialog,默认不显示
-     */
-    public boolean getIsShowChoiceDialog() {
-        return false;
-    }
 
     /**
      * 关闭对话框
@@ -197,139 +165,6 @@ public class PhotoActivity extends SimpleTopbarActivity {
         if (dlgChoice != null && dlgChoice.isShowing()) {
             dlgChoice.cancel();
         }
-    }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        Log.e("TAG_相机", "requestCode=" + requestCode + ";resultCode=" + resultCode);
-//        if (resultCode == Activity.RESULT_OK) {
-//            switch (requestCode) {
-//                case REQUEST_CODE_HEAD_ALBUM:
-//                    boolean is_origanl = data.getBooleanExtra(IS_ORIGANL, true);
-//                    YYPhotoItem photoItem = null;
-//                    if (is_origanl) {
-//                        photoItem = (YYPhotoItem) data.getSerializableExtra(AlbumPhotoActivity.BUNDLE_RETURN_PHOTO);
-//                        if (photoItem != null) {
-//                            startCrop(photoItem.getPhotoPath());
-//                        }
-//                    } else {
-//                        final List<File> list = new ArrayList<>();
-//                        List<YYPhotoItem> photoList = (List<YYPhotoItem>) data.getSerializableExtra(AlbumPhotoActivity.BUNDLE_RETURN_PHOTOS);
-//                        for (YYPhotoItem photo : photoList) {
-//                            // 存储图片到图片目录
-//                            list.add(new File(photo.getPhotoPath()));
-//                        }
-//                        uploadImage(list);
-//                    }
-//
-//                    break;
-//                case REQUEST_CODE_HEAD_CAMERA:
-//                    //剪切功能
-//                    Log.e("TAG_剪切", "photoPath=" + photoPath);
-//                    if (photoPath != null) {
-//                        startCrop(photoPath);
-//                    }
-//                    break;
-//                //直接返回图片
-//                case REQUEST_CODE_HEAD_CROP:
-//                    try {
-//                        Bundle extras = data.getExtras();
-//                        if (extras != null) {
-//                            Bitmap cropPhoto = extras.getParcelable("data");
-//                            if (cropPhoto != null) {
-//                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                                // (0 - 100)压缩文件
-//                                cropPhoto.compress(Bitmap.CompressFormat.JPEG, 75, stream);
-//
-//                                File cropFile = new File(YYStorageUtil.getImagePath(PhotoActivity.this), getphotoName() + ".jpg");
-//                                final List<File> list = new ArrayList<>();
-//                                list.add(cropFile);
-//                                FileUtils.compressBmpToFile(cropPhoto, cropFile);
-//                                uploadImage(list);
-//                            }
-////
-//                        }
-//
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                    break;
-////                case PictureConfig.CHOOSE_REQUEST:
-////                    // 图片选择结果回调
-////                    List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
-////                    // 例如 LocalMedia 里面返回三种path
-////                    // 1.media.getPath(); 为原图path
-////                    // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
-////                    // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
-////                    // 如果裁剪并压缩了，以取压缩路径为准，因为是先裁剪后压缩的
-////                    uploadImageLocalMedia(selectList);
-////                    break;
-//                default:
-//                    break;
-//            }
-//        } else {
-//            // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
-//            if (requestCode == PERMISSIONS_GRANTED && resultCode == PERMISSIONS_DENIED) {
-//                finish();
-//            } else {
-//                if (getIsShowChoiceDialog()) {
-//                    getChoiceDialog().show();
-//                }
-//            }
-//        }
-//    }
-
-    public void uploadImage(final List<File> list) {
-        // 调用上传
-
-    }
-//    public void uploadImageLocalMedia( List<LocalMedia> list) {
-//        // 调用上传
-//
-//    }
-
-    /**
-     * AlbumPhotoActivity.TYPE_SINGLE为单选
-     * ""多选
-     */
-
-    public void startCrop(String imagePath) {
-        Log.e("TAG_裁剪", "imagePath=" + imagePath);
-        File cropFile = new File(YYStorageUtil.getImagePath(PhotoActivity.this), getphotoName() + ".jpg");
-        final List<File> list = new ArrayList<>();
-        list.add(cropFile);
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        decodeFile(imagePath, options);
-
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, 480, 800);
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-
-        Bitmap cropPhoto = BitmapFactory.decodeFile(imagePath, options);
-        if (cropPhoto != null) {
-            FileUtils.compressBmpToFile(cropPhoto, cropFile, true, 75, true, 0);
-            uploadImage(list);
-        } else {
-            ToastUtil.showShort(this, "请选择正确图片");
-        }
-    }
-
-    //单选还是多选
-    public String getTpye() {
-        return AlbumPhotoActivity.TYPE_SINGLE;
-    }
-
-    public void setphotoName(String photoName) {
-        this.photoName = photoName;
-    }
-
-    public String getphotoName() {
-//        return photoName;
-        return UUID.randomUUID().toString();
     }
 
     @Override

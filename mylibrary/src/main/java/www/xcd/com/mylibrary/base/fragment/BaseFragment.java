@@ -2,12 +2,10 @@ package www.xcd.com.mylibrary.base.fragment;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +26,6 @@ import www.xcd.com.mylibrary.R;
 import www.xcd.com.mylibrary.base.activity.SimpleTopbarActivity;
 import www.xcd.com.mylibrary.func.BaseTopFunc;
 import www.xcd.com.mylibrary.http.HttpInterface;
-import www.xcd.com.mylibrary.utils.DialogUtil;
 import www.xcd.com.mylibrary.utils.ToastUtil;
 
 /**
@@ -286,34 +283,34 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 	/**
 	 * 数据请求中的dialog
 	 */
-	private Dialog requestDialog;
+//	private Dialog requestDialog;
 
 	/**
 	 * 关闭请求中dialog
 	 */
-	protected void dialogDissmiss() {
-		if (requestDialog != null && requestDialog.isShowing()) {
-			requestDialog.dismiss();
-		}
-	}
+//	protected void dialogDissmiss() {
+//		if (requestDialog != null && requestDialog.isShowing()) {
+//			requestDialog.dismiss();
+//		}
+//	}
 
 	/**
 	 * 显示请求中dialog
 	 */
-	protected void dialogshow() {
-		if (requestDialog != null && !requestDialog.isShowing()) {
-			requestDialog.show();
-			Log.e("TAG_显示显dialog", (requestDialog != null) + "===" + !requestDialog.isShowing());
-		} else if (requestDialog == null) {
-			createDialog();
-			dialogshow();
-		}
-	}
+//	protected void dialogshow() {
+//		if (requestDialog != null && !requestDialog.isShowing()) {
+//			requestDialog.show();
+//			Log.e("TAG_显示显dialog", (requestDialog != null) + "===" + !requestDialog.isShowing());
+//		} else if (requestDialog == null) {
+//			createDialog();
+//			dialogshow();
+//		}
+//	}
 
-	protected void createDialog(){
-		// 请求中dialog
-		requestDialog = DialogUtil.getProgressDialog(getActivity());
-	};
+//	protected void createDialog(){
+//		// 请求中dialog
+//		requestDialog = DialogUtil.getProgressDialog(getActivity());
+//	};
 
 	@Override
 	public void onClick(View v) {

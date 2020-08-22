@@ -14,4 +14,6 @@
     <item name="ok" type="id"/>
 
     <item type="id" name="tab_tag"/>
+    <item type="id" name="id_register_service"/>
+    <item type="id" name="id_register_privacy"/>
 </resources>

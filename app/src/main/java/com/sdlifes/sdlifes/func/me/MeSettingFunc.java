@@ -1,8 +1,10 @@
 package com.sdlifes.sdlifes.func.me;
 
 import android.app.Activity;
+import android.content.Intent;
 
 import com.sdlifes.sdlifes.R;
+import com.sdlifes.sdlifes.activity.me.SettingActivity;
 
 import www.xcd.com.mylibrary.func.BaseFunc;
 
@@ -32,7 +34,6 @@ public class MeSettingFunc extends BaseFunc {
     }
     @Override
     public void onclick() {
-//        getActivity().startActivity(new Intent(getActivity(), MeDrugstoreNeedAction.class));
-
+        getActivity().startActivity(new Intent(getActivity(), SettingActivity.class));
     }
 }
