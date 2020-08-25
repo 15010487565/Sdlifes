@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,9 +42,9 @@ import www.xcd.com.mylibrary.utils.ShareHelper;
  * Created by gs on 2018/10/16.
  */
 
-public class HomeFragment extends SimpleTopbarFragment {
+public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefreshLayout.OnRefreshListener{
 
-
+    private SwipeRefreshLayout ly_pull_refresh;
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
     private ArrayList<Fragment> mFragments;
@@ -51,7 +52,7 @@ public class HomeFragment extends SimpleTopbarFragment {
     private String[] mTitles;
     private String[] mTitlesId;
     private TextView tvHomeSerch;
-
+    private boolean isPrepared;
     int id = 16;//初始频道id
     @Override
     protected Object getTopbarTitle() {
@@ -63,11 +64,38 @@ public class HomeFragment extends SimpleTopbarFragment {
         return R.layout.fragment_home;
     }
 
+//
+//@Override
+//    protected void lazyLoad() {
+//        if (!isPrepared || !isVisible) {
+//            return;
+//        }
+//        //填充各控件的数据
+//        initData();
+//    }
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+//        super.onHiddenChanged(hidden);
+//
+//        if (!hidden) { //隐藏时所作的事情
+//            lazyLoad();
+//            isVisible = false;
+//        }else {
+//            isVisible = true;
+//        }
+//    }
+
     @Override
     protected void initView(LayoutInflater inflater, View view) {
 
         RelativeLayout reTopPar = view.findViewById(R.id.topbat_parent);
         reTopPar.setVisibility(View.GONE);
+
+        ly_pull_refresh = view.findViewById(R.id.ly_pull_refresh);
+        ly_pull_refresh.setOnRefreshListener(this);
+        //设置样式刷新显示的位置
+        ly_pull_refresh.setProgressViewOffset(true, -20, 100);
+        ly_pull_refresh.setColorSchemeResources(R.color.red, R.color.blue, R.color.black);
 
         tvHomeSerch = view.findViewById(R.id.tv_HomeSerch);
         view.findViewById(R.id.ll_search).setOnClickListener(this);
@@ -96,6 +124,8 @@ public class HomeFragment extends SimpleTopbarFragment {
 
             }
         });
+//        isPrepared = true;
+//        lazyLoad();
         initData();
     }
 
@@ -103,7 +133,7 @@ public class HomeFragment extends SimpleTopbarFragment {
         String userId = ShareHelper.getUserId();
         OkHttpHelper.getRestfulHttp(
                 getActivity(), 1000,
-                UrlAddr.HOME + String.valueOf(id) + "/" + (TextUtils.isEmpty(userId) ? "0" : userId), this);
+                UrlAddr.HOME + id + "/" + (TextUtils.isEmpty(userId) ? "0" : userId), this);
     }
 
     @Override
@@ -133,6 +163,7 @@ public class HomeFragment extends SimpleTopbarFragment {
 
     @Override
     public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {
+        ly_pull_refresh.setRefreshing(false);
         switch (requestCode) {
             case 1000:
                 HomeModel homeModel = JSON.parseObject(returnData, HomeModel.class);
@@ -230,10 +261,9 @@ public class HomeFragment extends SimpleTopbarFragment {
         }
     }
 
+
     @Override
-    public void onResume() {
-        super.onResume();
-
-
+    public void onRefresh() {
+        initData();
     }
 }

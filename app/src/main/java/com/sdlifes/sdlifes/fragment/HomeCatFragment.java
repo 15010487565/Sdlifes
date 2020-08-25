@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,10 +35,10 @@ import www.xcd.com.mylibrary.utils.ShareHelper;
  */
 
 public class HomeCatFragment extends Fragment implements HttpInterface,
-        BaseQuickAdapter.OnItemClickListener,
-        SwipeRefreshLayout.OnRefreshListener{
+        BaseQuickAdapter.OnItemClickListener
+       {
 
-    private SwipeRefreshLayout ly_pull_refresh;
+
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private HomeAdapter adapter;
@@ -60,11 +59,7 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragmeng_cat, null);
 
-        ly_pull_refresh = view.findViewById(R.id.ly_pull_refresh);
-        ly_pull_refresh.setOnRefreshListener(this);
-        //设置样式刷新显示的位置
-        ly_pull_refresh.setProgressViewOffset(true, -20, 100);
-        ly_pull_refresh.setColorSchemeResources(R.color.red, R.color.blue, R.color.black);
+
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rc_Home);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -76,7 +71,7 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
         adapter.setOnItemClickListener(this);
         recyclerView.addItemDecoration(getRecyclerViewDivider(R.drawable.inset_recyclerview_divider_1));
 
-        ly_pull_refresh.setRefreshing(true);
+
         initData();
 
         return view;
@@ -97,7 +92,7 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
 
     @Override
     public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {
-        ly_pull_refresh.setRefreshing(false);
+
         switch (requestCode) {
             case 1000:
                 HomeModel homeModel = JSON.parseObject(returnData, HomeModel.class);
@@ -139,8 +134,4 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
 
     }
 
-    @Override
-    public void onRefresh() {
-        initData();
-    }
 }

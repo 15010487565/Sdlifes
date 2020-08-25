@@ -142,6 +142,7 @@ public class VideoNewFragment extends SimpleTopbarFragment implements
                                 ";mLastVisiblePosition="+mLastVisiblePosition);
                         View view = mLinearLayoutManager.findViewByPosition(mFirstVisiblePosition);
                         SampleCoverVideo gsyVideoPlayer = view.findViewById(R.id.video_item_player);
+                        if (gsyVideoPlayer !=null)
                         gsyVideoPlayer.startPlayLogic();
                     }
                 }
@@ -192,6 +193,12 @@ public class VideoNewFragment extends SimpleTopbarFragment implements
                }
                break;
        }
+    }
+
+    @Override
+    public void onErrorResult(int errorCode, String errorExcep) {
+        super.onErrorResult(errorCode, errorExcep);
+        ly_pull_refresh.setRefreshing(false);
     }
 
     /**
