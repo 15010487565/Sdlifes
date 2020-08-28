@@ -1,7 +1,6 @@
 package com.sdlifes.sdlifes.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,8 @@ import com.sdlifes.sdlifes.R;
 import com.sdlifes.sdlifes.util.ImageUtils;
 
 import java.util.List;
+
+import www.xcd.com.mylibrary.help.HelpUtils;
 
 /**
  * Created by gs on 2018/1/3.
@@ -62,16 +63,16 @@ public class GridAdapter extends BaseAdapter {
             //设置宽度值
             int widthPixe = ImageUtils.getWidthPixel();
 
-//            Log.e("TAG_SSS","width="+params.width);
-            if (list.size() == 1){
-                params.width = widthPixe - 80;
-                params.height = (int) (params.width * 0.75);
-            }else if (list.size() == 2){
-                params.width = (int) ((widthPixe - 120)*  0.5);
-                params.height = (int) (params.width * 0.75);
-            }else {
-                params.width = (int) ((widthPixe - 160)*0.333333);
-                params.height = (int) ( params.width * 0.75);
+            if (list.size() == 1){//广告
+                params.width = widthPixe - HelpUtils.imageDip2px(context,30);
+                params.height = (int) (params.width * 0.5);
+            }else
+                if (list.size() == 2){//新闻
+                params.width = (int) ((widthPixe - HelpUtils.imageDip2px(context,35))*  0.5);
+                params.height = (int) (params.width * 0.666666);
+            }else {//新闻
+                params.width = (int) ((widthPixe - HelpUtils.imageDip2px(context,40))*0.333333);
+                params.height = (int) ( params.width * 0.66666);
             }
 //            Log.e("TAG_SSS===",position+"====params="+params.width+"===="+params.height);
             viewHolder.ivNoGv.setLayoutParams(params);

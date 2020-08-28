@@ -143,11 +143,11 @@ public class UpdataPwdActivity extends AppCompatActivity  implements View.OnClic
     public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {
         switch (requestCode){
             case 1000:
-                ToastUtil.showToast(returnMsg);
+//                ToastUtil.showToast(returnMsg);
                 break;
             case 1001:
                 finish();
-                ToastUtil.showToast(returnMsg);
+//                ToastUtil.showToast(returnMsg);
                 break;
         }
     }

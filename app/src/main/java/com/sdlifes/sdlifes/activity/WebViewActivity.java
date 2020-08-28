@@ -3,7 +3,6 @@ package com.sdlifes.sdlifes.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -20,9 +19,10 @@ import com.sdlifes.sdlifes.network.UrlAddr;
 import java.util.HashMap;
 import java.util.Map;
 
+import www.xcd.com.mylibrary.base.activity.SimpleTopbarActivity;
 import www.xcd.com.mylibrary.help.OkHttpHelper;
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends SimpleTopbarActivity {
 
     private ValueCallback<Uri> mUploadMessage;
     private final static int FILECHOOSER_RESULTCODE = 1;
@@ -30,14 +30,19 @@ public class WebViewActivity extends AppCompatActivity {
     String url;
 
     @Override
+    protected Object getTopbarTitle() {
+        return "详情";
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
-        afterSetContentView();
+//        resetTopbarTitle("详情");
     }
-
+    @Override
     protected void afterSetContentView() {
-
+        super.afterSetContentView();
         webview = findViewById(R.id.webView);
         Intent intent = getIntent();
         url = intent.getStringExtra("Url");
@@ -111,7 +116,7 @@ public class WebViewActivity extends AppCompatActivity {
                 OkHttpHelper.getAsyncHttp(this,1000,
                         params, UrlAddr.AD_ADD,null);
             }
-
         }
+
     }
 }

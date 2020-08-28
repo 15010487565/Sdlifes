@@ -19,7 +19,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.sdlifes.sdlifes.R;
+import com.sdlifes.sdlifes.model.LoginModel;
 import com.sdlifes.sdlifes.network.UrlAddr;
 import com.sdlifes.sdlifes.util.PhoneUtil;
 
@@ -29,6 +31,7 @@ import java.util.Map;
 
 import www.xcd.com.mylibrary.help.OkHttpHelper;
 import www.xcd.com.mylibrary.http.HttpInterface;
+import www.xcd.com.mylibrary.utils.ShareHelper;
 import www.xcd.com.mylibrary.utils.ToastUtil;
 
 
@@ -208,11 +211,17 @@ public class RegisterActivity extends AppCompatActivity
     public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {
         switch (requestCode) {
             case 1000:
-                ToastUtil.showToast(returnMsg);
+//                ToastUtil.showToast(returnMsg);
                 break;
             case 1001:
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                LoginModel login = JSON.parseObject(returnData,LoginModel.class);
+                LoginModel.DataBean loginData = login.getData();
+                int userId = loginData.getId();
+                ShareHelper.savePrfparams("userid",String.valueOf(userId));
+                ShareHelper.savePrfparams("nickname",loginData.getNickname());
+                Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

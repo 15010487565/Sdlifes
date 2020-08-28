@@ -3,11 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <TextView
+    <com.cy.translucentparent.StatusBarView
         android:id="@+id/topView_Gradient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_gradient"/>
+        android:background="@drawable/shape_gradient" />
+<!--    <TextView-->
+<!--        android:id="@+id/topView_Gradient"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background=""/>-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"

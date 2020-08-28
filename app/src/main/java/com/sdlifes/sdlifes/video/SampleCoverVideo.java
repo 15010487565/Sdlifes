@@ -3,6 +3,7 @@ package com.sdlifes.sdlifes.video;
 import android.content.Context;
 import android.graphics.Point;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,12 +67,13 @@ public class SampleCoverVideo extends StandardGSYVideoPlayer {
         Glide.with(getContext().getApplicationContext())
                 .setDefaultRequestOptions(
                         new RequestOptions()
-                                .frame(1000000)
+                                    .frame(1000)
                                 .centerCrop()
                                 .error(res)
                                 .placeholder(res))
                 .load(url)
                 .into(mCoverImage);
+        Log.e("TAG_视频","url="+url);
     }
 
     public void loadCoverImageBy(int id, int res) {

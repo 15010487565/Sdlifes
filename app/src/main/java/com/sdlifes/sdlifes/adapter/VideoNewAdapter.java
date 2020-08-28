@@ -31,7 +31,7 @@ public class VideoNewAdapter extends BaseQuickAdapter<VideoModel.DataBean, BaseV
 //        ImageUtils.setImage(view,"http://cdn.gaifan.cn/162/154/1589435996234.jpg");
         //使用lazy的set可以避免滑动卡的情况存在
         gsyVideoPlayer.setUpLazy(dataBean.getUrl(), true, null, null, "");
-        gsyVideoPlayer.loadCoverImage(dataBean.getUrl(), R.mipmap.album_photo_default);
+        gsyVideoPlayer.loadCoverImage(dataBean.getPic(), R.mipmap.album_photo_default);
         //设置返回键
         gsyVideoPlayer.getBackButton().setVisibility(View.GONE);
 

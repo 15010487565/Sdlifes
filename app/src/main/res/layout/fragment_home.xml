@@ -25,18 +25,36 @@
             android:layout_height="wrap_content"
             android:background="@mipmap/serch_black"
             />
-        <TextView
-            android:id="@+id/tv_HomeSerch"
-            android:gravity="left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/black_99"
-            android:singleLine="true"
-            android:background="@null"
-            android:hint="@string/search"
-            />
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--           >-->
+            <com.sdlifes.sdlifes.view.VerticalScrollTextView
+                android:id="@+id/scroll_HomeSerch"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:background="@null"
+                android:layout_marginLeft="10dp"
+                android:hint="@string/search"
+                />
+<!--            <TextView-->
+<!--                android:id="@+id/tv_HomeSerch"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textColor="@color/black_99"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:singleLine="true"-->
+<!--                android:background="@null"-->
+<!--                android:hint="@string/search"-->
+<!--                />-->
+<!--        </RelativeLayout>-->
+
+
     </LinearLayout>
 
     <LinearLayout

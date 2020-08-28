@@ -37,6 +37,7 @@ public class SingleEditActivity extends SimpleTopbarActivity {
         if (!TextUtils.isEmpty(dese)){
             etSingle.setText(dese);
         }
+        etSingle.setHint("请输入"+title);
     }
     public void editor(){
         Intent intent = getIntent();

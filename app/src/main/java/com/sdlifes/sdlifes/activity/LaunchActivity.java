@@ -23,7 +23,7 @@ import www.xcd.com.mylibrary.http.HttpInterface;
 
 /**
  * Created by chen on 2018/10/16.
- *
+ * <p>
  * 引导页或者启动页过后的广告页面  点击跳过或者自动3秒后跳到首页 不缓存图片
  */
 public class LaunchActivity extends AppCompatActivity implements HttpInterface {
@@ -32,6 +32,7 @@ public class LaunchActivity extends AppCompatActivity implements HttpInterface {
     int id;
     String url;
     private MyHandler handler;
+
 
     private static class MyHandler extends Handler {
 
@@ -48,10 +49,13 @@ public class LaunchActivity extends AppCompatActivity implements HttpInterface {
             if (aty == null || aty.isFinishing()) {
                 return;
             }
-            Intent intent =  new Intent(aty,MainActivity.class);
+
+            Intent intent = new Intent(aty, MainActivity.class);
             aty.startActivity(intent);
             aty.finish();
+
         }
+
     }
 
     @Override
@@ -69,8 +73,8 @@ public class LaunchActivity extends AppCompatActivity implements HttpInterface {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LaunchActivity.this, WebViewActivity.class);
-                intent.putExtra("Url",url);
-                intent.putExtra("AdId",String.valueOf(id));
+                intent.putExtra("Url", url);
+                intent.putExtra("AdId", String.valueOf(id));
                 startActivity(intent);
                 handler.removeCallbacksAndMessages(null);
 //                Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -86,18 +90,31 @@ public class LaunchActivity extends AppCompatActivity implements HttpInterface {
         findViewById(R.id.tv_skip).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =  new Intent(LaunchActivity.this,MainActivity.class);
+                Intent intent = new Intent(LaunchActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
 
         OkHttpHelper.getRestfulHttp(
-                this,1000,
-                UrlAddr.USERINFO_LAUNCH_AD,this);
+                this, 1000,
+                UrlAddr.USERINFO_LAUNCH_AD, this);
 
         handler = new MyHandler(this);
         handler.sendEmptyMessageDelayed(1, 3000);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (handler == null) {
+            handler = new MyHandler(this);
+            handler.sendEmptyMessageDelayed(1, 3000);
+        } else {
+            handler.sendEmptyMessageDelayed(1, 3000);
+        }
+
     }
 
     @Override
@@ -106,8 +123,8 @@ public class LaunchActivity extends AppCompatActivity implements HttpInterface {
             JSONObject jsonObject = new JSONObject(returnData);
             JSONObject data = jsonObject.getJSONObject("data");
             String pic = data.optString("pic");
-            ImageUtils.setImage(imageView,pic);
-             url = data.optString("url");
+            ImageUtils.setImage(imageView, pic);
+            url = data.optString("url");
             id = data.optInt("id");
 
 

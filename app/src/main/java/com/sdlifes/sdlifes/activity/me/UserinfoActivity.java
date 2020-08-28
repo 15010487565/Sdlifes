@@ -32,7 +32,6 @@ import www.xcd.com.mylibrary.PhotoActivity;
 import www.xcd.com.mylibrary.func.BaseFunc;
 import www.xcd.com.mylibrary.help.OkHttpHelper;
 import www.xcd.com.mylibrary.utils.ShareHelper;
-import www.xcd.com.mylibrary.utils.ToastUtil;
 
 public class UserinfoActivity extends PhotoActivity {
 
@@ -262,7 +261,7 @@ public class UserinfoActivity extends PhotoActivity {
 
                 EventBusMsg messageEvent = new EventBusMsg(Constant.REFRESH_USERINFO);
                 EventBus.getDefault().post(messageEvent);
-                ToastUtil.showToast(returnMsg);
+//                ToastUtil.showToast(returnMsg);
                 break;
         }
     }

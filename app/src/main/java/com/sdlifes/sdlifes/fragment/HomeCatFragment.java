@@ -22,6 +22,7 @@ import com.sdlifes.sdlifes.network.UrlAddr;
 import com.sdlifes.sdlifes.util.ActivityUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,18 +36,21 @@ import www.xcd.com.mylibrary.utils.ShareHelper;
  */
 
 public class HomeCatFragment extends Fragment implements HttpInterface,
-        BaseQuickAdapter.OnItemClickListener
-       {
+        BaseQuickAdapter.RequestLoadMoreListener,
+        BaseQuickAdapter.OnItemClickListener {
 
 
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private HomeAdapter adapter;
     private String titleId;
+    private int page = 1;
+    private int size = 10;
 
-    public static HomeCatFragment getInstance(String titleId) {
+    public static HomeCatFragment getInstance(String titleId,int page) {
         HomeCatFragment hcf = new HomeCatFragment();
         hcf.titleId = titleId;
+        hcf.page = page;
         return hcf;
     }
 
@@ -60,13 +64,13 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
         View view = inflater.inflate(R.layout.fragmeng_cat, null);
 
 
-
         recyclerView = (RecyclerView) view.findViewById(R.id.rc_Home);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         List<HomeModel.DataBean.NewsArrBean> list = new ArrayList();
         adapter = new HomeAdapter(list);
+        adapter.setOnLoadMoreListener(this);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(this);
         recyclerView.addItemDecoration(getRecyclerViewDivider(R.drawable.inset_recyclerview_divider_1));
@@ -79,8 +83,11 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
 
     private void initData() {
         String userId = ShareHelper.getUserId();
-        OkHttpHelper.getRestfulHttp(
-                getActivity(), 1000,
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("page", String.valueOf(page));
+        params.put("size", String.valueOf(size));
+        OkHttpHelper.getAsyncHttp(
+                getActivity(), 1000,params,
                 UrlAddr.HOME + titleId + "/" + (TextUtils.isEmpty(userId) ? "0" : userId), this);
     }
 
@@ -99,9 +106,29 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
                 HomeModel.DataBean data = homeModel.getData();
 
                 List<HomeModel.DataBean.NewsArrBean> newsArr = data.getNewsArr();
-                adapter.setNewData(newsArr);
+                if (data != null) {
+                    if (page == 1) {
+                        if (newsArr.size() < size) {
+                            adapter.setNewData(newsArr);
+                            adapter.loadMoreEnd();
+                        } else {
+                            adapter.setNewData(newsArr);
+                            adapter.loadMoreComplete();
+                        }
+                    } else {
+                        if (newsArr.size() < size) {
+                            adapter.addData(newsArr);
+                            adapter.loadMoreEnd();
+                        } else {
+                            adapter.addData(newsArr);
+                            adapter.loadMoreComplete();
+                        }
+                    }
+                }
+
                 break;
         }
+
     }
 
     @Override
@@ -117,21 +144,26 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
         HomeModel.DataBean.NewsArrBean newsArrBean = data.get(position);
         //	type = 1 新闻 type = 2广告
         String type = newsArrBean.getType();
-        if("1".equals(type)){
+        if ("1".equals(type)) {
             int id = newsArrBean.getId();
             String title = newsArrBean.getTitle();
             String content = newsArrBean.getContent();
             String focus = newsArrBean.getFocus();
             ActivityUtils.startDetailsActivity(getActivity(),
                     String.valueOf(id),
-                    title,content,focus);
-        }else {
+                    title, content, focus);
+        } else {
             Intent intent = new Intent(getActivity(), WebViewActivity.class);
-            intent.putExtra("Url",newsArrBean.getUrl());
-            intent.putExtra("AdId",String.valueOf(newsArrBean.getId()));
+            intent.putExtra("Url", newsArrBean.getUrl());
+            intent.putExtra("AdId", String.valueOf(newsArrBean.getId()));
             getActivity().startActivity(intent);
         }
 
     }
 
+    @Override
+    public void onLoadMoreRequested() {
+        page++;
+        initData();
+    }
 }

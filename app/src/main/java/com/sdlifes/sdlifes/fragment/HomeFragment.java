@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.gxz.PagerSlidingTabStrip;
@@ -25,6 +24,7 @@ import com.sdlifes.sdlifes.model.HomeModel;
 import com.sdlifes.sdlifes.network.Constant;
 import com.sdlifes.sdlifes.network.UrlAddr;
 import com.sdlifes.sdlifes.util.EventBusMsg;
+import com.sdlifes.sdlifes.view.VerticalScrollTextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -51,7 +51,8 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
     private MyPagerAdapter pagerAdapter;
     private String[] mTitles;
     private String[] mTitlesId;
-    private TextView tvHomeSerch;
+//    private TextView tvHomeSerch;
+    private VerticalScrollTextView scroll_HomeSerch;
     private boolean isPrepared;
     int id = 16;//初始频道id
     @Override
@@ -97,7 +98,15 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
         ly_pull_refresh.setProgressViewOffset(true, -20, 100);
         ly_pull_refresh.setColorSchemeResources(R.color.red, R.color.blue, R.color.black);
 
-        tvHomeSerch = view.findViewById(R.id.tv_HomeSerch);
+//        tvHomeSerch = view.findViewById(R.id.tv_HomeSerch);
+        scroll_HomeSerch = view.findViewById(R.id.scroll_HomeSerch);
+        scroll_HomeSerch.setClickLisener(new VerticalScrollTextView.ItemClickLisener() {
+            @Override
+            public void onClick(int position) {
+                getActivity().startActivity(new Intent(getActivity(), SearchActivity.class));
+            }
+        });
+//        scroll_HomeSerch.setVisibility(View.GONE);
         view.findViewById(R.id.ll_search).setOnClickListener(this);
         view.findViewById(R.id.iv_more).setOnClickListener(this);
 
@@ -169,22 +178,27 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
                 HomeModel homeModel = JSON.parseObject(returnData, HomeModel.class);
                 HomeModel.DataBean data = homeModel.getData();
                 List<String> searchArr = data.getSearchArr();
-                StringBuffer buffer = new StringBuffer();
-                if (searchArr != null && searchArr.size() > 0) {
-                    for (int i = 0; i < searchArr.size(); i++) {
-                        if (i > 0){
-                            buffer.append("\t|\t");
-                        }
-                        String s = searchArr.get(i);
-                        buffer.append(s);
-
-                    }
-                }
-                Log.e("TAG_搜索","");
-                if (!TextUtils.isEmpty(buffer)) {
-                    tvHomeSerch.setHint(buffer.toString());
+//                StringBuffer buffer = new StringBuffer();
+//                if (searchArr != null && searchArr.size() > 0) {
+//                    for (int i = 0; i < searchArr.size(); i++) {
+//                        if (i > 0){
+//                            buffer.append("\t|\t");
+//                        }
+//                        String s = searchArr.get(i);
+//                        buffer.append(s);
+//
+//                    }
+//                }
+//                Log.e("TAG_搜索","");
+                if (searchArr !=null && searchArr.size() > 0) {
+//                    scroll_HomeSerch.setVisibility(View.VISIBLE);
+//                    tvHomeSerch.setVisibility(View.GONE);
+                    scroll_HomeSerch.setList(searchArr);
+                    scroll_HomeSerch.startScroll();
                 } else {
-                    tvHomeSerch.setHint("搜索");
+//                    scroll_HomeSerch.setVisibility(View.GONE);
+//                    tvHomeSerch.setVisibility(View.VISIBLE);
+                    scroll_HomeSerch.setText("搜索");
                 }
                 mFragments = new ArrayList<>();
                 categoryArr = data.getCategoryArr();
@@ -196,7 +210,7 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
                     HomeModel.DataBean.CategoryArrBean categoryArrBean = categoryArr.get(i);
                     mTitles[i] = categoryArrBean.getName();
                     mTitlesId[i] = String.valueOf(categoryArrBean.getCategoryid());
-                    mFragments.add(HomeCatFragment.getInstance(mTitlesId[i]));
+                    mFragments.add(HomeCatFragment.getInstance(mTitlesId[i],1));
                     if (categoryArrBean.getCategoryid() == id) {
                         temp = i;
                     }
@@ -212,6 +226,12 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
 
                 break;
         }
+    }
+
+    @Override
+    public void onErrorResult(int errorCode, String errorExcep) {
+        super.onErrorResult(errorCode, errorExcep);
+        ly_pull_refresh.setRefreshing(false);
     }
 
     List<HomeModel.DataBean.CategoryArrBean> categoryArr;

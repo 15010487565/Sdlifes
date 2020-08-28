@@ -17,6 +17,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.cy.translucentparent.StatusNavUtils;
+
 import www.xcd.com.mylibrary.utils.AppManager;
 import www.xcd.com.mylibrary.utils.SystemBarTintManager;
 
@@ -43,20 +45,11 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnFo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            //透明状态栏
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            //透明导航栏
-//            tintManager = new SystemBarTintManager(this);
-//            tintManager.setStatusBarTintColor(R.color.black);
-//            // 激活状态栏
-//            tintManager.setStatusBarTintEnabled(true);
-//            // enable navigation bar tint 激活导航栏
-//            tintManager.setNavigationBarTintEnabled(true);
-//        }
+
         super.onCreate(savedInstanceState);
+        StatusNavUtils.setStatusBarColor(this,0x00000000);
 		AppManager.getInstance().addActivity(this);
-//        initDialog();
+
     }
 
 

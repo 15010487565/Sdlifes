@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         multiDexEnabled true
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -63,5 +63,5 @@ dependencies {
 
     api 'com.github.HuanTanSheng:EasyPhotos:2.4.5'
     api project(path: ':datepickdialoglibrary')
-
+    api 'com.github.AnJiaoDe:StatusNavigationTransparent:V1.1.7'
 }

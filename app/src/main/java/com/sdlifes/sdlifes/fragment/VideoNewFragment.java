@@ -86,6 +86,7 @@ public class VideoNewFragment extends SimpleTopbarFragment implements
             isVisible = false;
         }else {
             isVisible = true;
+            GSYVideoManager.onPause();
         }
     }
 

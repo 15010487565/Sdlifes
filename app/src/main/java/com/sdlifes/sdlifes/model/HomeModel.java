@@ -1,5 +1,7 @@
 package com.sdlifes.sdlifes.model;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -153,6 +155,33 @@ public class HomeModel implements Serializable{
             private String focus;
             private String content;
             private List<String> pic;
+            private String time;
+            private String top;
+            private String src;
+
+            public String getTop() {
+                return top;
+            }
+
+            public void setTop(String top) {
+                this.top = top;
+            }
+
+            public String getSrc() {
+                return TextUtils.isEmpty(src)?"":src;
+            }
+
+            public void setSrc(String src) {
+                this.src = src;
+            }
+
+            public String getTime() {
+                return TextUtils.isEmpty(time)?"":time;
+            }
+
+            public void setTime(String time) {
+                this.time = time;
+            }
 
             public int getId() {
                 return id;

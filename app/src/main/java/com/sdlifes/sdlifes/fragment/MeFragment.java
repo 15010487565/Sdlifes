@@ -232,10 +232,11 @@ public class MeFragment extends SimpleTopbarFragment {
                     UserinfoModel.DataBean data = userinfoModel.getData();
                     String img = data.getImg();
                     ShareHelper.savePrfparams("headImage",img);
-                    ImageUtils.setImage(userPhoto,img);
+                    ImageUtils.setImage(userPhoto, img, 3000, R.mipmap.head_portrait);
+
                     String nickname = data.getNickname();
                     ShareHelper.savePrfparams("nickname",nickname);
-                    userName.setText(nickname);
+                    userName.setText(TextUtils.isEmpty(nickname)?"请设置昵称":nickname);
 
                     String desc = data.getDesc();//描述
                     ShareHelper.savePrfparams("desc",desc);

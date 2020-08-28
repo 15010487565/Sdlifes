@@ -171,6 +171,7 @@ public abstract class SimpleTopbarActivity extends BaseActivity implements OnCli
                 }
             } else if (getTopbarTitle() instanceof String) {
                 String title = (String) getTopbarTitle();
+//                Log.e("TAG_title","title="+title);
                 viewTitle.setText(title);
             }
         }
