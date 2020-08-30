@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,12 +41,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import www.xcd.com.mylibrary.base.activity.NoTitleActivity;
 import www.xcd.com.mylibrary.help.OkHttpHelper;
 import www.xcd.com.mylibrary.http.HttpInterface;
 import www.xcd.com.mylibrary.utils.ShareHelper;
 import www.xcd.com.mylibrary.utils.ToastUtil;
 
-public class SearchActivity extends AppCompatActivity implements HttpInterface,
+public class SearchActivity extends NoTitleActivity implements HttpInterface,
         View.OnClickListener, BaseQuickAdapter.OnItemClickListener ,
         TextView.OnEditorActionListener, TextWatcher ,
         OnRcItemClickListener,

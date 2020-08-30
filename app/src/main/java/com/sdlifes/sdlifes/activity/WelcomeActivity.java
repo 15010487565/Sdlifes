@@ -2,12 +2,13 @@ package com.sdlifes.sdlifes.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import www.xcd.com.mylibrary.base.activity.NoTitleActivity;
 
 /**
  * Created by Duke on 2015/11/6.
  */
-public class WelcomeActivity extends AppCompatActivity  {
+public class WelcomeActivity extends NoTitleActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +17,7 @@ import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
+import www.xcd.com.mylibrary.base.activity.NoTitleActivity;
 import www.xcd.com.mylibrary.help.OkHttpHelper;
 import www.xcd.com.mylibrary.http.HttpInterface;
 
@@ -26,7 +26,7 @@ import www.xcd.com.mylibrary.http.HttpInterface;
  * <p>
  * 引导页或者启动页过后的广告页面  点击跳过或者自动3秒后跳到首页 不缓存图片
  */
-public class LaunchActivity extends AppCompatActivity implements HttpInterface {
+public class LaunchActivity extends NoTitleActivity implements HttpInterface {
 
     ImageView imageView;
     int id;

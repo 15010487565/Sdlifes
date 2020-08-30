@@ -85,7 +85,7 @@
             android:src="@mipmap/home_more"/>
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <com.sdlifes.sdlifes.view.BaseSwipeRefreshLayout
         android:id="@+id/ly_pull_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </com.sdlifes.sdlifes.view.BaseSwipeRefreshLayout>
 
 
 </LinearLayout>

@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -29,13 +28,14 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
+import www.xcd.com.mylibrary.base.activity.NoTitleActivity;
 import www.xcd.com.mylibrary.help.OkHttpHelper;
 import www.xcd.com.mylibrary.http.HttpInterface;
 import www.xcd.com.mylibrary.utils.ShareHelper;
 import www.xcd.com.mylibrary.utils.ToastUtil;
 
 
-public class RegisterActivity extends AppCompatActivity
+public class RegisterActivity extends NoTitleActivity
         implements View.OnClickListener, HttpInterface, TextWatcher {
 
     private EditText etPhone, etPassword, etPassword1;

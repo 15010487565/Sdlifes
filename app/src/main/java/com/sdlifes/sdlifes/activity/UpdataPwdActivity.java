@@ -3,7 +3,6 @@ package com.sdlifes.sdlifes.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,11 +20,12 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
+import www.xcd.com.mylibrary.base.activity.NoTitleActivity;
 import www.xcd.com.mylibrary.help.OkHttpHelper;
 import www.xcd.com.mylibrary.http.HttpInterface;
 import www.xcd.com.mylibrary.utils.ToastUtil;
 
-public class UpdataPwdActivity extends AppCompatActivity  implements View.OnClickListener, HttpInterface, TextWatcher {
+public class UpdataPwdActivity extends NoTitleActivity implements View.OnClickListener, HttpInterface, TextWatcher {
 
     private EditText etPhone, etPassword,etPassword1;
     private TextView btnUpdataPwd;

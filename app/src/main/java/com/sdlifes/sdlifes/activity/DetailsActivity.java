@@ -2,7 +2,6 @@ package com.sdlifes.sdlifes.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebView;
@@ -20,12 +19,13 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.HashMap;
 import java.util.Map;
 
+import www.xcd.com.mylibrary.base.activity.NoTitleActivity;
 import www.xcd.com.mylibrary.help.OkHttpHelper;
 import www.xcd.com.mylibrary.http.HttpInterface;
 import www.xcd.com.mylibrary.utils.ShareHelper;
 import www.xcd.com.mylibrary.utils.ToastUtil;
 
-public class DetailsActivity extends AppCompatActivity implements
+public class DetailsActivity extends NoTitleActivity implements
         View.OnClickListener, HttpInterface {
     TextView tvAttention;
     String focus;
