@@ -101,7 +101,7 @@ public class LaunchActivity extends AppCompatActivity implements HttpInterface {
                 UrlAddr.USERINFO_LAUNCH_AD, this);
 
         handler = new MyHandler(this);
-        handler.sendEmptyMessageDelayed(1, 3000);
+        handler.sendEmptyMessageDelayed(1, 4000);
     }
 
     @Override

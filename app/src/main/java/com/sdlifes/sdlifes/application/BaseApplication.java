@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import www.xcd.com.mylibrary.base.application.XCDApplication;
 import www.xcd.com.mylibrary.utils.AppManager;
 
@@ -49,7 +51,7 @@ public class BaseApplication extends XCDApplication {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        CrashReport.initCrashReport(getApplicationContext(), "efa397f523", false);
     }
 
     public String getVersionName() throws Exception {

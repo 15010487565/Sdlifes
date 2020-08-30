@@ -60,12 +60,15 @@ public class DetailsActivity extends AppCompatActivity implements
 
         String userId = ShareHelper.getUserId();
         String id = getIntent().getStringExtra("id");
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("userid", userId);
-        params.put("newsid", id);
-        //增加浏览记录
-        OkHttpHelper.postAsyncHttp(this,1003,
-                params, UrlAddr.BROWSE_SAVE,this);
+        if (!TextUtils.isEmpty(userId)&&!TextUtils.isEmpty(id)){
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("userid", userId);
+            params.put("newsid", id);
+            //增加浏览记录
+            OkHttpHelper.postAsyncHttp(this,1003,
+                    params, UrlAddr.BROWSE_SAVE,this);
+        }
+
     }
 
     @Override

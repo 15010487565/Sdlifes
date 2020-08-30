@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.webkit.JsResult;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -46,7 +45,12 @@ public class WebViewActivity extends SimpleTopbarActivity {
         webview = findViewById(R.id.webView);
         Intent intent = getIntent();
         url = intent.getStringExtra("Url");
-        Log.e("TAG_H5","url="+url);
+        url = url.replaceAll("&apos;","'");
+        url = url.replaceAll("&quot;","\"");
+        url = url.replaceAll("&gt;",">");
+        url = url.replaceAll("&lt;","<");
+        url = url.replaceAll("&amp;","&");
+//        Log.e("TAG_H5","url="+url);
         WebSettings setting = webview.getSettings();
         setting.setDefaultTextEncodingName("utf-8");
         setting.setJavaScriptEnabled(true);
@@ -88,16 +92,12 @@ public class WebViewActivity extends SimpleTopbarActivity {
         setting.setBlockNetworkImage(false);
         // initComponent();
         webview.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
-                webview.loadUrl(url);
-                return true;
-            }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                webview.loadUrl(url);
-                return true;
+//                Log.e("TAG_shouldOver","URL="+url);
+//                view.loadUrl(url);
+                return false;
             }
 
             @Override

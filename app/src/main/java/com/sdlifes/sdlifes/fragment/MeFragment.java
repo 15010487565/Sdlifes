@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -114,6 +115,9 @@ public class MeFragment extends SimpleTopbarFragment {
 
     @Override
     protected void initView(LayoutInflater inflater, View view) {
+
+        ImageView topbar_titlearrowsimage = (ImageView) view.findViewById(R.id.topbar_titlearrowsimage);
+        topbar_titlearrowsimage.setVisibility(View.GONE);
 
         TextView tvUserID = view.findViewById(R.id.user_id);
         tvUserID.setText("ID："+ShareHelper.getUserId());

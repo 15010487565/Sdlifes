@@ -65,6 +65,19 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
         return R.layout.fragment_home;
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+        if (!hidden) { //隐藏时所作的事情
+            if (scroll_HomeSerch !=null)
+            scroll_HomeSerch.stopScroll();
+        }else {
+            if (scroll_HomeSerch !=null)
+            scroll_HomeSerch.startScroll(2000);
+        }
+    }
+
 //
 //@Override
 //    protected void lazyLoad() {
@@ -194,7 +207,7 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
 //                    scroll_HomeSerch.setVisibility(View.VISIBLE);
 //                    tvHomeSerch.setVisibility(View.GONE);
                     scroll_HomeSerch.setList(searchArr);
-                    scroll_HomeSerch.startScroll();
+                    scroll_HomeSerch.startScroll(2000);
                 } else {
 //                    scroll_HomeSerch.setVisibility(View.GONE);
 //                    tvHomeSerch.setVisibility(View.VISIBLE);

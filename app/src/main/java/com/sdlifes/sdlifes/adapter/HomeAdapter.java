@@ -86,7 +86,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeModel.DataBean.NewsArrBean
                 TextView titleV = helper.getView(R.id.tv_title);
                 LinearLayout.LayoutParams paramsV = (LinearLayout.LayoutParams) titleV.getLayoutParams();
                 paramsV.width = (int) ((widthPixe - margin) * 0.666666);
-                Log.e("TAG_单张文本", "width=" + paramsV.width);
+//                Log.e("TAG_单张文本", "width=" + paramsV.width);
 //                paramsV.height = (int) (paramsV.width * 0.666666);
                 titleV.setLayoutParams(paramsV);
                 titleV.setText(newsArrBean.getTitle());
