@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
-    <com.sdlifes.sdlifes.video.SampleCoverVideo
-        android:id="@+id/video_item_player"
+    android:background="@color/white">
+    <include
+        android:id="@+id/ll_title"
+        layout="@layout/view_simple_topbar_black" />
+    <WebView
+        android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_title">
+
+    </WebView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +21,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="30dp"
-        android:paddingBottom="30dp"
+        android:paddingBottom="85dp"
         android:gravity="center"
         android:background="@color/transparent_80">
         <TextView
@@ -30,7 +34,18 @@
             android:maxLines="2"
             android:ellipsize="end"
             android:text=""/>
-
+        <TextView
+            android:id="@+id/tv_video_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_16"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/shape_red_round_15"
+            android:text="查看详情"/>
     </LinearLayout>
-
 </RelativeLayout>

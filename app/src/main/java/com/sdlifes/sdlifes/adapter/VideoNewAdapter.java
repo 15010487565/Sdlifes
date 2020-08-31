@@ -25,7 +25,7 @@ public class VideoNewAdapter extends BaseQuickAdapter<VideoModel.DataBean, BaseV
 
     @Override
     protected void convert(BaseViewHolder helper, VideoModel.DataBean dataBean) {
-        helper.setText(R.id.tv_title,dataBean.getTitle());
+        helper.setText(R.id.tv_video_title,dataBean.getTitle());
         SampleCoverVideo gsyVideoPlayer = helper.getView(R.id.video_item_player);
 //        ImageView view = mPrepareView.findViewById(R.id.thumb);
 //        ImageUtils.setImage(view,"http://cdn.gaifan.cn/162/154/1589435996234.jpg");

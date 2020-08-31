@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSON;
 import com.sdlifes.sdlifes.R;
 import com.sdlifes.sdlifes.model.LoginModel;
 import com.sdlifes.sdlifes.network.UrlAddr;
+import com.sdlifes.sdlifes.util.ActivityUtils;
 import com.sdlifes.sdlifes.util.PhoneUtil;
 
 import java.lang.ref.WeakReference;
@@ -109,10 +110,8 @@ public class RegisterActivity extends NoTitleActivity
         ClickableSpan clickableSpanOne = new ClickableSpan() {
             @Override
             public void onClick(View view) {//服务条款
-                Intent intent = new Intent(RegisterActivity.this, WebViewActivity.class);
-                intent.putExtra("Url",UrlAddr.CLAUSE);
-                intent.putExtra("isAgreement",true);
-                startActivity(intent);
+                ActivityUtils.startWebViewActivity(RegisterActivity.this,UrlAddr.CLAUSE,"",true);
+
             }
             @Override
             public void updateDrawState(TextPaint paint) {
@@ -126,10 +125,8 @@ public class RegisterActivity extends NoTitleActivity
         ClickableSpan clickableSpanTwo = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this, WebViewActivity.class);
-                intent.putExtra("Url",UrlAddr.PRIVACY);
-                intent.putExtra("isAgreement",true);
-                startActivity(intent);
+                ActivityUtils.startWebViewActivity(RegisterActivity.this,UrlAddr.PRIVACY,"",true);
+
             }
 
             @Override

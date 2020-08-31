@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:background="@drawable/shape_red_round_15"
+            android:background="@drawable/shape_red_round_50"
             android:paddingTop="@dimen/margin_8"
             android:paddingBottom="@dimen/margin_8"
             android:paddingLeft="25dp"

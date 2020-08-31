@@ -1,11 +1,9 @@
 package com.sdlifes.sdlifes.util;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.sdlifes.sdlifes.activity.WebViewActivity;
 import com.sdlifes.sdlifes.model.UserAdModel;
 import com.to.aboomy.banner.HolderCreator;
 
@@ -23,10 +21,12 @@ public class GlideImageLoader implements HolderCreator {
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("Url",dataBean.getUrl());
-                intent.putExtra("AdId",String.valueOf(dataBean.getId()));
-                context.startActivity(intent);
+                ActivityUtils.startWebViewActivity(context, dataBean.getUrl(),String.valueOf(dataBean.getId()));
+
+//                Intent intent = new Intent(context, WebViewActivity.class);
+//                intent.putExtra("Url",dataBean.getUrl());
+//                intent.putExtra("AdId",String.valueOf(dataBean.getId()));
+//                context.startActivity(intent);
             }
         });
         return iv;

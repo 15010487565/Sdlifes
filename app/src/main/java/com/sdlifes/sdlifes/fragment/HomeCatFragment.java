@@ -1,6 +1,5 @@
 package com.sdlifes.sdlifes.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.sdlifes.sdlifes.R;
-import com.sdlifes.sdlifes.activity.WebViewActivity;
 import com.sdlifes.sdlifes.adapter.HomeAdapter;
 import com.sdlifes.sdlifes.model.HomeModel;
 import com.sdlifes.sdlifes.network.UrlAddr;
@@ -153,10 +151,17 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
                     String.valueOf(id),
                     title, content, focus);
         } else {
-            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-            intent.putExtra("Url", newsArrBean.getUrl());
-            intent.putExtra("AdId", String.valueOf(newsArrBean.getId()));
-            getActivity().startActivity(intent);
+            int state = newsArrBean.getState();//	广告 ： 1 网页url地址 2 视频url地址
+            if (state == 2){
+
+                ActivityUtils.startWebViewVideoActivity(getActivity(), newsArrBean.getUrl(),newsArrBean.getTitle()
+                        ,String.valueOf(newsArrBean.getId()),newsArrBean.getOstate(),newsArrBean.getOurl());
+
+            }else {
+                ActivityUtils.startWebViewActivity(getActivity(), newsArrBean.getUrl()
+                        ,String.valueOf(newsArrBean.getId()));
+
+            }
         }
 
     }

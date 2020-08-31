@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.sdlifes.sdlifes.R;
 import com.sdlifes.sdlifes.network.UrlAddr;
+import com.sdlifes.sdlifes.util.ActivityUtils;
 import com.sdlifes.sdlifes.util.ImageUtils;
 
 import org.json.JSONObject;
@@ -72,19 +73,10 @@ public class LaunchActivity extends NoTitleActivity implements HttpInterface {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LaunchActivity.this, WebViewActivity.class);
-                intent.putExtra("Url", url);
-                intent.putExtra("AdId", String.valueOf(id));
-                startActivity(intent);
+                ActivityUtils.startWebViewActivity(LaunchActivity.this, url
+                        ,String.valueOf(id));
                 handler.removeCallbacksAndMessages(null);
-//                Intent intent = new Intent(Intent.ACTION_VIEW);
-//                Uri uri = Uri.parse(pic);
-//                intent.setData(uri);
 
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("id", String.valueOf(id));
-//                OkHttpHelper.getAsyncHttp(LaunchActivity.this,1000,
-//                        params, UrlAddr.AD_ADD,null);
             }
         });
         findViewById(R.id.tv_skip).setOnClickListener(new View.OnClickListener() {
@@ -138,4 +130,10 @@ public class LaunchActivity extends NoTitleActivity implements HttpInterface {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (handler != null)
+        handler.removeCallbacksAndMessages(null);
+    }
 }

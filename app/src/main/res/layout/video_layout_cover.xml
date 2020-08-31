@@ -139,8 +139,8 @@
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical" />
-
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/shape_red_round_video"/>
 
     <ImageView
         android:id="@+id/small_close"
