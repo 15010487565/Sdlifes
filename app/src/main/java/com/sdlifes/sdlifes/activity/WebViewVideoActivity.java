@@ -6,17 +6,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.webkit.JsResult;
 import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.sdlifes.sdlifes.R;
 import com.sdlifes.sdlifes.network.UrlAddr;
 import com.sdlifes.sdlifes.util.ActivityUtils;
+import com.sdlifes.sdlifes.video.SampleCoverVideo;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +26,7 @@ public class WebViewVideoActivity extends SimpleTopbarActivity {
 
     private ValueCallback<Uri> mUploadMessage;
     private final static int FILECHOOSER_RESULTCODE = 1;
-    WebView webview;
+//    WebView webview;
     String url;
 
     @Override
@@ -51,7 +48,7 @@ public class WebViewVideoActivity extends SimpleTopbarActivity {
     @Override
     protected void afterSetContentView() {
         super.afterSetContentView();
-        webview = findViewById(R.id.webView);
+//        webview = findViewById(R.id.webView);
         Intent intent = getIntent();
         url = intent.getStringExtra("Url");
         url = url.replaceAll("&apos;","'");
@@ -60,60 +57,60 @@ public class WebViewVideoActivity extends SimpleTopbarActivity {
         url = url.replaceAll("&lt;","<");
         url = url.replaceAll("&amp;","&");
 //        Log.e("TAG_H5","url="+url);
-        WebSettings setting = webview.getSettings();
-        setting.setDefaultTextEncodingName("utf-8");
-        setting.setJavaScriptEnabled(true);
-        setting.setAllowFileAccess(true);// 设置允许访问文件数据
-        setting.setSupportZoom(true);// 支持放大网页功能
-        setting.setBuiltInZoomControls(true);// 支持缩小网页功能
-        setting.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        webview.clearCache(true);
-        setting.setLoadWithOverviewMode(true);
-        setting.setUseWideViewPort(true);
-        webview.requestFocusFromTouch();
-        //设置处理JavaScript的引擎
-        WebChromeClient webChromeClient = new WebChromeClient() {
-            @Override
-            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-                return super.onJsAlert(view, url, message, result);
-            }
-            public void openFileChooser(ValueCallback<Uri> uploadMsg,
-                                        String acceptType, String capture) {
-                if (mUploadMessage != null)
-                    return;
-                mUploadMessage = uploadMsg;
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("*/*");
-                startActivityForResult(
-                        Intent.createChooser(intent, "完成操作需要使用"), FILECHOOSER_RESULTCODE);
-            }
-        };
-        webview.setWebChromeClient(webChromeClient);
-        /***打开本地缓存提供JS调用**/
-        setting.setDomStorageEnabled(true);
-        setting.setAppCacheMaxSize(1024 * 1024 * 8);
-        String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
-        setting.setAppCachePath(appCachePath);
-        setting.setAllowFileAccess(true);
-        setting.setAppCacheEnabled(true);
+//        WebSettings setting = webview.getSettings();
+//        setting.setDefaultTextEncodingName("utf-8");
 //        setting.setJavaScriptEnabled(true);
-        setting.setBlockNetworkImage(false);
-        // initComponent();
-        webview.setWebViewClient(new WebViewClient() {
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                Log.e("TAG_shouldOver","URL="+url);
-//                view.loadUrl(url);
-                return false;
-            }
-
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                super.onReceivedError(view, errorCode, description, failingUrl);
-            }
-        });
+//        setting.setAllowFileAccess(true);// 设置允许访问文件数据
+//        setting.setSupportZoom(true);// 支持放大网页功能
+//        setting.setBuiltInZoomControls(true);// 支持缩小网页功能
+//        setting.setCacheMode(WebSettings.LOAD_NO_CACHE);
+//        webview.clearCache(true);
+//        setting.setLoadWithOverviewMode(true);
+//        setting.setUseWideViewPort(true);
+//        webview.requestFocusFromTouch();
+        //设置处理JavaScript的引擎
+//        WebChromeClient webChromeClient = new WebChromeClient() {
+//            @Override
+//            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+//                return super.onJsAlert(view, url, message, result);
+//            }
+//            public void openFileChooser(ValueCallback<Uri> uploadMsg,
+//                                        String acceptType, String capture) {
+//                if (mUploadMessage != null)
+//                    return;
+//                mUploadMessage = uploadMsg;
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.addCategory(Intent.CATEGORY_OPENABLE);
+//                intent.setType("*/*");
+//                startActivityForResult(
+//                        Intent.createChooser(intent, "完成操作需要使用"), FILECHOOSER_RESULTCODE);
+//            }
+//        };
+//        webview.setWebChromeClient(webChromeClient);
+//        /***打开本地缓存提供JS调用**/
+//        setting.setDomStorageEnabled(true);
+//        setting.setAppCacheMaxSize(1024 * 1024 * 8);
+//        String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
+//        setting.setAppCachePath(appCachePath);
+//        setting.setAllowFileAccess(true);
+//        setting.setAppCacheEnabled(true);
+////        setting.setJavaScriptEnabled(true);
+//        setting.setBlockNetworkImage(false);
+//        // initComponent();
+//        webview.setWebViewClient(new WebViewClient() {
+//
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+////                Log.e("TAG_shouldOver","URL="+url);
+////                view.loadUrl(url);
+//                return false;
+//            }
+//
+//            @Override
+//            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+//                super.onReceivedError(view, errorCode, description, failingUrl);
+//            }
+//        });
         Log.e("TAG_WEB","URL="+url);
         String AdId = intent.getStringExtra("AdId");
         String title = intent.getStringExtra("title");
@@ -135,7 +132,19 @@ public class WebViewVideoActivity extends SimpleTopbarActivity {
                         ,AdId);
             }
         });
-        webview.loadUrl(url);
+
+        SampleCoverVideo gsyVideoPlayer = findViewById(R.id.video_item_player);
+        String pic = intent.getStringExtra("pic");
+        //使用lazy的set可以避免滑动卡的情况存在
+        gsyVideoPlayer.setUpLazy(url, true, null, null, "");
+        gsyVideoPlayer.loadCoverImage(pic, R.mipmap.album_photo_default);
+        //设置返回键
+        gsyVideoPlayer.getBackButton().setVisibility(View.GONE);
+        //防止错位设置
+        gsyVideoPlayer.setPlayTag("1");
+        gsyVideoPlayer.setLockLand(true);
+        gsyVideoPlayer.setPlayPosition(0);
+//        webview.loadUrl(url);
         boolean isAgreement = intent.getBooleanExtra("isAgreement", false);
         if (!isAgreement){
             if (!TextUtils.isEmpty(AdId)){
@@ -145,6 +154,11 @@ public class WebViewVideoActivity extends SimpleTopbarActivity {
                         params, UrlAddr.AD_ADD,null);
             }
         }
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GSYVideoManager.onPause();
     }
 }

@@ -62,54 +62,54 @@
             android:name=".activity.DetailsActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.SearchActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.SingleEditActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.ChannelActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.BrowseActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.AttentionActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.UserinfoActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.AboutActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.LaunchActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:theme="@style/AppTheme">
 
              <intent-filter>
@@ -123,7 +123,7 @@
         <activity
             android:name=".activity.WelcomeActivity"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
+            
             android:theme="@style/AppTheme">
 
 <!--             <intent-filter>-->
@@ -137,25 +137,25 @@
             android:name=".activity.LoginActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.UpdataPwdActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.RegisterActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.MainActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             >
 <!--            <intent-filter>-->
@@ -168,19 +168,19 @@
             android:name=".activity.WebViewActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.WebViewVideoActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.SettingActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <provider
             android:name=".provider.BaseFileProvider"

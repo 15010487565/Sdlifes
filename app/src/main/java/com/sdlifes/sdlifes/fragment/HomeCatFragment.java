@@ -153,9 +153,13 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
         } else {
             int state = newsArrBean.getState();//	广告 ： 1 网页url地址 2 视频url地址
             if (state == 2){
-
+                List<String> pic = newsArrBean.getPic();
+                String url = "";
+                if (pic != null && pic.size() > 0) {
+                    url = pic.get(0);
+                }
                 ActivityUtils.startWebViewVideoActivity(getActivity(), newsArrBean.getUrl(),newsArrBean.getTitle()
-                        ,String.valueOf(newsArrBean.getId()),newsArrBean.getOstate(),newsArrBean.getOurl());
+                        ,String.valueOf(newsArrBean.getId()),newsArrBean.getOstate(),newsArrBean.getOurl(),url);
 
             }else {
                 ActivityUtils.startWebViewActivity(getActivity(), newsArrBean.getUrl()

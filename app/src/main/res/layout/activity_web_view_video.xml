@@ -6,13 +6,10 @@
     <include
         android:id="@+id/ll_title"
         layout="@layout/view_simple_topbar_black" />
-    <WebView
-        android:id="@+id/webView"
+    <com.sdlifes.sdlifes.video.SampleCoverVideo
+        android:id="@+id/video_item_player"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/ll_title">
-
-    </WebView>
+        android:layout_height="match_parent" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

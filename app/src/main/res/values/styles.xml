@@ -3,9 +3,9 @@
     <!-- Base com.xqxb.www.annuity.application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/top_bar_background</item>
-        <item name="colorPrimaryDark">@color/top_bar_background</item>
-        <item name="colorAccent">@color/top_bar_background</item>
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/red</item>
+        <item name="colorAccent">@color/red</item>
        <!--沉浸状态栏-->
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>

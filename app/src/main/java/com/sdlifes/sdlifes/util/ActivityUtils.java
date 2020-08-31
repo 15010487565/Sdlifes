@@ -49,7 +49,8 @@ public class ActivityUtils {
      * @param ourl 详情跳转URL
      */
     public static void startWebViewVideoActivity(Context context,String url,String title,
-                                            String adId,int ostate,String ourl){
+                                            String adId,int ostate,String ourl
+            ,String pic){
         Log.e("TAG_视频","Url="+url);
         Log.e("TAG_视频详情","ourl="+ourl);
         Intent intent = new Intent(context, WebViewVideoActivity.class);
@@ -58,6 +59,7 @@ public class ActivityUtils {
         intent.putExtra("AdId",adId);
         intent.putExtra("ostate",ostate);
         intent.putExtra("ourl",ourl);
+        intent.putExtra("pic",pic);
         context.startActivity(intent);
     }
 }

@@ -59,11 +59,10 @@ public class VerticalScrollTextView extends TextSwitcher implements ViewSwitcher
         runnable = new Runnable() {
             @Override
             public void run() {
+                if (list == null) return;
                 position++;
                 if (position == list.size())
                     position = 0;
-
-                if (list == null) return;
                 //设置显示数据并滚动
                 next();
                 setText(list.get(position));
