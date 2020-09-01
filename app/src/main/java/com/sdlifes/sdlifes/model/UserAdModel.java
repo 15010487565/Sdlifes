@@ -1,5 +1,7 @@
 package com.sdlifes.sdlifes.model;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -84,7 +86,7 @@ public class UserAdModel implements Serializable{
         }
 
         public String getTitle() {
-            return title;
+            return TextUtils.isEmpty(title)?"":title;
         }
 
         public void setTitle(String title) {
