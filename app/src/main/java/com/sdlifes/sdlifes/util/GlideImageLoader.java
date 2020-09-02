@@ -1,6 +1,7 @@
 package com.sdlifes.sdlifes.util;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +19,14 @@ public class GlideImageLoader implements HolderCreator {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_banner_image, null);
         TextView tv = view.findViewById(R.id.tv_item_banner);
-        tv.setText(dataBean.getTitle());
+        String title = dataBean.getTitle();
+        if (TextUtils.isEmpty(title)){
+            tv.setVisibility(View.GONE);
+        }else {
+            tv.setVisibility(View.VISIBLE);
+            tv.setText(title);
+        }
+
         ImageView iv = view.findViewById(R.id.iv_item_banner);
         iv.setScaleType(ImageView.ScaleType.FIT_XY);
         ImageUtils.setImage(iv,dataBean.getPic());

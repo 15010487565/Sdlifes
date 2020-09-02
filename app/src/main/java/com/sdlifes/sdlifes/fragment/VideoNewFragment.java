@@ -48,6 +48,7 @@ public class VideoNewFragment extends SimpleTopbarFragment implements
     private int page = 1 ;
 
     private boolean isPrepared;
+    private boolean isVisible;
 
     @Override
     protected Object getTopbarTitle() {

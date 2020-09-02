@@ -92,7 +92,7 @@ public class MeFragment extends SimpleTopbarFragment {
     }
 
     private boolean isPrepared;
-
+    private boolean isVisible;
     @Override
     protected void lazyLoad() {
         if (!isPrepared || !isVisible) {
