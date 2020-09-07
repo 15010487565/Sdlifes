@@ -212,15 +212,16 @@
         <!-- 设置屏幕变暗 -->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+<!--    <style name="ApplicationTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
 
-        <!--此处可自行根据项目需要设置,和状态栏导航栏透明无关-->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/white</item>
-        <item name="colorAccent">@color/white</item>
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
-        <item name="android:scaleType">centerInside</item>
-        <item name="android:launchMode">singleTop</item>
-    </style>
+<!--        &lt;!&ndash;此处可自行根据项目需要设置,和状态栏导航栏透明无关&ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/black</item>-->
+<!--        <item name="colorPrimaryDark">@color/black</item>-->
+<!--        <item name="colorAccent">@color/black</item>-->
+<!--        <item name="android:windowBackground">@color/white</item>-->
+<!--        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>-->
+<!--        <item name="android:scaleType">centerInside</item>-->
+<!--        <item name="android:launchMode">singleTop</item>-->
+<!--    </style>-->
+
 </resources>

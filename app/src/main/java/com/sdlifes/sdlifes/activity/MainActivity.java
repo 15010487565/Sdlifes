@@ -33,7 +33,7 @@ import www.xcd.com.mylibrary.widget.SnsTabWidget;
 /**
  * 主页面
  */
-public class MainActivity extends SimpleTopbarActivity implements AgreementDialogFragment.CloseDialogFragment{
+public class MainActivity extends SimpleTopbarActivity implements AgreementDialogFragment.CloseDialogFragment {
 
     /**
      * 供应商
@@ -71,15 +71,15 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
             R.mipmap.me_hl
     };
 
-        @Override
-        protected Object getTopbarTitle() {
-            return R.string.app_name;
-        }
+    @Override
+    protected Object getTopbarTitle() {
+        return R.string.app_name;
+    }
 
-        @Override
-        public boolean isTopbarVisibility() {
-            return false;
-        }
+    @Override
+    public boolean isTopbarVisibility() {
+        return false;
+    }
 
     /**
      * fragment列表
@@ -273,12 +273,13 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
                 resetTextViewAlpha(tabWidget.getChildAt(i), 0);
             }
         }
-        Log.e("TAG_切换","tabIndex="+tabIndex);
-        if (tabIndex != 2){
-            topViewGradient.setBackgroundColor(ContextCompat.getColor(this,R.color.white));
-        }else {
-
-            topViewGradient.setBackground( ContextCompat.getDrawable(this, R.drawable.shape_gradient));
+        Log.e("TAG_切换", "tabIndex=" + tabIndex);
+        if (tabIndex != 2) {
+            setTransparent(this, ContextCompat.getColor(this, R.color.white));
+//            topViewGradient.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
+        } else {
+            setTransparent(this, ContextCompat.getColor(this, R.color.black_26));
+//            topViewGradient.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_gradient));
         }
 
         fragmentTransaction.commit();
@@ -298,6 +299,7 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
             ToastUtil.showToast(getString(R.string.main_press_again_back));
         }
     }
+
     /**
      * tab change监听
      *
@@ -357,6 +359,7 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
         }
         return super.onKeyDown(keyCode, event);
     }
+
     @Override
     public void close() {
         ShareHelper.setAgreementFlag();

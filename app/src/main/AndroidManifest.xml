@@ -56,19 +56,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:icon="@mipmap/ic_launcher"
-        android:theme="@style/AppTheme"
+        android:theme="@style/ApplicationTheme"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".activity.DetailsActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
+            android:theme="@style/NoTitleTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.SearchActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
+            android:theme="@style/NoTitleTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.SingleEditActivity"
@@ -80,7 +80,7 @@
             android:name=".activity.ChannelActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
+            android:theme="@style/NoTitleTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.BrowseActivity"
@@ -98,7 +98,7 @@
             android:name=".activity.me.UserinfoActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
+
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.AboutActivity"
@@ -108,9 +108,8 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.LaunchActivity"
-            android:launchMode="singleTop"
-            
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:launchMode="singleTop">
 
              <intent-filter>
              <action android:name="android.intent.action.MAIN" />
@@ -123,39 +122,31 @@
         <activity
             android:name=".activity.WelcomeActivity"
             android:launchMode="singleInstance"
-            
-            android:theme="@style/AppTheme">
+            >
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-
-
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".activity.LoginActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
+            android:theme="@style/NoTitleTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.UpdataPwdActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
+            android:theme="@style/NoTitleTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.RegisterActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
+            android:theme="@style/NoTitleTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.MainActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             >
 <!--            <intent-filter>-->
@@ -180,7 +171,6 @@
             android:name=".activity.me.SettingActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <provider
             android:name=".provider.BaseFileProvider"
