@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.sdlifes.sdlifes.R;
 import com.sdlifes.sdlifes.application.BaseApplication;
+import com.sdlifes.sdlifes.dialog.AgreementDialogFragment;
 import com.sdlifes.sdlifes.fragment.HomeFragment;
 import com.sdlifes.sdlifes.fragment.MeFragment;
 import com.sdlifes.sdlifes.fragment.VideoNewFragment;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import www.xcd.com.mylibrary.base.activity.SimpleTopbarActivity;
 import www.xcd.com.mylibrary.base.fragment.BaseFragment;
+import www.xcd.com.mylibrary.utils.ShareHelper;
 import www.xcd.com.mylibrary.utils.ToastUtil;
 import www.xcd.com.mylibrary.view.BadgeView;
 import www.xcd.com.mylibrary.widget.SnsTabWidget;
@@ -31,7 +33,7 @@ import www.xcd.com.mylibrary.widget.SnsTabWidget;
 /**
  * 主页面
  */
-public class MainActivity extends SimpleTopbarActivity {
+public class MainActivity extends SimpleTopbarActivity implements AgreementDialogFragment.CloseDialogFragment{
 
     /**
      * 供应商
@@ -109,6 +111,17 @@ public class MainActivity extends SimpleTopbarActivity {
         resetRedPoint(2, 0);
         clickFragmentBtn(currentItem);
 
+        if (!ShareHelper.getAgreementFlag()) {
+            initAgreementDialog();
+        }
+
+    }
+
+    public void initAgreementDialog() {
+        AgreementDialogFragment agreement = new AgreementDialogFragment();
+        agreement.setCloseDialogFragment(this);
+
+        agreement.show(getSupportFragmentManager(), "lose");
     }
 
     private void initView() {
@@ -343,5 +356,9 @@ public class MainActivity extends SimpleTopbarActivity {
 
         }
         return super.onKeyDown(keyCode, event);
+    }
+    @Override
+    public void close() {
+        ShareHelper.setAgreementFlag();
     }
 }

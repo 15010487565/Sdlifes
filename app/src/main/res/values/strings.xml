@@ -13,4 +13,12 @@
     <string name="account_gender">性别</string>
     <string name="account_birthday">生日</string>
     <string name="account_region">地区</string>
+
+    <string name="login_agreement_hint">
+        请充分阅读并埋解\n
+        1.在使用时，我们可能会申请系统设备权限收集设备信息,用于信息推送和安全风控。\n
+        2.我们可能会申请位置权限，用于筛选视频。\n
+        3.上述权限以及摄像头、麦克风、电话、相册、存储空间、GPS等敏感权限均不会默认开启。
+
+    </string>
 </resources>

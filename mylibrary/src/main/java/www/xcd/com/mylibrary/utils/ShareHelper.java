@@ -74,5 +74,15 @@ public class ShareHelper {
         final SharedPreferences preferences = getSharePreferences();
         return preferences.getString("region", null);
     }
+    public static void setAgreementFlag() {
+        final SharedPreferences preferences = getSharePreferences();
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("AgreementFlag", true);
+        editor.commit();
+    }
 
+    public static boolean getAgreementFlag() {
+        SharedPreferences preferences = getSharePreferences();
+        return preferences.getBoolean("AgreementFlag", false);
+    }
 }

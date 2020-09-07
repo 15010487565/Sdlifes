@@ -460,6 +460,7 @@ public abstract class SimpleTopbarActivity extends BaseActivity implements OnCli
         return itemDecoration;
     }
 
+
     @Override
     public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {
 

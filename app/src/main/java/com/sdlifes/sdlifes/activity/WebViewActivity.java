@@ -104,6 +104,15 @@ public class WebViewActivity extends SimpleTopbarActivity {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 super.onReceivedError(view, errorCode, description, failingUrl);
             }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                String title = view.getTitle();
+                if (!TextUtils.isEmpty(title)) {
+                    resetTopbarTitle(title);
+                }
+            }
         });
         Log.e("TAG_WEB","URL="+url);
         webview.loadUrl(url);

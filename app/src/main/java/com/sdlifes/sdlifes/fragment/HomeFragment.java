@@ -2,6 +2,7 @@ package com.sdlifes.sdlifes.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -30,6 +31,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -145,6 +147,7 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
             public void onPageScrollStateChanged(int state) {
 
             }
+
         });
 //        isPrepared = true;
 //        lazyLoad();
@@ -269,6 +272,25 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
         @Override
         public Fragment getItem(int position) {
             return mFragments.get(position);
+        }
+
+        @NonNull
+        @Override
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
+            try {
+                Field mFragments = getClass().getSuperclass().getDeclaredField("mFragments");
+                mFragments.setAccessible(true);
+                ((ArrayList) mFragments.get(this)).clear();
+
+                Field mSavedState = getClass().getSuperclass().getDeclaredField("mSavedState");
+                mSavedState.setAccessible(true);
+                ((ArrayList) mSavedState.get(this)).clear();
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            return super.instantiateItem(container, position);
         }
     }
     @Override
