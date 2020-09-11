@@ -144,6 +144,7 @@
     <dimen name="main_tabwidget_image_size_60">60dp</dimen>
     <dimen name="main_tabwidget_height">48dp</dimen>
     <dimen name="main_tabwidget_image_size">25dp</dimen>
+    <dimen name="state_tabwidget_image_size">85dp</dimen>
     <dimen name="main_tabwidget_image_padding">2dp</dimen>
     <dimen name="main_tabwidget_image_margin">4dp</dimen>
     <dimen name="main_tabwidget_redpoint_size">14dp</dimen>
@@ -151,4 +152,5 @@
     <dimen name="main_tabwidget_redpoint_margin_top">3dp</dimen>
 
     <dimen name="login_left">20dp</dimen>
+    <dimen name="regist_state_image">80dp</dimen>
 </resources>

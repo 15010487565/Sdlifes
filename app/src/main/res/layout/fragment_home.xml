@@ -19,6 +19,7 @@
         android:layout_marginRight="15dp"
         android:background="@drawable/shape_4_bg_white"
         android:paddingLeft="20dp"
+        android:visibility="gone"
         android:gravity="center">
         <ImageView
             android:layout_width="wrap_content"
@@ -77,25 +78,18 @@
             app:pstsTextSelectedColor="@color/black_26"
             app:pstsUnderlineColor="@color/black_f5" />
         <ImageView
-            android:id="@+id/iv_more"
+            android:id="@+id/iv_serch"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:padding="10dp"
-            android:src="@mipmap/home_more"/>
+            android:src="@mipmap/serch_black"/>
     </LinearLayout>
-
-    <com.sdlifes.sdlifes.view.BaseSwipeRefreshLayout
-        android:id="@+id/ly_pull_refresh"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </com.sdlifes.sdlifes.view.BaseSwipeRefreshLayout>
 
 
 </LinearLayout>

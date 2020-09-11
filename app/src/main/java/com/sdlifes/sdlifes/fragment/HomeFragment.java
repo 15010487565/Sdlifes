@@ -7,8 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,6 @@ import android.widget.RelativeLayout;
 import com.alibaba.fastjson.JSON;
 import com.gxz.PagerSlidingTabStrip;
 import com.sdlifes.sdlifes.R;
-import com.sdlifes.sdlifes.activity.ChannelActivity;
 import com.sdlifes.sdlifes.activity.SearchActivity;
 import com.sdlifes.sdlifes.application.SimpleTopbarFragment;
 import com.sdlifes.sdlifes.model.HomeModel;
@@ -43,9 +42,9 @@ import www.xcd.com.mylibrary.utils.ShareHelper;
  * Created by gs on 2018/10/16.
  */
 
-public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefreshLayout.OnRefreshListener{
+public class HomeFragment extends SimpleTopbarFragment {
 
-    private SwipeRefreshLayout ly_pull_refresh;
+
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
     private ArrayList<Fragment> mFragments;
@@ -55,7 +54,6 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
 //    private TextView tvHomeSerch;
     private VerticalScrollTextView scroll_HomeSerch;
     private boolean isPrepared;
-    private boolean isVisible;
     int id = 16;//初始频道id
     @Override
     protected Object getTopbarTitle() {
@@ -74,17 +72,14 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
         if (!hidden) { //隐藏时所作的事情
             if (scroll_HomeSerch !=null)
             scroll_HomeSerch.stopScroll();
-//            lazyLoad();
-//            isVisible = false;
         }else {
             if (scroll_HomeSerch !=null)
             scroll_HomeSerch.startScroll(2000);
-//            isVisible = true;
         }
     }
 
-
-//    @Override
+//
+//@Override
 //    protected void lazyLoad() {
 //        if (!isPrepared || !isVisible) {
 //            return;
@@ -92,7 +87,17 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
 //        //填充各控件的数据
 //        initData();
 //    }
-
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+//        super.onHiddenChanged(hidden);
+//
+//        if (!hidden) { //隐藏时所作的事情
+//            lazyLoad();
+//            isVisible = false;
+//        }else {
+//            isVisible = true;
+//        }
+//    }
 
     @Override
     protected void initView(LayoutInflater inflater, View view) {
@@ -100,11 +105,7 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
         RelativeLayout reTopPar = view.findViewById(R.id.topbat_parent);
         reTopPar.setVisibility(View.GONE);
 
-        ly_pull_refresh = view.findViewById(R.id.ly_pull_refresh);
-        ly_pull_refresh.setOnRefreshListener(this);
-        //设置样式刷新显示的位置
-        ly_pull_refresh.setProgressViewOffset(true, -20, 100);
-        ly_pull_refresh.setColorSchemeResources(R.color.red, R.color.blue, R.color.black);
+
 
 //        tvHomeSerch = view.findViewById(R.id.tv_HomeSerch);
         scroll_HomeSerch = view.findViewById(R.id.scroll_HomeSerch);
@@ -116,7 +117,7 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
         });
 //        scroll_HomeSerch.setVisibility(View.GONE);
         view.findViewById(R.id.ll_search).setOnClickListener(this);
-        view.findViewById(R.id.iv_more).setOnClickListener(this);
+        view.findViewById(R.id.iv_serch).setOnClickListener(this);
 
         tabs = view.findViewById(R.id.magic_indicator);
         //设置Tab文字的左右间距,传入的是dp
@@ -133,17 +134,17 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
             @Override
             public void onPageSelected(int position) {
                 id = Integer.valueOf(mTitlesId[position]);
-//                Log.d("TAG_切换", "id===" + id);
+                Log.d("TAG_切换", "id===" + id);
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
             }
+
         });
 //        isPrepared = true;
 //        lazyLoad();
-
         initData();
     }
 
@@ -159,13 +160,13 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
         super.onClick(v);
         switch (v.getId()) {
 
-            case R.id.ll_search://搜索
+            case R.id.iv_serch://搜索
                 getActivity().startActivity(new Intent(getActivity(), SearchActivity.class));
                 break;
 
-            case R.id.iv_more://频道
-                getActivity().startActivityForResult(new Intent(getActivity(), ChannelActivity.class),10001);
-                break;
+//            case R.id.iv_more://频道
+//                getActivity().startActivityForResult(new Intent(getActivity(), ChannelActivity.class),10001);
+//                break;
         }
     }
 
@@ -181,21 +182,37 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
 
     @Override
     public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {
-        ly_pull_refresh.setRefreshing(false);
+
         switch (requestCode) {
             case 1000:
                 HomeModel homeModel = JSON.parseObject(returnData, HomeModel.class);
                 HomeModel.DataBean data = homeModel.getData();
                 List<String> searchArr = data.getSearchArr();
-
+//                StringBuffer buffer = new StringBuffer();
+//                if (searchArr != null && searchArr.size() > 0) {
+//                    for (int i = 0; i < searchArr.size(); i++) {
+//                        if (i > 0){
+//                            buffer.append("\t|\t");
+//                        }
+//                        String s = searchArr.get(i);
+//                        buffer.append(s);
+//
+//                    }
+//                }
+//                Log.e("TAG_搜索","");
                 if (searchArr !=null && searchArr.size() > 0) {
+//                    scroll_HomeSerch.setVisibility(View.VISIBLE);
+//                    tvHomeSerch.setVisibility(View.GONE);
                     scroll_HomeSerch.setList(searchArr);
                     scroll_HomeSerch.startScroll(2000);
                 } else {
+//                    scroll_HomeSerch.setVisibility(View.GONE);
+//                    tvHomeSerch.setVisibility(View.VISIBLE);
                     scroll_HomeSerch.setText("搜索");
                 }
                 mFragments = new ArrayList<>();
                 categoryArr = data.getCategoryArr();
+//                mTitles = categoryArr.toArray(new String[categoryArr.size()]);
                 mTitles = new String[categoryArr.size()];
                 mTitlesId = new String[categoryArr.size()];
                 int temp = 0;
@@ -224,7 +241,7 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
     @Override
     public void onErrorResult(int errorCode, String errorExcep) {
         super.onErrorResult(errorCode, errorExcep);
-        ly_pull_refresh.setRefreshing(false);
+
     }
 
     List<HomeModel.DataBean.CategoryArrBean> categoryArr;
@@ -236,18 +253,24 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
 
         @Override
         public int getCount() {
-
+//            Log.e("TAG_tab1", "mFragments="+mFragments.size());
             return mFragments.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-
+//            Log.e("TAG_tab1", "position="+position+";title=" + mTitles[position]);
             return mTitles[position];
         }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
-
             try {
                 Field mFragments = getClass().getSuperclass().getDeclaredField("mFragments");
                 mFragments.setAccessible(true);
@@ -262,11 +285,6 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
                 e.printStackTrace();
             }
             return super.instantiateItem(container, position);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
         }
     }
     @Override
@@ -293,9 +311,5 @@ public class HomeFragment extends SimpleTopbarFragment implements   SwipeRefresh
     }
 
 
-    @Override
-    public void onRefresh() {
-        initData();
-    }
 
 }

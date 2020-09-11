@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -116,8 +115,8 @@ public class MeFragment extends SimpleTopbarFragment {
     @Override
     protected void initView(LayoutInflater inflater, View view) {
 
-        ImageView topbar_titlearrowsimage = (ImageView) view.findViewById(R.id.topbar_titlearrowsimage);
-        topbar_titlearrowsimage.setVisibility(View.GONE);
+//        ImageView topbar_titlearrowsimage = (ImageView) view.findViewById(R.id.topbar_titlearrowsimage);
+//        topbar_titlearrowsimage.setVisibility(View.GONE);
 
         TextView tvUserID = view.findViewById(R.id.user_id);
         tvUserID.setText("ID："+ShareHelper.getUserId());
@@ -250,6 +249,32 @@ public class MeFragment extends SimpleTopbarFragment {
                     ShareHelper.savePrfparams("birthday",birthday);
                     String region = data.getRegion();
                     ShareHelper.savePrfparams("region",region);
+                    //用户状态 0未设置 1备孕中 2怀孕中 3宝宝出生
+                    int state = data.getState();
+                    ShareHelper.savePrfparams("state",state);
+                    //上次月经开始时间
+                    String m_lasttime = data.getM_lasttime();
+                    ShareHelper.savePrfparams("m_lasttime",m_lasttime);
+                    //月经一般持续天数
+                    int m_days = data.getM_days();
+                    ShareHelper.savePrfparams("m_days",m_days);
+                    //月经周期天数
+                    int m_interval = data.getM_interval();
+                    ShareHelper.savePrfparams("m_interval",m_interval);
+
+                    // 预产期
+                    String p_etime = data.getP_etime();
+                    ShareHelper.savePrfparams("p_etime",p_etime);
+
+                    // 宝宝昵称
+                    String b_name = data.getB_name();
+                    ShareHelper.savePrfparams("b_name",b_name);
+                    // 宝宝生日
+                    String b_birthday = data.getB_birthday();
+                    ShareHelper.savePrfparams("b_birthday",b_birthday);
+                    // 宝宝性别 1男 2女
+                    int b_sex = data.getB_sex();
+                    ShareHelper.savePrfparams("b_sex",b_sex);
                     break;
                 case 1001:
                     UserAdModel userAdModel = JSON.parseObject(returnData, UserAdModel.class);

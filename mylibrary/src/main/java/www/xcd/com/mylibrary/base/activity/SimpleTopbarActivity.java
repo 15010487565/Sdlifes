@@ -41,8 +41,6 @@ import www.xcd.com.mylibrary.view.BadgeView;
  */
 public abstract class SimpleTopbarActivity extends BaseActivity implements OnClickListener, HttpInterface {
 
-    public static final String IMAGE_UNSPECIFIED = "image/*";
-//    protected Dialog loginDialog;
     /**
      * 右侧功能对象的MAP，可以通过id获得指定的功能对象
      */
@@ -133,16 +131,16 @@ public abstract class SimpleTopbarActivity extends BaseActivity implements OnCli
         return true;
     }
 
-    public View topViewGradient;
+//    public View topViewGradient;
     @Override
     protected void afterSetContentView() {
         super.afterSetContentView();
         int navigationBarHeight = getStatusBarHeight();
         //顶部渐变
-        topViewGradient = findViewById(R.id.topView_Gradient);
-        LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) topViewGradient.getLayoutParams();
-        linearParams.height = navigationBarHeight;
-        topViewGradient.setLayoutParams(linearParams);
+//        topViewGradient = findViewById(R.id.topView_Gradient);
+//        LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) topViewGradient.getLayoutParams();
+//        linearParams.height = navigationBarHeight;
+//        topViewGradient.setLayoutParams(linearParams);
 
         //顶部标题背景色
         topbat_parent =  findViewById(R.id.topbat_parent);
@@ -175,15 +173,15 @@ public abstract class SimpleTopbarActivity extends BaseActivity implements OnCli
                 viewTitle.setText(title);
             }
         }
-        ImageView topbar_titlearrowsimage = (ImageView) findViewById(R.id.topbar_titlearrowsimage);
+//        ImageView topbar_titlearrowsimage = (ImageView) findViewById(R.id.topbar_titlearrowsimage);
         ImageView topbar_titleimage = (ImageView) findViewById(R.id.topbar_titleimage);
         LinearLayout topbar_middle = (LinearLayout) findViewById(R.id.topbar_middle);
         if (getTitleIsVisibilityImage()) {
-            topbar_titlearrowsimage.setVisibility(View.VISIBLE);
+//            topbar_titlearrowsimage.setVisibility(View.VISIBLE);
             topbar_titleimage.setVisibility(View.VISIBLE);
             topbar_middle.setOnClickListener(this);
         } else {
-            topbar_titlearrowsimage.setVisibility(View.GONE);
+//            topbar_titlearrowsimage.setVisibility(View.GONE);
             topbar_titleimage.setVisibility(View.GONE);
         }
         // 添加左侧控件（默认是返回按钮，但是支持自定义替换此按钮）
@@ -459,6 +457,25 @@ public abstract class SimpleTopbarActivity extends BaseActivity implements OnCli
         itemDecoration.setDrawable(getResources().getDrawable(drawableId));
         return itemDecoration;
     }
+
+    /**
+     * 使状态栏透明
+     */
+//    @TargetApi(Build.VERSION_CODES.KITKAT)
+//    public static void transparentStatusBar(Activity activity, @ColorInt int color) {
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+//            return;
+//        }
+//        Window window = activity.getWindow();
+//        Context context = activity;
+//        if (color == ContextCompat.getColor(context,R.color.white)) {
+//            //黑色字体
+//            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//        } else {
+//            //白色字体
+//            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+//        }
+//    }
 
     @Override
     public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {

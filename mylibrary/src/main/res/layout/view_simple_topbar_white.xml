@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <com.cy.translucentparent.StatusBarView
-        android:id="@+id/topView_Gradient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00000000" />
+<!--    <com.cy.translucentparent.StatusBarView-->
+<!--        android:id="@+id/topView_Gradient"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#00000000" />-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"

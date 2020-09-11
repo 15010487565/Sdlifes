@@ -104,7 +104,7 @@ public class RegisterActivity extends NoTitleActivity
         iv_agree = findViewById(R.id.iv_agree);
         iv_agree.setOnClickListener(this);
         ctv = findViewById(R.id.ctv_agree);
-        String str = "我已阅读并同意服务条款和隐私政策";
+        String str = "我已阅读并同意《服务条款》和《隐私政策》";
         SpannableStringBuilder spannableBuilder = new SpannableStringBuilder(str);
         // 单独设置点击事件
         ClickableSpan clickableSpanOne = new ClickableSpan() {
@@ -120,7 +120,7 @@ public class RegisterActivity extends NoTitleActivity
                 paint.setUnderlineText(false);
             }
         };
-        spannableBuilder.setSpan(clickableSpanOne, 7, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableBuilder.setSpan(clickableSpanOne, 7, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         // 在设置点击事件、同时设置字体颜色
         ClickableSpan clickableSpanTwo = new ClickableSpan() {
             @Override
@@ -136,7 +136,7 @@ public class RegisterActivity extends NoTitleActivity
                 paint.setUnderlineText(false);
             }
         };
-        spannableBuilder.setSpan(clickableSpanTwo, 12, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableBuilder.setSpan(clickableSpanTwo, 14, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         // 不设置点击不生效
         ctv.setMovementMethod(LinkMovementMethod.getInstance());
         ctv.setText(spannableBuilder);
@@ -167,7 +167,7 @@ public class RegisterActivity extends NoTitleActivity
                     return;
                 }
                 if (!isAgree) {
-                    ToastUtil.showToast("请确认已阅读服务条款和隐私政策！");
+                    ToastUtil.showToast("请确认已阅读《服务条款》和《隐私政策》！");
                     return;
                 }
 
@@ -216,7 +216,9 @@ public class RegisterActivity extends NoTitleActivity
                 int userId = loginData.getId();
                 ShareHelper.savePrfparams("userid",String.valueOf(userId));
                 ShareHelper.savePrfparams("nickname",loginData.getNickname());
-                Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+
+                Intent intent = new Intent(RegisterActivity.this,UserStateActivity.class);
+                intent.putExtra("source","RegisterActivity");
                 startActivity(intent);
                 finish();
                 break;

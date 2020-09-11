@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -117,15 +116,15 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
             viewTitle.setText(title);
 		}
 //		ImageView topbar_titlearrowsimage = (ImageView) view.findViewById(R.id.topbar_titlearrowsimage);
-		ImageView topbar_titleimage = (ImageView) view.findViewById(R.id.topbar_titleimage);
+//		ImageView topbar_titleimage = (ImageView) view.findViewById(R.id.topbar_titleimage);
 		LinearLayout topbar_middle = (LinearLayout) view.findViewById(R.id.topbar_middle);
 		if (getTitleIsVisibilityImage()){
 //			topbar_titlearrowsimage.setVisibility(View.VISIBLE);
-			topbar_titleimage.setVisibility(View.VISIBLE);
+//			topbar_titleimage.setVisibility(View.VISIBLE);
 			topbar_middle.setOnClickListener(this);
 		}else {
 //			topbar_titlearrowsimage.setVisibility(View.GONE);
-			topbar_titleimage.setVisibility(View.GONE);
+//			topbar_titleimage.setVisibility(View.GONE);
 		}
 
 		leftFuncZone = (LinearLayout) view.findViewById(R.id.left_func);

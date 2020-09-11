@@ -1,26 +1,28 @@
 package www.xcd.com.mylibrary.base.activity;
 
-import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.cy.translucentparent.StatusNavUtils;
-
+import www.xcd.com.mylibrary.R;
 import www.xcd.com.mylibrary.utils.AppManager;
-import www.xcd.com.mylibrary.utils.SystemBarTintManager;
 
 
 /**
@@ -33,25 +35,66 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnFo
 
     private boolean isActive = true;
 
-    /**
-     * 本地文件读写权限
-     */
-    public static final String[] WRITEREADPERMISSIONS = {
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ,Manifest.permission.READ_EXTERNAL_STORAGE
-    };
-
-    private SystemBarTintManager tintManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
         super.onCreate(savedInstanceState);
-        StatusNavUtils.setStatusBarColor(this,0x00000000);
+//        StatusNavUtils.setStatusBarColor(this,0x00000000);
 		AppManager.getInstance().addActivity(this);
-
+        setTransparent(this, ContextCompat.getColor(this, R.color.white));
     }
 
+    /**
+     * 设置状态栏全透明
+     *
+     * @param activity 需要设置的activity
+     */
+    public static void setTransparent(Activity activity, @ColorInt int color) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return;
+        }
+        transparentStatusBar(activity,color);
+        setRootView(activity);
+    }
+
+    /**
+     * 设置根布局参数
+     */
+    private static void setRootView(Activity activity) {
+        ViewGroup parent = (ViewGroup) activity.findViewById(android.R.id.content);
+        for (int i = 0, count = parent.getChildCount(); i < count; i++) {
+            View childView = parent.getChildAt(i);
+            if (childView instanceof ViewGroup) {
+//                Log.e("TAG_工作日志","设置FitsSystemWindows");
+                childView.setFitsSystemWindows(true);
+                ((ViewGroup) childView).setClipToPadding(true);
+            }
+        }
+    }
+
+    private static void transparentStatusBar(Activity activity, @ColorInt int color) {
+        Window window = activity.getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(color);
+
+        } else {
+            //让contentView延伸到状态栏并且设置状态栏颜色透明
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        Context context = activity;
+        if (color == ContextCompat.getColor(context, R.color.white)) {
+            //黑色字体
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//            window.setBackgroundDrawableResource(R.drawable.shape_gradient);
+        } else {
+            //白色字体
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+        }
+    }
 
 
     @Override

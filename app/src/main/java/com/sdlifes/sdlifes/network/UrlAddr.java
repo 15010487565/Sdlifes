@@ -45,4 +45,9 @@ public interface UrlAddr {
 
     String CLAUSE = url+"agreement/clause.html";//服务条款
     String PRIVACY = url+"agreement/privacy.html";//隐私政策
+
+    String EDITSTATE = path+"api/user/editstate";//修改用户状态
+    String TOPIC_SAVE = path+"api/topic/save";//发布内容
+    String TOPIC_LIST = path+"api/topic/list";//更多话题
+    String TOPIC_ARRAY = path+"api/topic/array";//获取话题中发布列表
 }

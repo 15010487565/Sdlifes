@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/line_gray">
 
     <include layout="@layout/view_simple_topbar_white" />
     <LinearLayout
@@ -36,7 +37,28 @@
             android:background="@color/white"
             android:text=""/>
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/tv_setting_serve"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="@dimen/margin_15"
+        android:textColor="@color/black_26"
+        android:textSize="@dimen/textsize_14"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:text="服务条款"/>
+    <TextView
+        android:id="@+id/tv_setting_privacy"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="@dimen/margin_15"
+        android:textColor="@color/black_26"
+        android:textSize="@dimen/textsize_14"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:text="隐私政策"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"

@@ -13,7 +13,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.util.MultiTypeDelegate;
 import com.sdlifes.sdlifes.R;
-import com.sdlifes.sdlifes.model.HomeModel;
+import com.sdlifes.sdlifes.model.HomeCatModel;
 import com.sdlifes.sdlifes.util.ActivityUtils;
 import com.sdlifes.sdlifes.util.ImageUtils;
 
@@ -25,13 +25,13 @@ import www.xcd.com.mylibrary.help.HelpUtils;
  * Created by gs on 21/11/2018.
  */
 
-public class HomeAdapter extends BaseQuickAdapter<HomeModel.DataBean.NewsArrBean, BaseViewHolder> {
+public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrBean, BaseViewHolder> {
 
-    public HomeAdapter(List<HomeModel.DataBean.NewsArrBean> data) {
+    public HomeAdapter(List<HomeCatModel.DataBean.NewsArrBean> data) {
         super(data);
-        setMultiTypeDelegate(new MultiTypeDelegate<HomeModel.DataBean.NewsArrBean>() {
+        setMultiTypeDelegate(new MultiTypeDelegate<HomeCatModel.DataBean.NewsArrBean>() {
             @Override
-            protected int getItemType(HomeModel.DataBean.NewsArrBean newsArrBean) {
+            protected int getItemType(HomeCatModel.DataBean.NewsArrBean newsArrBean) {
                 String type = newsArrBean.getType();
                 if ("2".equals(type)) {
                     return 2;
@@ -56,7 +56,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeModel.DataBean.NewsArrBean
 
 
     @Override
-    protected void convert(BaseViewHolder helper, HomeModel.DataBean.NewsArrBean newsArrBean) {
+    protected void convert(BaseViewHolder helper, HomeCatModel.DataBean.NewsArrBean newsArrBean) {
 
         /**
          * type = 1 新闻 单张
@@ -132,7 +132,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeModel.DataBean.NewsArrBean
 
     }
 
-    private void onClick(HomeModel.DataBean.NewsArrBean newsArrBean, NoScrollGridView noScrollGridView) {
+    private void onClick(HomeCatModel.DataBean.NewsArrBean newsArrBean, NoScrollGridView noScrollGridView) {
         noScrollGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

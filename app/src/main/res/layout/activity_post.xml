@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <include layout="@layout/view_simple_topbar_white"/>
+    <EditText
+        android:id="@+id/et_post"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:textSize="@dimen/textsize_14"
+        android:textColor="@color/black_26"
+        android:textColorHint="@color/black_99"
+        android:background="@drawable/edit_text_black"
+        android:gravity="left"
+        android:padding="15dp"
+        android:layout_margin="15dp"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@null"
+        android:hint="请输入内容或者插入图片"/>
+    <com.sdlifes.sdlifes.adapter.NoScrollGridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
+        android:verticalSpacing="10dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/tv_add_topicArr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_12"
+        android:textColor="@color/black_26"
+        android:singleLine="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/shape_topicarr"
+        android:text="#\t添加话题"
+        />
+
+</LinearLayout>

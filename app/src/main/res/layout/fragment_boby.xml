@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="50dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="宝宝昵称"
+            android:textColor="@color/black_26"
+            android:textSize="@dimen/textsize_14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/dadregicon1" />
+
+            <EditText
+                android:id="@+id/ed_baby_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:hint="请输入宝宝昵称"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:textColor="@color/black_26"
+                android:textColorHint="@color/black_99"
+                android:textSize="@dimen/textsize_16" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/line_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="宝宝生日"
+            android:textColor="@color/black_26"
+            android:textSize="@dimen/textsize_14" />
+
+        <LinearLayout
+            android:id="@+id/ll_baby_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/dadregicon1" />
+
+            <TextView
+                android:id="@+id/tv_baby_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="请选择宝宝生日"
+                android:textColor="@color/black_26"
+                android:textColorHint="@color/black_99"
+                android:textSize="@dimen/textsize_16" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/line_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="宝宝性别"
+            android:textColor="@color/black_26"
+            android:textSize="@dimen/textsize_14" />
+
+        <LinearLayout
+            android:id="@+id/ll_baby_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/icon_mamaweek" />
+
+            <TextView
+                android:id="@+id/tv_baby_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="请选择宝宝性别"
+                android:textColor="@color/black_26"
+                android:textColorHint="@color/black_99"
+                android:textSize="@dimen/textsize_16" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/line_gray" />
+
+        <TextView
+            android:id="@+id/tv_boby_sava"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_red_round_15"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:textSize="@dimen/textsize_16" />
+
+    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+

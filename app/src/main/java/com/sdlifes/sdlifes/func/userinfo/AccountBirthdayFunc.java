@@ -65,7 +65,9 @@ public class AccountBirthdayFunc extends BaseFunc {
                 ((UserinfoActivity)getActivity()).updataBirthday(format);
             }
         });
-        dialog.show();
+        if (dialog != null && !dialog.isShowing()){
+            dialog.show();
+        }
     }
 
     @Override

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+
+    android:orientation="vertical">
+    <include layout="@layout/view_simple_topbar_white" />
+
+    <LinearLayout
+        android:id="@+id/ll_pt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="90dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+
+            android:layout_width="@dimen/regist_state_image"
+            android:layout_height="@dimen/regist_state_image"
+            android:src="@mipmap/addbaby_btn_pt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+
+            android:text="@string/user_state_pt"
+            android:textColor="@color/black_26"
+            android:textSize="@dimen/textsize_12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="65dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_ready"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+
+                android:layout_width="@dimen/regist_state_image"
+                android:layout_height="@dimen/regist_state_image"
+                android:src="@mipmap/addbaby_btn_ready" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/user_state_ready"
+                android:textColor="@color/black_26"
+                android:textSize="@dimen/textsize_12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_baby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="50dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/regist_state_image"
+                android:layout_height="@dimen/regist_state_image"
+                android:src="@mipmap/addbaby_btn_baby" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="@string/user_state_baby"
+                android:textColor="@color/black_26"
+                android:textSize="@dimen/textsize_12" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="90dp"-->
+<!--        android:background="@drawable/shape_red_regist_state"-->
+<!--        android:paddingLeft="35dp"-->
+<!--        android:paddingTop="8dp"-->
+<!--        android:paddingRight="35dp"-->
+<!--        android:paddingBottom="8dp"-->
+<!--        android:text="选择状态"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="@dimen/textsize_16" />-->
+
+
+</LinearLayout>

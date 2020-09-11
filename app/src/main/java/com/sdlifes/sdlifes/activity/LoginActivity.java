@@ -27,7 +27,8 @@ import www.xcd.com.mylibrary.utils.ToastUtil;
 
 
 public class LoginActivity extends NoTitleActivity
-        implements View.OnClickListener, HttpInterface, TextWatcher {
+        implements View.OnClickListener, HttpInterface, TextWatcher
+        {
 
     private TextView btnPwd;
     private TextView tvRegister;
@@ -58,9 +59,12 @@ public class LoginActivity extends NoTitleActivity
         ImageView ivFinish = findViewById(R.id.iv_Finish);
         ivFinish.setOnClickListener(this);
 
+
 //        etPhone.setText("15010487565");
 //        etPassword.setText("123456");
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -77,6 +81,7 @@ public class LoginActivity extends NoTitleActivity
                 startActivity(intent);
                 break;
             case R.id.tv_Register://手机号注册
+//                intent = new Intent(LoginActivity.this,UserStateActivity.class);
                 intent = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
                 break;
@@ -118,8 +123,8 @@ public class LoginActivity extends NoTitleActivity
         int userId = loginData.getId();
         ShareHelper.savePrfparams("userid",String.valueOf(userId));
         ShareHelper.savePrfparams("nickname",loginData.getNickname());
-        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+//        startActivity(intent);
         finish();
     }
 
@@ -155,4 +160,6 @@ public class LoginActivity extends NoTitleActivity
     public void afterTextChanged(Editable editable) {
 
     }
+
+
 }
