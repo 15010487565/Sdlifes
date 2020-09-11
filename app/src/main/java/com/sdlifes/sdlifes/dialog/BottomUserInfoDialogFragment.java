@@ -100,9 +100,6 @@ public class BottomUserInfoDialogFragment extends DialogFragment implements Base
             sex = 0;
         }
         ((UserinfoActivity)getActivity()).updataSex(sex);
-//        tvContent.setText(fieldoptionBean.getOPTION_NAME());
-//        etContent.setText(fieldoptionBean.getOPTION_NAME());
-
         dismiss();
     }
 

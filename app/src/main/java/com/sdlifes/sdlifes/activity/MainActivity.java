@@ -1,5 +1,6 @@
 package com.sdlifes.sdlifes.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,7 +18,7 @@ import com.sdlifes.sdlifes.application.BaseApplication;
 import com.sdlifes.sdlifes.dialog.AgreementDialogFragment;
 import com.sdlifes.sdlifes.fragment.HomeFragment;
 import com.sdlifes.sdlifes.fragment.MeFragment;
-import com.sdlifes.sdlifes.fragment.VideoNewFragment;
+import com.sdlifes.sdlifes.fragment.PostFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,6 @@ import www.xcd.com.mylibrary.base.activity.SimpleTopbarActivity;
 import www.xcd.com.mylibrary.base.fragment.BaseFragment;
 import www.xcd.com.mylibrary.utils.ShareHelper;
 import www.xcd.com.mylibrary.utils.ToastUtil;
-import www.xcd.com.mylibrary.view.BadgeView;
 import www.xcd.com.mylibrary.widget.SnsTabWidget;
 
 
@@ -36,14 +36,14 @@ import www.xcd.com.mylibrary.widget.SnsTabWidget;
 public class MainActivity extends SimpleTopbarActivity implements AgreementDialogFragment.CloseDialogFragment {
 
     /**
-     * 供应商
+     *
      * fragment classes
      */
     public static Class<?> fragmentArray[] = {
 
             HomeFragment.class,
-//            VideoFragment.class,
-            VideoNewFragment.class,
+            PostFragment.class,
+//            VideoNewFragment.class,
             MeFragment.class,
     };
     /**
@@ -51,7 +51,8 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
      */
     private static int[] MAIN_TAB_TEXT = new int[]{
             R.string.home,
-            R.string.video,
+//            R.string.video,
+            R.string.post,
             R.string.me
     };
     /**
@@ -106,9 +107,9 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
         // 初始化Tab
         initTabWidget();
         //实例化红点
-        resetRedPoint(0, 0);
-        resetRedPoint(1, 0);
-        resetRedPoint(2, 0);
+//        resetRedPoint(0, 0);
+//        resetRedPoint(1, 0);
+//        resetRedPoint(2, 0);
         clickFragmentBtn(currentItem);
 
         if (!ShareHelper.getAgreementFlag()) {
@@ -172,6 +173,17 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
         tabWidget.setCurrentTab(0);
         // 添加监听
         tabWidget.setTabSelectionListener(new MainTabSelectionListener());
+        findViewById(R.id.post).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()){
+            case R.id.post:
+                startActivity(new Intent(this,PostActivity.class));
+                break;
+        }
     }
 
     /**
@@ -264,14 +276,18 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
                 .getSupportFragmentManager().beginTransaction();
 
         for (int i = 0; i < fragmentList.size(); i++) {
-            if (i == tabIndex) {
+//            if (tabIndex == 1){
+//                startActivity(new Intent(this,PostActivity.class));
+//            }else {
+                if (i == tabIndex) {
+                    fragmentTransaction.show(fragmentList.get(i));
+                    resetTextViewAlpha(tabWidget.getChildAt(i), 1);
 
-                fragmentTransaction.show(fragmentList.get(i));
-                resetTextViewAlpha(tabWidget.getChildAt(i), 1);
-            } else {
-                fragmentTransaction.hide(fragmentList.get(i));
-                resetTextViewAlpha(tabWidget.getChildAt(i), 0);
-            }
+                } else {
+                    fragmentTransaction.hide(fragmentList.get(i));
+                    resetTextViewAlpha(tabWidget.getChildAt(i), 0);
+                }
+//            }
         }
         Log.e("TAG_切换", "tabIndex=" + tabIndex);
         if (tabIndex != 2) {
@@ -323,24 +339,24 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
      * @param index
      * @param number
      */
-    private void resetRedPoint(int index, int number) {
-        View view = tabWidget.getChildAt(index);
-        // red number
-        BadgeView textRedpoint = (BadgeView) view.findViewById(R.id.main_tabitem_redpoint);
-        if (number > 0) {
-            if (String.valueOf(number).length() > 2) {
-                textRedpoint.setText("...");
-            } else {
-                textRedpoint.setText(String.valueOf(number));
-            }
-            //隐藏红点
-            textRedpoint.setVisibility(View.VISIBLE);
-//			textRedpoint.setVisibility(View.GONE);
-        } else {
-            textRedpoint.setText("");
-            textRedpoint.setVisibility(View.GONE);
-        }
-    }
+//    private void resetRedPoint(int index, int number) {
+//        View view = tabWidget.getChildAt(index);
+//        // red number
+//        BadgeView textRedpoint = (BadgeView) view.findViewById(R.id.main_tabitem_redpoint);
+//        if (number > 0) {
+//            if (String.valueOf(number).length() > 2) {
+//                textRedpoint.setText("...");
+//            } else {
+//                textRedpoint.setText(String.valueOf(number));
+//            }
+//            //隐藏红点
+//            textRedpoint.setVisibility(View.VISIBLE);
+////			textRedpoint.setVisibility(View.GONE);
+//        } else {
+//            textRedpoint.setText("");
+//            textRedpoint.setVisibility(View.GONE);
+//        }
+//    }
 
     private long mExitTime;
 
@@ -364,4 +380,40 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
     public void close() {
         ShareHelper.setAgreementFlag();
     }
+
+    // 保存MyTouchListener接口的列表
+//    private ArrayList<MainActivityTouchListener> activityTouchListeners = new ArrayList<MainActivityTouchListener>();
+//
+//    public interface MainActivityTouchListener {
+//        public void onTouchEvent(MotionEvent event);
+//    }
+//
+//    /**
+//     * 提供给Fragment通过getActivity()方法来注册自己的触摸事件的方法
+//     *
+//     * @param listener
+//     */
+//    public void registerTouchListener(MainActivityTouchListener listener) {
+//        activityTouchListeners.add(listener);
+//    }
+//
+//    /**
+//     * 提供给Fragment通过getActivity()方法来注销自己的触摸事件的方法
+//     *
+//     * @param listener
+//     */
+//    public void unRegisterTouchListener(MainActivityTouchListener listener) {
+//        activityTouchListeners.remove(listener);
+//    }
+//
+//    /**
+//     * 分发触摸事件给所有注册了MainActivityTouchListener的接口
+//     */
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        for (MainActivityTouchListener listener : activityTouchListeners) {
+//            listener.onTouchEvent(ev);
+//        }
+//        return super.dispatchTouchEvent(ev);
+//    }
 }

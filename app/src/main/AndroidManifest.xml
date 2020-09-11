@@ -53,11 +53,38 @@
     <application
         android:name=".application.BaseApplication"
         android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:icon="@mipmap/ic_launcher"
         android:theme="@style/ApplicationTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.PostMoreActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTop"
+            android:theme="@style/NoTitleTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity android:name=".activity.PostListActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTop"
+            android:theme="@style/NoTitleTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity android:name=".activity.UserStateSaveActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTop"
+            android:theme="@style/NoTitleTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activity.UserStateActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTop"
+            android:theme="@style/NoTitleTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activity.PostActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTop"
+            android:theme="@style/NoTitleTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.DetailsActivity"
             android:alwaysRetainTaskState="true"
@@ -74,7 +101,6 @@
             android:name=".activity.SingleEditActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.ChannelActivity"
@@ -86,45 +112,35 @@
             android:name=".activity.me.BrowseActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.AttentionActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.UserinfoActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.AboutActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.LaunchActivity"
-            android:theme="@style/AppTheme"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-        </activity>
-        <!-- app -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- app -->
         <activity
             android:name=".activity.WelcomeActivity"
-            android:launchMode="singleInstance"
-            >
-
-        </activity>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".activity.LoginActivity"
             android:alwaysRetainTaskState="true"
@@ -147,31 +163,31 @@
             android:name=".activity.MainActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
-            >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".activity.WebViewActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.WebViewVideoActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
-            
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.me.SettingActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+
         <provider
             android:name=".provider.BaseFileProvider"
             android:authorities="${applicationId}.fileprovider"

@@ -13,6 +13,11 @@
     <string name="account_gender">性别</string>
     <string name="account_birthday">生日</string>
     <string name="account_region">地区</string>
+    <string name="account_baby_state">状态</string>
+
+    <string name="user_state_pt">怀孕中</string>
+    <string name="user_state_ready">备孕中</string>
+    <string name="user_state_baby">宝宝已出生</string>
 
     <string name="login_agreement_hint">
         请充分阅读并埋解\n

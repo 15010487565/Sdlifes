@@ -11,7 +11,9 @@
     <item name="account_gender" type="id" />
     <item name="account_birthday" type="id" />
     <item name="account_region" type="id" />
+    <item name="account_baby_state" type="id" />
     <item name="ok" type="id"/>
+    <item name="post" type="id"/>
 
     <item type="id" name="tab_tag"/>
     <item type="id" name="id_register_service"/>

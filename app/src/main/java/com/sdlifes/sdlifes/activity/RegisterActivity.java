@@ -216,7 +216,9 @@ public class RegisterActivity extends NoTitleActivity
                 int userId = loginData.getId();
                 ShareHelper.savePrfparams("userid",String.valueOf(userId));
                 ShareHelper.savePrfparams("nickname",loginData.getNickname());
-                Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+
+                Intent intent = new Intent(RegisterActivity.this,UserStateActivity.class);
+                intent.putExtra("source","RegisterActivity");
                 startActivity(intent);
                 finish();
                 break;

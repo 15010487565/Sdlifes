@@ -173,15 +173,15 @@ public abstract class SimpleTopbarActivity extends BaseActivity implements OnCli
                 viewTitle.setText(title);
             }
         }
-        ImageView topbar_titlearrowsimage = (ImageView) findViewById(R.id.topbar_titlearrowsimage);
+//        ImageView topbar_titlearrowsimage = (ImageView) findViewById(R.id.topbar_titlearrowsimage);
         ImageView topbar_titleimage = (ImageView) findViewById(R.id.topbar_titleimage);
         LinearLayout topbar_middle = (LinearLayout) findViewById(R.id.topbar_middle);
         if (getTitleIsVisibilityImage()) {
-            topbar_titlearrowsimage.setVisibility(View.VISIBLE);
+//            topbar_titlearrowsimage.setVisibility(View.VISIBLE);
             topbar_titleimage.setVisibility(View.VISIBLE);
             topbar_middle.setOnClickListener(this);
         } else {
-            topbar_titlearrowsimage.setVisibility(View.GONE);
+//            topbar_titlearrowsimage.setVisibility(View.GONE);
             topbar_titleimage.setVisibility(View.GONE);
         }
         // 添加左侧控件（默认是返回按钮，但是支持自定义替换此按钮）

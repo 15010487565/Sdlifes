@@ -1,7 +1,9 @@
 package www.xcd.com.mylibrary.utils;
 
 import android.app.Activity;
+import android.util.Log;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 /**
@@ -77,11 +79,23 @@ public class AppManager {
 	 * 结束指定类名的Activity
 	 */
 	public void finishActivity(Class<?> cls) {
-		for (Activity activity : activityStack) {
-			if (activity.getClass().equals(cls)) {
-				finishActivity(activity);
+		Iterator<Activity> iterator = activityStack.iterator();
+		while(iterator.hasNext()){
+			Activity activity = iterator.next();
+			Class<? extends Activity> aClass = activity.getClass();
+			Log.e("TAG_AppManager",aClass.getName()+"====="+cls.getName());
+			if (aClass.equals(cls)) {
+//				finishActivity(activity);
+				iterator.remove();
 			}
 		}
+//		for (Activity activity : activityStack) {
+//			Class<? extends Activity> aClass = activity.getClass();
+//			Log.e("TAG_AppManager",aClass.getName()+"");
+//			if (aClass.equals(cls)) {
+//				finishActivity(activity);
+//			}
+//		}
 	}
 
 	/**

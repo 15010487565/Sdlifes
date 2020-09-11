@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="#ffffffff">
 
     <include
         layout="@layout/view_simple_topbar" />
@@ -14,23 +14,46 @@
         android:layout_height="0dp"
         android:layout_weight="1">
     </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/main_bottom"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/main_bottom"
-        android:orientation="vertical" >
-
-        <View
+        android:layout_height="90dp"
+        >
+        <LinearLayout
+            android:id="@+id/main_bottom"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/main_tabwidget_separator_height"
-            android:background="@color/main_tabwidget_separator" />
+            android:layout_height="@dimen/main_bottom"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
 
-        <www.xcd.com.mylibrary.widget.SnsTabWidget
-            android:id="@+id/main_tabwidget"
-            android:layout_width="match_parent"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_tabwidget_separator_height"
+                android:background="@color/line_gray" />
+
+            <www.xcd.com.mylibrary.widget.SnsTabWidget
+                android:id="@+id/main_tabwidget"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:showDividers="none" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/post"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/main_tabwidget_background"
-            android:showDividers="none" />
-    </LinearLayout>
+            android:background="@color/white"
+            android:paddingTop="@dimen/margin_15"
+            android:paddingLeft="@dimen/margin_15"
+            android:paddingRight="@dimen/margin_15"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/transparent"
+                android:src="@mipmap/record_post"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </LinearLayout>

@@ -53,7 +53,7 @@ public class GridAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.item_grad_image, null);
+            convertView = mInflater.inflate(R.layout.item_grid_image, null);
             viewHolder = new ViewHolder();
             viewHolder.ivNoGv = (ImageView) convertView.findViewById(R.id.iv_noGv);
 
@@ -74,7 +74,7 @@ public class GridAdapter extends BaseAdapter {
                 params.width = (int) ((widthPixe - HelpUtils.imageDip2px(context,40))*0.333333);
                 params.height = (int) ( params.width * 0.66666);
             }
-//            Log.e("TAG_SSS===",position+"====params="+params.width+"===="+params.height);
+
             viewHolder.ivNoGv.setLayoutParams(params);
 
             convertView.setTag(viewHolder);

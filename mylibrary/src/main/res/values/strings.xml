@@ -1,6 +1,7 @@
 <resources>
     <string name="home">首页</string>
     <string name="video">视频</string>
+    <string name="post"></string>
     <string name="me">我的</string>
 
     <string name="me_about">关于</string>
@@ -12,7 +13,7 @@
 
     <string name="editor">编辑</string>
 
-
+    <string name="post_A">发帖</string>
     <string name="ok">确认</string>
     <string name="next">下一步</string>
 

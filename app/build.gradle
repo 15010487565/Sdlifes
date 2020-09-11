@@ -85,11 +85,11 @@ dependencies {
     implementation 'com.shuyu:GSYVideoPlayer-exo2:6.0.3'
 
 //根据你的需求ijk模式的so
-    implementation 'com.shuyu:gsyVideoPlayer-armv5:6.0.3'
-    implementation 'com.shuyu:gsyVideoPlayer-armv7a:6.0.3'
-    implementation 'com.shuyu:gsyVideoPlayer-arm64:6.0.3'
-    implementation 'com.shuyu:gsyVideoPlayer-x64:6.0.3'
-    implementation 'com.shuyu:gsyVideoPlayer-x86:6.0.3'
+//    implementation 'com.shuyu:gsyVideoPlayer-armv5:6.0.3'
+//    implementation 'com.shuyu:gsyVideoPlayer-armv7a:6.0.3'
+//    implementation 'com.shuyu:gsyVideoPlayer-arm64:6.0.3'
+//    implementation 'com.shuyu:gsyVideoPlayer-x64:6.0.3'
+//    implementation 'com.shuyu:gsyVideoPlayer-x86:6.0.3'
 
     implementation 'com.tencent.bugly:crashreport:3.2.3'
 }

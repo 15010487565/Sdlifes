@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.sdlifes.sdlifes.R;
-import com.sdlifes.sdlifes.dialog.AgreementDialogFragment;
 import com.sdlifes.sdlifes.model.LoginModel;
 import com.sdlifes.sdlifes.network.UrlAddr;
 import com.sdlifes.sdlifes.util.PhoneUtil;
@@ -82,6 +81,7 @@ public class LoginActivity extends NoTitleActivity
                 startActivity(intent);
                 break;
             case R.id.tv_Register://手机号注册
+//                intent = new Intent(LoginActivity.this,UserStateActivity.class);
                 intent = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
                 break;

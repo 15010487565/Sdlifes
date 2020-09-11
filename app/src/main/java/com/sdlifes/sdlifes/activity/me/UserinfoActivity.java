@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.alibaba.fastjson.JSON;
 import com.huantansheng.easyphotos.EasyPhotos;
 import com.sdlifes.sdlifes.R;
+import com.sdlifes.sdlifes.func.userinfo.AccountBabyStateFunc;
 import com.sdlifes.sdlifes.func.userinfo.AccountBirthdayFunc;
 import com.sdlifes.sdlifes.func.userinfo.AccountGenderFunc;
 import com.sdlifes.sdlifes.func.userinfo.AccountHeadFunc;
@@ -42,6 +43,7 @@ public class UserinfoActivity extends PhotoActivity {
             AccountGenderFunc.class,//性别
             AccountBirthdayFunc.class,//性别
             AccountRegionFunc.class,//地区
+            AccountBabyStateFunc.class//宝宝状态
     };
     /**
      * 功能对象
