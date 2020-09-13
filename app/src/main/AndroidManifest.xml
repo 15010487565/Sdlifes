@@ -58,17 +58,25 @@
         android:supportsRtl="true"
         android:theme="@style/ApplicationTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.PostMoreActivity"
+        <activity android:name=".activity.PostDetailsActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
             android:theme="@style/NoTitleTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name=".activity.PostListActivity"
+        <activity
+            android:name=".activity.PostMoreActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
             android:theme="@style/NoTitleTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name=".activity.UserStateSaveActivity"
+        <activity
+            android:name=".activity.PostListActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTop"
+            android:theme="@style/NoTitleTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activity.UserStateSaveActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
             android:theme="@style/NoTitleTheme"

@@ -172,7 +172,25 @@ public class HomeCatModel implements Serializable{
             private String src;
             private String focus;
             private String content;
+            private String context;
             private List<String> pic;
+            private String topic;
+
+            public String getContext() {
+                return context;
+            }
+
+            public void setContext(String context) {
+                this.context = context;
+            }
+
+            public String getTopic() {
+                return topic;
+            }
+
+            public void setTopic(String topic) {
+                this.topic = topic;
+            }
 
             public String getTop() {
                 return top;

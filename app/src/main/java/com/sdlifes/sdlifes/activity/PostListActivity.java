@@ -34,7 +34,7 @@ public class PostListActivity extends NoTitleActivity implements View.OnClickLis
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private PostListAdapter adapter;
-
+    String title;
     private int page = 1;
     private int size = 2000;
 
@@ -44,9 +44,9 @@ public class PostListActivity extends NoTitleActivity implements View.OnClickLis
         setContentView(R.layout.activity_post_list);
 
         Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
+        title = intent.getStringExtra("title");
         TextView topbar_title = findViewById(R.id.topbar_title);
-        topbar_title.setText(title);
+        topbar_title.setText("#\t"+title);
 
         ly_pull_refresh = findViewById(R.id.ly_pull_refresh);
         ly_pull_refresh.setOnRefreshListener(this);
@@ -60,6 +60,7 @@ public class PostListActivity extends NoTitleActivity implements View.OnClickLis
 
         adapter = new PostListAdapter(R.layout.item_postlist, null);
         adapter.setOnLoadMoreListener(this);
+        adapter.setTitle(title);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(this);
         recyclerView.addItemDecoration(getRecyclerViewDivider(R.drawable.inset_recyclerview_divider_1));
@@ -142,6 +143,15 @@ public class PostListActivity extends NoTitleActivity implements View.OnClickLis
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        PostListAdapter postListAdapter = (PostListAdapter) adapter;
+        List<PostListModel.DataBean> data = postListAdapter.getData();
+        PostListModel.DataBean dataBean = data.get(position);
 
+        String content = dataBean.getContext();
+
+        Intent intent = new Intent(this, PostDetailsActivity.class);
+        intent.putExtra("title",title);
+        intent.putExtra("content",content);
+        startActivity(intent);
     }
 }

@@ -2,10 +2,9 @@ package com.sdlifes.sdlifes.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,7 +28,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -122,8 +120,9 @@ public class HomeFragment extends SimpleTopbarFragment {
         tabs = view.findViewById(R.id.magic_indicator);
         //设置Tab文字的左右间距,传入的是dp
         tabs.setTabPaddingLeftRight(10);
-
         pager = (ViewPager) view.findViewById(R.id.vp);
+
+
 
         tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -226,7 +225,7 @@ public class HomeFragment extends SimpleTopbarFragment {
                     }
                 }
                 try {
-                    pagerAdapter = new MyPagerAdapter(getFragmentManager());
+                    pagerAdapter = new MyPagerAdapter(getChildFragmentManager());
                     pager.setAdapter(pagerAdapter);
                     tabs.setViewPager(pager);
                     pager.setCurrentItem(temp);
@@ -238,6 +237,7 @@ public class HomeFragment extends SimpleTopbarFragment {
         }
     }
 
+
     @Override
     public void onErrorResult(int errorCode, String errorExcep) {
         super.onErrorResult(errorCode, errorExcep);
@@ -246,7 +246,7 @@ public class HomeFragment extends SimpleTopbarFragment {
 
     List<HomeModel.DataBean.CategoryArrBean> categoryArr;
 
-    private class MyPagerAdapter extends FragmentPagerAdapter {
+    private class MyPagerAdapter extends FragmentStatePagerAdapter {
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -268,25 +268,26 @@ public class HomeFragment extends SimpleTopbarFragment {
             return mFragments.get(position);
         }
 
-        @NonNull
-        @Override
-        public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            try {
-                Field mFragments = getClass().getSuperclass().getDeclaredField("mFragments");
-                mFragments.setAccessible(true);
-                ((ArrayList) mFragments.get(this)).clear();
-
-                Field mSavedState = getClass().getSuperclass().getDeclaredField("mSavedState");
-                mSavedState.setAccessible(true);
-                ((ArrayList) mSavedState.get(this)).clear();
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            return super.instantiateItem(container, position);
-        }
+//        @NonNull
+//        @Override
+//        public Object instantiateItem(@NonNull ViewGroup container, int position) {
+//            try {
+//                Field mFragments = getClass().getSuperclass().getDeclaredField("mFragments");
+//                mFragments.setAccessible(true);
+//                ((ArrayList) mFragments.get(this)).clear();
+//
+//                Field mSavedState = getClass().getSuperclass().getDeclaredField("mSavedState");
+//                mSavedState.setAccessible(true);
+//                ((ArrayList) mSavedState.get(this)).clear();
+//            } catch (NoSuchFieldException e) {
+//                e.printStackTrace();
+//            } catch (IllegalAccessException e) {
+//                e.printStackTrace();
+//            }
+//            return super.instantiateItem(container, position);
+//        }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (!EventBus.getDefault().isRegistered(this)) {

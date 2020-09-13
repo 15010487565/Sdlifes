@@ -49,11 +49,11 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 	protected LinearLayout leftFuncZone;
 	protected LinearLayout rightFuncZone;
 
-//	/**
-//	 * 在这里实现Fragment数据的缓加载.
-//	 * @param isVisibleToUser
-//	 */
-//	protected boolean isVisible;
+	/**
+	 * 在这里实现Fragment数据的缓加载.
+	 * @param isVisibleToUser
+	 */
+	protected boolean isVisible;
 	protected void onVisible(){
 		lazyLoad();
 	}

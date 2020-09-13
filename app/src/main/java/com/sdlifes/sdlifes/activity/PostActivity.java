@@ -16,6 +16,8 @@ import com.sdlifes.sdlifes.dialog.PostDialogFragment;
 import com.sdlifes.sdlifes.func.PostRightTopBtnFunc;
 import com.sdlifes.sdlifes.network.UrlAddr;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -82,12 +84,9 @@ public class PostActivity extends PhotoActivity {
                 boolean selectedOriginal = data.getBooleanExtra(EasyPhotos.RESULT_SELECTED_ORIGINAL, false);
                 if (resultPaths != null && resultPaths.size() > 0) {
                     String path = resultPaths.get(0);
-                    List<String> list = adapter.getData();
-                    if (list == null) {
-                        list = new ArrayList<>();
-                    }
-                    list.add(path);
-                    adapter.setData(list);
+                    uploadPhoto(path);
+
+
                 }
             }
             break;
@@ -100,6 +99,10 @@ public class PostActivity extends PhotoActivity {
                 super.onActivityResult(requestCode, resultCode, data);
                 break;
         }
+    }
+
+    private void uploadPhoto(String imgPath) {
+        OkHttpHelper.postAsyncImage(this,1000,imgPath, UrlAddr.UPLOADIMG,this);
     }
 
     @Override
@@ -158,15 +161,37 @@ public class PostActivity extends PhotoActivity {
         params.put("topicid", topicid);
         params.put("context", etPost);
         params.put("pic", buffer.toString());
-        OkHttpHelper.postAsyncHttp(this, 1000, params, UrlAddr.TOPIC_SAVE, this);
+        OkHttpHelper.postAsyncHttp(this, 1001, params, UrlAddr.TOPIC_SAVE, this);
     }
 
     @Override
     public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {
         switch (requestCode) {
-            case 1000:
+            case 1001:
                 ToastUtil.showToast("发布成功！");
                 finish();
+                break;
+            case 1000:
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(returnData);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    String img = data.optString("img");
+                    List<String> list = adapter.getData();
+                    if (list == null) {
+                        list = new ArrayList<>();
+                    }
+                    list.add(img);
+                    adapter.setData(list);
+
+//                    Map<String, String> params = new HashMap<String, String>();
+//                    params.put("userid", ShareHelper.getUserId());
+//                    params.put("img", img);
+//                    OkHttpHelper.postAsyncHttp(this,1001,params, UrlAddr.USERINFO_EDIT,this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 break;
 
         }

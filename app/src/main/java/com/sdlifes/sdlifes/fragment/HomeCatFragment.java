@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.sdlifes.sdlifes.R;
+import com.sdlifes.sdlifes.activity.PostDetailsActivity;
 import com.sdlifes.sdlifes.activity.PostListActivity;
 import com.sdlifes.sdlifes.adapter.HomeAdapter;
 import com.sdlifes.sdlifes.adapter.NoScrollGridView;
@@ -203,7 +204,7 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
         HomeAdapter homeAdapter = (HomeAdapter) adapter;
         List<HomeCatModel.DataBean.NewsArrBean> data = homeAdapter.getData();
         HomeCatModel.DataBean.NewsArrBean newsArrBean = data.get(position);
-        //	type = 1 新闻 type = 2广告
+        //	type = 1 新闻 type = 2广告 type = 3话题
         String type = newsArrBean.getType();
         if ("1".equals(type)) {
             int id = newsArrBean.getId();
@@ -213,7 +214,7 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
             ActivityUtils.startDetailsActivity(getActivity(),
                     String.valueOf(id),
                     title, content, focus);
-        } else {
+        } else if ("2".equals(type)) {
             int state = newsArrBean.getState();//	广告 ： 1 网页url地址 2 视频url地址
             if (state == 2){
                 List<String> pic = newsArrBean.getPic();
@@ -229,6 +230,13 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
                         ,String.valueOf(newsArrBean.getId()));
 
             }
+        }else {
+            String content = newsArrBean.getContext();
+            String topic = newsArrBean.getTopic();
+            Intent intent = new Intent(getActivity(), PostDetailsActivity.class);
+            intent.putExtra("title",topic);
+            intent.putExtra("content",content);
+            startActivity(intent);
         }
 
     }

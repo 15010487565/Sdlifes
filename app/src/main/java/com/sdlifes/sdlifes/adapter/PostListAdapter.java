@@ -1,5 +1,6 @@
 package com.sdlifes.sdlifes.adapter;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
@@ -7,6 +8,7 @@ import android.widget.AdapterView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.sdlifes.sdlifes.R;
+import com.sdlifes.sdlifes.activity.PostDetailsActivity;
 import com.sdlifes.sdlifes.model.PostListModel;
 
 import java.util.List;
@@ -18,8 +20,14 @@ import java.util.List;
 
 public class PostListAdapter extends BaseQuickAdapter<PostListModel.DataBean, BaseViewHolder> {
 
+    private String title;
+
     public PostListAdapter(int layoutResId, @Nullable List<PostListModel.DataBean> data) {
         super(layoutResId,data);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
@@ -34,13 +42,12 @@ public class PostListAdapter extends BaseQuickAdapter<PostListModel.DataBean, Ba
         noScrollGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                int id = dataBean.getId();
-//                String title = dataBean.getTitle();
-//                String content = dataBean.getContent();
-//                String focus = dataBean.getFocus();
-//                ActivityUtils.startDetailsActivity(mContext,
-//                        String.valueOf(id),
-//                        title,content,focus);
+                String content = dataBean.getContext();
+
+                Intent intent = new Intent(mContext, PostDetailsActivity.class);
+                intent.putExtra("title",title);
+                intent.putExtra("content",content);
+                mContext.startActivity(intent);
             }
         });
 

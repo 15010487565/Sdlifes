@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.sdlifes.sdlifes.R;
-import com.sdlifes.sdlifes.application.BaseApplication;
 
 import www.xcd.com.mylibrary.base.activity.SimpleTopbarActivity;
 
@@ -60,12 +59,12 @@ public class UserStateActivity extends SimpleTopbarActivity implements View.OnCl
     /**
      * 连续按两次返回键就退出
      */
-    @Override
-    public void onBackPressed() {
-
-            BaseApplication.getInstance().exitApp();
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//
+//            BaseApplication.getInstance().exitApp();
+//
+//    }
 
 //    @Override
 //    public void onDestroy() {
