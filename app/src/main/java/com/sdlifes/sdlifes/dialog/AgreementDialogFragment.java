@@ -129,6 +129,7 @@ public class AgreementDialogFragment extends DialogFragment implements View.OnCl
         switch (v.getId()) {
             case R.id.tv_ColseAgreement:
                 dismiss();
+                if (closeDialogFragment !=null)
                 closeDialogFragment.close();
                 break;
             case R.id.tv_ExitAgreement:

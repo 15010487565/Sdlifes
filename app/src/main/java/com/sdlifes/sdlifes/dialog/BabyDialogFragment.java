@@ -99,8 +99,11 @@ public class BabyDialogFragment extends DialogFragment implements BaseQuickAdapt
         }else {
             sex = 0;
         }
-        listener.OnItemClick(sex);
-        dismiss();
+        if (listener !=null){
+            listener.OnItemClick(sex);
+            dismiss();
+        }
+
     }
     public interface SexClickListener{
         void OnItemClick(int sex);

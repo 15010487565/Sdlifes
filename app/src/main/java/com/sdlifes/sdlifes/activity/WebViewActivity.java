@@ -2,6 +2,7 @@ package com.sdlifes.sdlifes.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -51,6 +52,9 @@ public class WebViewActivity extends SimpleTopbarActivity {
 //        Log.e("TAG_H5","url="+url);
         WebSettings setting = webview.getSettings();
         setting.setDefaultTextEncodingName("utf-8");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setting.setSafeBrowsingEnabled(false);
+        }
         setting.setJavaScriptEnabled(true);
         setting.setAllowFileAccess(true);// 设置允许访问文件数据
         setting.setSupportZoom(true);// 支持放大网页功能
