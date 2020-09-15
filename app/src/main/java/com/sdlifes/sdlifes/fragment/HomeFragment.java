@@ -254,7 +254,7 @@ public class HomeFragment extends SimpleTopbarFragment {
         @Override
         public int getCount() {
 //            Log.e("TAG_tab1", "mFragments="+mFragments.size());
-            return mFragments.size();
+            return mFragments == null? 0 : mFragments.size();
         }
 
         @Override

@@ -41,12 +41,18 @@ public class DetailsActivity extends NoTitleActivity implements
 
         TextView tvTitle = findViewById(R.id.tv_title);
         WebView webView = findViewById(R.id.webView);
+        TextView tv_details = findViewById(R.id.tv_details);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         tvTitle.setText(title);
 
         String content = intent.getStringExtra("content");
-        HtmlUtils.getHtmlData(content,webView);
+        if (content.contains("<p>")){
+            HtmlUtils.getHtmlData(content,webView);
+        }else {
+            tv_details.setText(content);
+        }
+
 
         focus = intent.getStringExtra("focus");
         /**

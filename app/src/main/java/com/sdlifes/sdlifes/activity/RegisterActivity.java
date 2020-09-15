@@ -91,6 +91,7 @@ public class RegisterActivity extends NoTitleActivity
 
         mHandler = new LoopHandler(this);
         mEtVercode = (EditText) findViewById(R.id.et_code);
+        mEtVercode.addTextChangedListener(this);
         mTvSendVercode = (TextView) findViewById(R.id.send_ver_code);
         mTvSendVercode.setOnClickListener(this);
 //        mHandler.sendEmptyMessage(60);

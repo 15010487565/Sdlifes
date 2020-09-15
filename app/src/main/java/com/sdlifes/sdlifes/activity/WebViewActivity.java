@@ -5,9 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.webkit.JsResult;
 import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -45,11 +43,11 @@ public class WebViewActivity extends SimpleTopbarActivity {
         webview = findViewById(R.id.webView);
         Intent intent = getIntent();
         url = intent.getStringExtra("Url");
-        url = url.replaceAll("&apos;","'");
-        url = url.replaceAll("&quot;","\"");
-        url = url.replaceAll("&gt;",">");
-        url = url.replaceAll("&lt;","<");
-        url = url.replaceAll("&amp;","&");
+//        url = url.replaceAll("&apos;","'");
+//        url = url.replaceAll("&quot;","\"");
+//        url = url.replaceAll("&gt;",">");
+//        url = url.replaceAll("&lt;","<");
+//        url = url.replaceAll("&amp;","&");
 //        Log.e("TAG_H5","url="+url);
         WebSettings setting = webview.getSettings();
         setting.setDefaultTextEncodingName("utf-8");
@@ -63,24 +61,24 @@ public class WebViewActivity extends SimpleTopbarActivity {
         setting.setUseWideViewPort(true);
         webview.requestFocusFromTouch();
         //设置处理JavaScript的引擎
-        WebChromeClient webChromeClient = new WebChromeClient() {
-            @Override
-            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-                return super.onJsAlert(view, url, message, result);
-            }
-            public void openFileChooser(ValueCallback<Uri> uploadMsg,
-                                        String acceptType, String capture) {
-                if (mUploadMessage != null)
-                    return;
-                mUploadMessage = uploadMsg;
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("*/*");
-                startActivityForResult(
-                        Intent.createChooser(intent, "完成操作需要使用"), FILECHOOSER_RESULTCODE);
-            }
-        };
-        webview.setWebChromeClient(webChromeClient);
+//        WebChromeClient webChromeClient = new WebChromeClient() {
+//            @Override
+//            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+//                return super.onJsAlert(view, url, message, result);
+//            }
+//            public void openFileChooser(ValueCallback<Uri> uploadMsg,
+//                                        String acceptType, String capture) {
+//                if (mUploadMessage != null)
+//                    return;
+//                mUploadMessage = uploadMsg;
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.addCategory(Intent.CATEGORY_OPENABLE);
+//                intent.setType("*/*");
+//                startActivityForResult(
+//                        Intent.createChooser(intent, "完成操作需要使用"), FILECHOOSER_RESULTCODE);
+//            }
+//        };
+//        webview.setWebChromeClient(webChromeClient);
         /***打开本地缓存提供JS调用**/
         setting.setDomStorageEnabled(true);
         setting.setAppCacheMaxSize(1024 * 1024 * 8);

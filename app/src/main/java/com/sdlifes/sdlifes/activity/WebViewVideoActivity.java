@@ -51,11 +51,11 @@ public class WebViewVideoActivity extends SimpleTopbarActivity {
 //        webview = findViewById(R.id.webView);
         Intent intent = getIntent();
         url = intent.getStringExtra("Url");
-        url = url.replaceAll("&apos;","'");
-        url = url.replaceAll("&quot;","\"");
-        url = url.replaceAll("&gt;",">");
-        url = url.replaceAll("&lt;","<");
-        url = url.replaceAll("&amp;","&");
+//        url = url.replaceAll("&apos;","'");
+//        url = url.replaceAll("&quot;","\"");
+//        url = url.replaceAll("&gt;",">");
+//        url = url.replaceAll("&lt;","<");
+//        url = url.replaceAll("&amp;","&");
 //        Log.e("TAG_H5","url="+url);
 //        WebSettings setting = webview.getSettings();
 //        setting.setDefaultTextEncodingName("utf-8");

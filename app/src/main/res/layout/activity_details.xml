@@ -55,6 +55,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </WebView>
+            <TextView
+                android:id="@+id/tv_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:gravity="left"
+                android:textColor="@color/black_26"
+                android:textSize="@dimen/textsize_15"
+                android:text=""/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
