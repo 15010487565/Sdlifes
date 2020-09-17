@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import com.alibaba.fastjson.JSON;
 import com.gxz.PagerSlidingTabStrip;
 import com.sdlifes.sdlifes.R;
+import com.sdlifes.sdlifes.activity.ChannelActivity;
 import com.sdlifes.sdlifes.activity.SearchActivity;
 import com.sdlifes.sdlifes.application.SimpleTopbarFragment;
 import com.sdlifes.sdlifes.model.HomeModel;
@@ -115,7 +116,7 @@ public class HomeFragment extends SimpleTopbarFragment {
         });
 //        scroll_HomeSerch.setVisibility(View.GONE);
         view.findViewById(R.id.ll_search).setOnClickListener(this);
-        view.findViewById(R.id.iv_serch).setOnClickListener(this);
+        view.findViewById(R.id.iv_more).setOnClickListener(this);
 
         tabs = view.findViewById(R.id.magic_indicator);
         //设置Tab文字的左右间距,传入的是dp
@@ -159,13 +160,13 @@ public class HomeFragment extends SimpleTopbarFragment {
         super.onClick(v);
         switch (v.getId()) {
 
-            case R.id.iv_serch://搜索
+            case R.id.ll_search://搜索
                 getActivity().startActivity(new Intent(getActivity(), SearchActivity.class));
                 break;
 
-//            case R.id.iv_more://频道
-//                getActivity().startActivityForResult(new Intent(getActivity(), ChannelActivity.class),10001);
-//                break;
+            case R.id.iv_more://频道
+                getActivity().startActivityForResult(new Intent(getActivity(), ChannelActivity.class),10001);
+                break;
         }
     }
 

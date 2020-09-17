@@ -113,7 +113,9 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
 //        resetRedPoint(2, 0);
         clickFragmentBtn(currentItem);
 
-
+        if (!ShareHelper.getAgreementFlag()) {
+            initAgreementDialog();
+        }
 
     }
 

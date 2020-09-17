@@ -58,7 +58,14 @@
         android:supportsRtl="true"
         android:theme="@style/ApplicationTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.PostDetailsActivity"
+        <activity
+            android:name=".activity.ImageCheckActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTop"
+            android:theme="@style/NoTitleTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activity.PostDetailsActivity"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
             android:theme="@style/NoTitleTheme"
@@ -195,7 +202,11 @@
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-
+        <activity
+            android:name=".util.permissions.PermissionsActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <provider
             android:name=".provider.BaseFileProvider"
             android:authorities="${applicationId}.fileprovider"

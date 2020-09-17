@@ -1,6 +1,7 @@
 package com.sdlifes.sdlifes.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,7 +54,7 @@ public class PostListModel implements Serializable {
 
         private String context;
         private int id;
-        private List<String> picArr;
+        private ArrayList<String> picArr;
 
         public String getContext() {
             return context;
@@ -71,11 +72,11 @@ public class PostListModel implements Serializable {
             this.id = id;
         }
 
-        public List<String> getPicArr() {
+        public ArrayList<String> getPicArr() {
             return picArr;
         }
 
-        public void setPicArr(List<String> picArr) {
+        public void setPicArr(ArrayList<String> picArr) {
             this.picArr = picArr;
         }
     }

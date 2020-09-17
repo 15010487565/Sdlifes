@@ -2,6 +2,7 @@ package com.sdlifes.sdlifes.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -44,6 +45,10 @@ public class PostMoreActivity extends SimpleTopbarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_selcet);
+        String title = getIntent().getStringExtra("title");
+        if (!TextUtils.isEmpty(title)){
+            resetTopbarTitle(title);
+        }
     }
 
     @Override

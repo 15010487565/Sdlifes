@@ -1,6 +1,7 @@
 package com.sdlifes.sdlifes.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,7 +56,7 @@ public class AttentionModel implements Serializable {
 
         private int see;
         private int id;
-        private List<String> pic;
+        private ArrayList<String> pic;
         private boolean isCheck;
 
         public boolean isCheck() {
@@ -66,11 +67,11 @@ public class AttentionModel implements Serializable {
             isCheck = check;
         }
 
-        public List<String> getPic() {
+        public ArrayList<String> getPic() {
             return pic;
         }
 
-        public void setPic(List<String> pic) {
+        public void setPic(ArrayList<String> pic) {
             this.pic = pic;
         }
 

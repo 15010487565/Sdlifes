@@ -12,6 +12,7 @@ import com.sdlifes.sdlifes.R;
 import com.sdlifes.sdlifes.model.BrowseModel;
 import com.sdlifes.sdlifes.util.ActivityUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -41,22 +42,22 @@ public class BrowseAdapter extends BaseQuickAdapter<BrowseModel.DataBean, BaseVi
         NoScrollGridView noScrollGridView = helper.getView(R.id.nsgv);
         GridAdapter gridAdapter = new GridAdapter(mContext);
         noScrollGridView.setAdapter(gridAdapter);
-        noScrollGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int id = newsArrBean.getId();
-                String title = newsArrBean.getTitle();
-                String content = newsArrBean.getContent();
-                String focus = newsArrBean.getFocus();
-                ActivityUtils.startDetailsActivity(mContext,
-                        String.valueOf(id),
-                        title,content,focus);
-            }
-        });
-
-        List<String> pic = newsArrBean.getPic();
+        ArrayList<String> pic = newsArrBean.getPic();
         noScrollGridView.setNumColumns(pic.size()>= 3 ? 3 : pic.size());
         gridAdapter.setData(pic);
+        noScrollGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                int id = newsArrBean.getId();
+//                String title = newsArrBean.getTitle();
+//                String content = newsArrBean.getContent();
+//                String focus = newsArrBean.getFocus();
+//                ActivityUtils.startDetailsActivity(mContext,
+//                        String.valueOf(id),
+//                        title,content,focus);
+                ActivityUtils.startImageCheckActivity(mContext,position,pic);
+            }
+        });
 
         LinearLayout llSelect= helper.getView(R.id.ll_Select);
         helper.addOnClickListener(R.id.ll_Select);

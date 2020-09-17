@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.sdlifes.sdlifes.activity.DetailsActivity;
+import com.sdlifes.sdlifes.activity.ImageCheckActivity;
 import com.sdlifes.sdlifes.activity.WebViewActivity;
 import com.sdlifes.sdlifes.activity.WebViewVideoActivity;
+
+import java.util.ArrayList;
 
 /**
  * Created by gs on 2020/8/18.
@@ -61,5 +64,12 @@ public class ActivityUtils {
         intent.putExtra("ourl",ourl);
         intent.putExtra("pic",pic);
         context.startActivity(intent);
+    }
+
+    public static void startImageCheckActivity(Context mContext, int position, ArrayList<String> list){
+            Intent intent = new Intent(mContext, ImageCheckActivity.class);
+        intent.putExtra("position", position);
+        intent.putStringArrayListExtra("listjson", list);
+        mContext.startActivity(intent);
     }
 }

@@ -123,7 +123,7 @@ public class PostActivity extends PhotoActivity {
         switch (v.getId()){
             case R.id.tv_add_topicArr:
                 Intent intent = new Intent(this, PostMoreActivity.class);
-
+                intent.putExtra("title","选择话题");
                 startActivityForResult(intent, 11);
 
                 break;

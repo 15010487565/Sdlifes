@@ -14,12 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.sdlifes.sdlifes.R;
 import com.sdlifes.sdlifes.activity.PostDetailsActivity;
 import com.sdlifes.sdlifes.activity.PostListActivity;
+import com.sdlifes.sdlifes.activity.PostMoreActivity;
 import com.sdlifes.sdlifes.adapter.HomeAdapter;
 import com.sdlifes.sdlifes.adapter.NoScrollGridView;
 import com.sdlifes.sdlifes.adapter.TopicArrGridAdapter;
@@ -48,6 +50,7 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
         SwipeRefreshLayout.OnRefreshListener{
 
     private SwipeRefreshLayout ly_pull_refresh;
+    private LinearLayout ll_hot;
     private NoScrollGridView rcTopicArr;
     private TopicArrGridAdapter topicArrGridAdapter;
 
@@ -83,6 +86,16 @@ public class HomeCatFragment extends Fragment implements HttpInterface,
         ly_pull_refresh.setProgressViewOffset(true, -20, 100);
         ly_pull_refresh.setColorSchemeResources(R.color.red, R.color.blue, R.color.black);
 
+        ll_hot = (LinearLayout) view.findViewById(R.id.ll_hot);
+        ll_hot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), PostMoreActivity.class);
+                intent.putExtra("title","热门话题");
+                startActivity(intent);
+            }
+        });
 
         rcTopicArr = (NoScrollGridView) view.findViewById(R.id.nsgv_topicArr);
         topicArrGridAdapter = new TopicArrGridAdapter(getActivity());

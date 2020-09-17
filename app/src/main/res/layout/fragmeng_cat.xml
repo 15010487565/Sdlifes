@@ -41,15 +41,33 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:id="@+id/ll_hot"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/textsize_18"
-                                android:textColor="@color/black_26"
-                                android:textStyle="bold"
+                                android:gravity="center_vertical"
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginTop="@dimen/margin_15"
-                                android:text="热门话题"/>
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/textsize_18"
+                                    android:textColor="@color/black_26"
+                                    android:textStyle="bold"
+                                    android:text="热门话题"/>
+                                <ImageView
+                                    android:layout_width="@dimen/margin_15"
+                                    android:layout_height="@dimen/margin_15"
+                                    android:layout_marginLeft="@dimen/margin_15"
+                                    android:layout_marginRight="@dimen/margin_15"
+                                    android:background="@mipmap/back_black"
+                                    android:layout_gravity="center_vertical"
+                                    android:contentDescription="@null"
+                                    android:duplicateParentState="true" />
+                            </LinearLayout>
+
                             <com.sdlifes.sdlifes.adapter.NoScrollGridView
                                 android:id="@+id/nsgv_topicArr"
                                 android:layout_width="match_parent"

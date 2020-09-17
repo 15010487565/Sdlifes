@@ -1,6 +1,7 @@
 package com.sdlifes.sdlifes.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -173,7 +174,7 @@ public class HomeCatModel implements Serializable{
             private String focus;
             private String content;
             private String context;
-            private List<String> pic;
+            private ArrayList<String> pic;
             private String topic;
 
             public String getContext() {
@@ -296,11 +297,11 @@ public class HomeCatModel implements Serializable{
                 this.content = content;
             }
 
-            public List<String> getPic() {
+            public ArrayList<String> getPic() {
                 return pic;
             }
 
-            public void setPic(List<String> pic) {
+            public void setPic(ArrayList<String> pic) {
                 this.pic = pic;
             }
         }

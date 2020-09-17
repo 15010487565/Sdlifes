@@ -1,7 +1,6 @@
 package com.sdlifes.sdlifes.adapter;
 
 
-import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -14,11 +13,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.util.MultiTypeDelegate;
 import com.sdlifes.sdlifes.R;
-import com.sdlifes.sdlifes.activity.PostDetailsActivity;
 import com.sdlifes.sdlifes.model.HomeCatModel;
 import com.sdlifes.sdlifes.util.ActivityUtils;
 import com.sdlifes.sdlifes.util.ImageUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import www.xcd.com.mylibrary.help.HelpUtils;
@@ -73,7 +72,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
          * type = 3 新闻 多张
          * type = 2广告
          */
-        List<String> pic = newsArrBean.getPic();
+        ArrayList<String> pic = newsArrBean.getPic();
         int viewType = helper.getItemViewType();
         switch (viewType) {
 
@@ -109,7 +108,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
                 noScrollGridView.setNumColumns(pic.size() >= 3 ? 3 : pic.size());
                 GridAdapter gridAdapter = new GridAdapter(mContext);
                 noScrollGridView.setAdapter(gridAdapter);
-                onClick(newsArrBean, noScrollGridView);
+                onClick(newsArrBean, noScrollGridView,pic);
                 gridAdapter.setData(pic);
                 helper.setText(R.id.tv_src, newsArrBean.getSrc());
                 helper.setText(R.id.tv_time, newsArrBean.getTime());
@@ -148,7 +147,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
                 noScrollGridView.setNumColumns(pic.size() >= 3 ? 3 : pic.size());
                 GridAdapter gridAdapter = new GridAdapter(mContext);
                 noScrollGridView.setAdapter(gridAdapter);
-                onClick(newsArrBean, noScrollGridView);
+                onClick(newsArrBean, noScrollGridView,pic);
                 gridAdapter.setData(pic);
                 helper.setText(R.id.tv_src, newsArrBean.getSrc());
                 helper.setText(R.id.tv_time, newsArrBean.getTime());
@@ -162,7 +161,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
                 noScrollGridView.setNumColumns(pic.size() >= 3 ? 3 : pic.size());
                 GridAdapter gridAdapter = new GridAdapter(mContext);
                 noScrollGridView.setAdapter(gridAdapter);
-                onClick(newsArrBean, noScrollGridView);
+                onClick(newsArrBean, noScrollGridView,pic);
                 gridAdapter.setData(pic);
                 //0不置顶;1置顶
                 String top = newsArrBean.getTop();
@@ -183,45 +182,46 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
 
     }
 
-    private void onClick(HomeCatModel.DataBean.NewsArrBean newsArrBean, NoScrollGridView noScrollGridView) {
+    private void onClick(HomeCatModel.DataBean.NewsArrBean newsArrBean, NoScrollGridView noScrollGridView, ArrayList<String> pic) {
         noScrollGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 //	type = 1 新闻 type = 2广告
-                String type = newsArrBean.getType();
-                if ("1".equals(type)) {
-                    int id = newsArrBean.getId();
-                    String title = newsArrBean.getTitle();
-                    String content = newsArrBean.getContent();
-                    String focus = newsArrBean.getFocus();
-                    ActivityUtils.startDetailsActivity(mContext,
-                            String.valueOf(id),
-                            title, content, focus);
-                } else if ("2".equals(type)) {
-                    int state = newsArrBean.getState();//	广告 ： 1 网页url地址 2 视频url地址
-                    if (state == 2){
-                        List<String> pic = newsArrBean.getPic();
-                        String url = "";
-                        if (pic != null && pic.size() > 0) {
-                            url = pic.get(0);
-                        }
-                        ActivityUtils.startWebViewVideoActivity(mContext, newsArrBean.getUrl(),newsArrBean.getTitle()
-                                ,String.valueOf(newsArrBean.getId()),newsArrBean.getOstate(),newsArrBean.getOurl(),url);
+//                String type = newsArrBean.getType();
+//                if ("1".equals(type)) {
+//                    int id = newsArrBean.getId();
+//                    String title = newsArrBean.getTitle();
+//                    String content = newsArrBean.getContent();
+//                    String focus = newsArrBean.getFocus();
+//                    ActivityUtils.startDetailsActivity(mContext,
+//                            String.valueOf(id),
+//                            title, content, focus);
+//                } else if ("2".equals(type)) {
+//                    int state = newsArrBean.getState();//	广告 ： 1 网页url地址 2 视频url地址
+//                    if (state == 2){
+//                        List<String> pic = newsArrBean.getPic();
+//                        String url = "";
+//                        if (pic != null && pic.size() > 0) {
+//                            url = pic.get(0);
+//                        }
+//                        ActivityUtils.startWebViewVideoActivity(mContext, newsArrBean.getUrl(),newsArrBean.getTitle()
+//                                ,String.valueOf(newsArrBean.getId()),newsArrBean.getOstate(),newsArrBean.getOurl(),url);
+//
+//                    }else {
+//                        ActivityUtils.startWebViewActivity(mContext, newsArrBean.getUrl()
+//                                ,String.valueOf(newsArrBean.getId()));
+//
+//                    }
+//                }else {
+//                    String content = newsArrBean.getContext();
+//                    String topic = newsArrBean.getTopic();
+//                    Intent intent = new Intent(mContext, PostDetailsActivity.class);
+//                    intent.putExtra("title",topic);
+//                    intent.putExtra("content",content);
+//                    mContext.startActivity(intent);
+//                }
 
-                    }else {
-                        ActivityUtils.startWebViewActivity(mContext, newsArrBean.getUrl()
-                                ,String.valueOf(newsArrBean.getId()));
-
-                    }
-                }else {
-                    String content = newsArrBean.getContext();
-                    String topic = newsArrBean.getTopic();
-                    Intent intent = new Intent(mContext, PostDetailsActivity.class);
-                    intent.putExtra("title",topic);
-                    intent.putExtra("content",content);
-                    mContext.startActivity(intent);
-                }
-
+                ActivityUtils.startImageCheckActivity(mContext,position,pic);
             }
         });
     }
