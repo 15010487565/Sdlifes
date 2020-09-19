@@ -1,6 +1,7 @@
 package com.sdlifes.sdlifes.adapter;
 
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.util.MultiTypeDelegate;
 import com.sdlifes.sdlifes.R;
+import com.sdlifes.sdlifes.activity.PostDetailsActivity;
 import com.sdlifes.sdlifes.model.HomeCatModel;
 import com.sdlifes.sdlifes.util.ActivityUtils;
 import com.sdlifes.sdlifes.util.ImageUtils;
@@ -97,6 +99,14 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
 
                 helper.setText(R.id.tv_src, newsArrBean.getSrc());
                 helper.setText(R.id.tv_time, newsArrBean.getTime());
+
+                ivHome.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ActivityUtils.startImageCheckActivity(mContext,0,pic);
+
+                    }
+                });
             }
 
 
@@ -137,6 +147,13 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
                 helper.setText(R.id.tv_src, newsArrBean.getSrc());
                 helper.setText(R.id.tv_time, newsArrBean.getTime());
 
+                ivHome.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ActivityUtils.startImageCheckActivity(mContext,0,pic);
+
+                    }
+                });
             }
 
                 break;
@@ -187,41 +204,41 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 //	type = 1 新闻 type = 2广告
-//                String type = newsArrBean.getType();
-//                if ("1".equals(type)) {
-//                    int id = newsArrBean.getId();
+                String type = newsArrBean.getType();
+                if ("1".equals(type)) {
+                    int id = newsArrBean.getId();
 //                    String title = newsArrBean.getTitle();
 //                    String content = newsArrBean.getContent();
 //                    String focus = newsArrBean.getFocus();
 //                    ActivityUtils.startDetailsActivity(mContext,
 //                            String.valueOf(id),
 //                            title, content, focus);
-//                } else if ("2".equals(type)) {
-//                    int state = newsArrBean.getState();//	广告 ： 1 网页url地址 2 视频url地址
-//                    if (state == 2){
-//                        List<String> pic = newsArrBean.getPic();
-//                        String url = "";
-//                        if (pic != null && pic.size() > 0) {
-//                            url = pic.get(0);
-//                        }
-//                        ActivityUtils.startWebViewVideoActivity(mContext, newsArrBean.getUrl(),newsArrBean.getTitle()
-//                                ,String.valueOf(newsArrBean.getId()),newsArrBean.getOstate(),newsArrBean.getOurl(),url);
-//
-//                    }else {
-//                        ActivityUtils.startWebViewActivity(mContext, newsArrBean.getUrl()
-//                                ,String.valueOf(newsArrBean.getId()));
-//
-//                    }
-//                }else {
-//                    String content = newsArrBean.getContext();
-//                    String topic = newsArrBean.getTopic();
-//                    Intent intent = new Intent(mContext, PostDetailsActivity.class);
-//                    intent.putExtra("title",topic);
-//                    intent.putExtra("content",content);
-//                    mContext.startActivity(intent);
-//                }
+                    ActivityUtils.startImageCheckActivity(mContext,position,pic);
+                } else if ("2".equals(type)) {
+                    int state = newsArrBean.getState();//	广告 ： 1 网页url地址 2 视频url地址
+                    if (state == 2){
+                        List<String> pic = newsArrBean.getPic();
+                        String url = "";
+                        if (pic != null && pic.size() > 0) {
+                            url = pic.get(0);
+                        }
+                        ActivityUtils.startWebViewVideoActivity(mContext, newsArrBean.getUrl(),newsArrBean.getTitle()
+                                ,String.valueOf(newsArrBean.getId()),newsArrBean.getOstate(),newsArrBean.getOurl(),url);
 
-                ActivityUtils.startImageCheckActivity(mContext,position,pic);
+                    }else {
+                        ActivityUtils.startWebViewActivity(mContext, newsArrBean.getUrl()
+                                ,String.valueOf(newsArrBean.getId()));
+
+                    }
+                }else {
+                    String content = newsArrBean.getContext();
+                    String topic = newsArrBean.getTopic();
+                    Intent intent = new Intent(mContext, PostDetailsActivity.class);
+                    intent.putExtra("title",topic);
+                    intent.putExtra("content",content);
+                    mContext.startActivity(intent);
+                }
+
             }
         });
     }
