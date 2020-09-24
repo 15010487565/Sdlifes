@@ -36,6 +36,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
             @Override
             protected int getItemType(HomeCatModel.DataBean.NewsArrBean newsArrBean) {
                 String type = newsArrBean.getType();
+                //	type = 1 新闻 type = 2广告 type = 3话题
                 if ("2".equals(type)) {//广告
                     return 2;
                 } if ("3".equals(type)) {//话题
@@ -206,7 +207,7 @@ public class HomeAdapter extends BaseQuickAdapter<HomeCatModel.DataBean.NewsArrB
                 //	type = 1 新闻 type = 2广告
                 String type = newsArrBean.getType();
                 if ("1".equals(type)) {
-                    int id = newsArrBean.getId();
+//                    int id = newsArrBean.getId();
 //                    String title = newsArrBean.getTitle();
 //                    String content = newsArrBean.getContent();
 //                    String focus = newsArrBean.getFocus();

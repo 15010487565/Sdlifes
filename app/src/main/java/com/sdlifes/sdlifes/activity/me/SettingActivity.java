@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.sdlifes.sdlifes.R;
 import com.sdlifes.sdlifes.activity.LoginActivity;
+import com.sdlifes.sdlifes.activity.UpdataPwdActivity;
+import com.sdlifes.sdlifes.dialog.LogoutDialogFragment;
 import com.sdlifes.sdlifes.network.UrlAddr;
 import com.sdlifes.sdlifes.util.ActivityUtils;
 import com.sdlifes.sdlifes.util.GlideCacheUtil;
@@ -37,11 +39,11 @@ public class SettingActivity extends SimpleTopbarActivity {
         tv_CacheSize = (TextView) findViewById(R.id.tv_CacheSize);
         tv_CacheSize.setText( GlideCacheUtil.getInstance().getCacheSize(this));
 
-       findViewById(R.id.tv_SettingExit).setOnClickListener(this);
-
+        findViewById(R.id.tv_SettingExit).setOnClickListener(this);
         findViewById(R.id.tv_setting_serve).setOnClickListener(this);
-
-       findViewById(R.id.tv_setting_privacy).setOnClickListener(this);
+        findViewById(R.id.tv_setting_privacy).setOnClickListener(this);
+        findViewById(R.id.tv_updata_pwd).setOnClickListener(this);
+        findViewById(R.id.tv_logout).setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +64,14 @@ public class SettingActivity extends SimpleTopbarActivity {
                 ShareHelper.cleanUserId();
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
+                break;
+            case R.id.tv_updata_pwd:
+                startActivity(new Intent(this, UpdataPwdActivity.class));
+
+                break;
+            case R.id.tv_logout:
+                LogoutDialogFragment dialogFr = new LogoutDialogFragment();
+                dialogFr.show(getSupportFragmentManager(), "SettingActivity");
                 break;
         }
     }

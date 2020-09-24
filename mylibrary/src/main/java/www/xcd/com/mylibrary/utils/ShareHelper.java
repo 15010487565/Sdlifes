@@ -35,6 +35,10 @@ public class ShareHelper {
         final SharedPreferences preferences = getSharePreferences();
         return preferences.getString("userid", null);
     }
+    public static String getPhone() {
+        final SharedPreferences preferences = getSharePreferences();
+        return preferences.getString("phone", null);
+    }
 
     public static void cleanUserId() {
         savePrfparams("userid","");

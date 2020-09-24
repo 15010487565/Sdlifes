@@ -123,6 +123,7 @@ public class LoginActivity extends NoTitleActivity
         int userId = loginData.getId();
         ShareHelper.savePrfparams("userid",String.valueOf(userId));
         ShareHelper.savePrfparams("nickname",loginData.getNickname());
+        ShareHelper.savePrfparams("phone",loginData.getPhone());
 //        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
 //        startActivity(intent);
         finish();

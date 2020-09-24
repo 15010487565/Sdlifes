@@ -16,11 +16,12 @@
         android:textColor="@color/black_26"
         android:text="温馨提示"/>
     <TextView
+        android:id="@+id/tv_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/textsize_14"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="10dp"
         android:layout_marginTop="5dp"
         android:textColor="@color/black_26"
         android:text="确定放弃此次编辑吗？"/>

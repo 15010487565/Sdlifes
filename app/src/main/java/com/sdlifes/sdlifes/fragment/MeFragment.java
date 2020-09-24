@@ -237,6 +237,8 @@ public class MeFragment extends SimpleTopbarFragment {
                     ShareHelper.savePrfparams("headImage",img);
                     ImageUtils.setImage(userPhoto, img, 3000, R.mipmap.head_portrait);
 
+                    ShareHelper.savePrfparams("phone",data.getPhone());
+
                     String nickname = data.getNickname();
                     ShareHelper.savePrfparams("nickname",nickname);
                     userName.setText(TextUtils.isEmpty(nickname)?"请设置昵称":nickname);

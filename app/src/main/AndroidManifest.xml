@@ -145,7 +145,7 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.LaunchActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -155,7 +155,7 @@
         </activity> <!-- app -->
         <activity
             android:name=".activity.WelcomeActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTask" />
         <activity
             android:name=".activity.LoginActivity"
             android:alwaysRetainTaskState="true"

@@ -1,6 +1,8 @@
 package com.sdlifes.sdlifes.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,15 +19,22 @@ import android.widget.TextView;
 import com.sdlifes.sdlifes.R;
 import com.sdlifes.sdlifes.application.BaseApplication;
 import com.sdlifes.sdlifes.dialog.AgreementDialogFragment;
+import com.sdlifes.sdlifes.dialog.UpdatDialogFragment;
 import com.sdlifes.sdlifes.fragment.HomeFragment;
 import com.sdlifes.sdlifes.fragment.MeFragment;
 import com.sdlifes.sdlifes.fragment.PostFragment;
+import com.sdlifes.sdlifes.network.UrlAddr;
+import com.sdlifes.sdlifes.util.UpdateManager;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import www.xcd.com.mylibrary.base.activity.SimpleTopbarActivity;
 import www.xcd.com.mylibrary.base.fragment.BaseFragment;
+import www.xcd.com.mylibrary.help.OkHttpHelper;
 import www.xcd.com.mylibrary.utils.ShareHelper;
 import www.xcd.com.mylibrary.utils.ToastUtil;
 import www.xcd.com.mylibrary.widget.SnsTabWidget;
@@ -112,11 +121,17 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
 //        resetRedPoint(1, 0);
 //        resetRedPoint(2, 0);
         clickFragmentBtn(currentItem);
+        checkUpdate();
 
         if (!ShareHelper.getAgreementFlag()) {
             initAgreementDialog();
         }
 
+    }
+
+    private void checkUpdate() {
+        OkHttpHelper.getAsyncHttp(this,1000,
+                null, UrlAddr.UPDATEUPDATE,this);
     }
 
     public void initAgreementDialog() {
@@ -390,39 +405,60 @@ public class MainActivity extends SimpleTopbarActivity implements AgreementDialo
         ShareHelper.setAgreementFlag();
     }
 
-    // 保存MyTouchListener接口的列表
-//    private ArrayList<MainActivityTouchListener> activityTouchListeners = new ArrayList<MainActivityTouchListener>();
-//
-//    public interface MainActivityTouchListener {
-//        public void onTouchEvent(MotionEvent event);
-//    }
-//
-//    /**
-//     * 提供给Fragment通过getActivity()方法来注册自己的触摸事件的方法
-//     *
-//     * @param listener
-//     */
-//    public void registerTouchListener(MainActivityTouchListener listener) {
-//        activityTouchListeners.add(listener);
-//    }
-//
-//    /**
-//     * 提供给Fragment通过getActivity()方法来注销自己的触摸事件的方法
-//     *
-//     * @param listener
-//     */
-//    public void unRegisterTouchListener(MainActivityTouchListener listener) {
-//        activityTouchListeners.remove(listener);
-//    }
-//
-//    /**
-//     * 分发触摸事件给所有注册了MainActivityTouchListener的接口
-//     */
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        for (MainActivityTouchListener listener : activityTouchListeners) {
-//            listener.onTouchEvent(ev);
-//        }
-//        return super.dispatchTouchEvent(ev);
-//    }
+    @Override
+    public void onSuccessResult(int requestCode, int returnCode, String returnMsg, String returnData, Map<String, String> paramsMaps) {
+        switch (requestCode){
+            case 1000:
+                try {
+                    JSONObject jsonObject = new JSONObject(returnData);
+                    JSONObject data = jsonObject.getJSONObject("data");
+                    String version = data.optString("version");
+                    PackageManager manager = this.getPackageManager();
+                    PackageInfo info = manager.getPackageInfo(getPackageName(),
+                            0);
+                    int versionCode = info.versionCode;
+                    if (versionCode < Integer.parseInt(version)) {
+                        String state = data.optString("state");
+                        download = data.optString("download");
+                        //更新状态 0 不更新 1普通更新（可以更新可以不更新）2强制更新（必须更新）
+//                        if ("1".equals(state)||"2".equals(state)){
+                            String desc = data.optString("desc");
+                            showUpdateTip("2",desc);
+//                        }
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                break;
+        }
+    }
+
+    private void showUpdateTip(String state,String desc) {
+        UpdatDialogFragment updataDialog = new UpdatDialogFragment();
+
+        updataDialog.setData(state,desc);
+        updataDialog.show(getSupportFragmentManager(), "updata");
+    }
+    UpdateManager manager;
+    String download;
+    public void updateTip() {
+        manager = new UpdateManager(this);
+        // 检查软件更新
+        if (TextUtils.isEmpty(download)){
+            ToastUtil.showToast("更新地址有无，请联系管理员！");
+        }else {
+            manager.checkUpdate(download);
+        }
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        Log.e("TAG_首页更新","resultCode="+resultCode+";resultCode"+resultCode);
+        if (manager != null){
+            manager.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }
